@@ -1,9 +1,10 @@
 import React from "react";
+import GreetingHub from "./components/GreetingHub";
 
 function App() {
   return (
     <main className="App">
-      <h1>React R0 Environment Ready 🚀</h1>
+      <GreetingHub name="Gorby" timeOfDay="Evening" />
     </main>
   );
 }
