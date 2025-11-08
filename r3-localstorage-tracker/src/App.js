@@ -1,9 +1,10 @@
 import React from "react";
+import Counter from "./components/Counter";
 
 function App() {
   return (
     <main className="App">
-      <h1>React R0 Environment Ready 🚀</h1>
+      <Counter />
     </main>
   );
 }
