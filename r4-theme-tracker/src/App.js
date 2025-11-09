@@ -1,9 +1,10 @@
 import React from "react";
+import ThemeToggler from "./components/ThemeToggler";
 
 function App() {
   return (
-    <main className="App">
-      <h1>React R0 Environment Ready 🚀</h1>
+    <main className="app-container">
+      <ThemeToggler />
     </main>
   );
 }
