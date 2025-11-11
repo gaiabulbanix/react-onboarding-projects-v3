@@ -1,18 +1,23 @@
 import React from "react";
-import TaskItems from "./TaskItems";
+import TaskItem from "./TaskItem";
 
-function TaskList() {
+function TaskList({ onGenerateTaskArray = [] }) {
 
     // jsx block
     return (
         <section className="task-list">
-            <h1>RB1 — Task Tracker 🎨</h1>
             <h2>Task List</h2>
             <ul>
-                <TaskItems />
+                {onGenerateTaskArray.length === 0 ? (
+                    <li>No tasks yet</li>
+                ) : (
+                    onGenerateTaskArray.map((task, index) => (
+                        <TaskItem key={index} task={task} />
+                    ))
+                )}
             </ul>
         </section>
-    )
+    );
 }
 
 export default TaskList;
