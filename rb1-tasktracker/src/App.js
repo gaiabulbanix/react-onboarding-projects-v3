@@ -23,19 +23,50 @@ function App() {
     // prevent empty task if received somehow from child TaskInput
     if (!newTask || !newTask.trim()) return;
 
+    // generate new task object
+    const newTaskObject = {
+      taskValue: newTask,
+      complete: false
+    };
+
     // add new task to array, also trim just in case
-    const newTaskArray = [...taskArray, newTask];
+    const newTaskArray = [...taskArray, newTaskObject];
     setTaskArray(newTaskArray);
 
     // save array to localStorage
     localStorage.setItem("storedTasks", JSON.stringify(newTaskArray));
   }
 
+  // delete task handler to child TaskInput > TaskItem
+  function handleDelTask(indexToDelete) {
+
+    // create a new array with only tasks NOT to be deleted using filter
+    // remember that filter and map uses (element, index, array) => callback function, in this case we don't care about the element so it's _
+    const taskArrayAfterDel = taskArray.filter(
+      (_, index) => index !== indexToDelete
+    );
+
+    // set filtered array to current array
+    setTaskArray(taskArrayAfterDel);
+
+    // save array to localStorage
+    localStorage.setItem("storedTasks", JSON.stringify(taskArrayAfterDel));
+  }
+
+  // changed a task's checked state
+  function handleCheckUncheck() {
+
+  }
+
   return (
     <main className="app-container">
       <h1>RB1 — Task Tracker 🎨</h1>
       <ThemeToggler />
-      <TaskList onGenerateTaskArray={taskArray} />
+      <TaskList
+        onGenerateTaskArray={taskArray}
+        onDelTask={handleDelTask}
+        onCheckUncheck={handleCheckUncheck}
+      />
       <TaskInput onAddTask={handleAddTask} />
     </main>
   );
