@@ -1,7 +1,7 @@
 import React from "react";
 import TaskItem from "./TaskItem";
 
-function TaskList({ onGenerateTaskArray = [], onDelTask }) {
+function TaskList({ onGenerateTaskArray = [], onDelTask, onCheckUncheck }) {
 
     // jsx block
     return (
@@ -18,6 +18,7 @@ function TaskList({ onGenerateTaskArray = [], onDelTask }) {
                             key={index}
                             task={task}
                             onDelTask={() => onDelTask(index)}
+                            onCheckUncheck={() => onCheckUncheck(index)}
                         />
                     ))
                 )}
