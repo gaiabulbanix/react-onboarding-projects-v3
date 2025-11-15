@@ -54,8 +54,16 @@ function App() {
   }
 
   // changed a task's checked state
-  function handleCheckUncheck() {
+  function handleCheckUncheck(indexToToggle) {
+    // create a new array since we're going to mutate it and react needs to know that the array is being updated to reload properly
+    const updatedCheckArray = [...taskArray];
+    updatedCheckArray[indexToToggle].complete = !updatedCheckArray[indexToToggle].complete;
 
+    // set the new array to the current array
+    setTaskArray(updatedCheckArray);
+
+    // save the new array to localStorage
+    localStorage.setItem("storedTasks", JSON.stringify(updatedCheckArray));
   }
 
   return (
