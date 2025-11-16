@@ -8,15 +8,6 @@ body.dark {
     color: #f4f4f4;
 }
 
-button {
-  margin-top: 1rem;
-  padding: 0.5rem 1rem;
-  border: none;
-  cursor: pointer;
-  font-size: 1rem;
-  border-radius: 0.5rem;
-}
-
 body.light button {
   background-color: #333;
   color: #fff;
@@ -25,9 +16,4 @@ body.light button {
 body.dark button {
   background-color: #ddd;
   color: #111;
-}
-
-section {
-    margin-top: 1rem;
-    padding: 0.5rem 1rem;
 }
