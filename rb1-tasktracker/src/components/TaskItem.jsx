@@ -4,7 +4,7 @@ function TaskItem({ task, onDelTask, onCheckUncheck }) {
 
     // jsx block
     return (
-        <li>
+        <li className={task.complete ? "completed" : ""}>
             {/* anything that gets passed onto TaskList can be "selected" later, such as index */}
             {task.taskValue}
             <button type="button" id="del-btn" onClick={onDelTask}>
