@@ -11,3 +11,131 @@ code {
   font-family:
     source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
+
+.completed{
+  text-decoration: line-through;
+}
+
+li{
+  display:flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  border-bottom: 0.5px solid #ccc;
+}
+
+button {
+  margin-top: 1rem;
+  padding: 0.5rem 0.5rem;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+}
+
+input[type="checkbox"]{
+  transform: scale(1.5);
+  cursor: pointer;
+}
+
+.task-actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.task-list{
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 1rem 0;
+}
+
+.task-list h2 {
+  margin-bottom: 0.75rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.task-input{
+  max-width: 600px;
+  margin: 1rem auto 0;
+  padding-top: 0.5rem;
+}
+
+.task-input h2{
+  margin-bottom: 0.75rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.task-input form{
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+/* make inputs and buttons align and feel like a single control */
+.task-input input[type="text"] {
+  flex: 1;                       /* take available width inside the form row */
+  min-width: 0;                  /* prevent overflow in flex containers */
+  padding: 0.6rem 0.75rem;       /* vertical + horizontal breathing room */
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;         /* same radius as button so they read as a pair */
+  box-sizing: border-box;
+  outline: none;
+}
+
+.task-input button[type="submit"] {
+  padding: 0.6rem 0.9rem;        /* keep height matching the input */
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #333;
+  background-color: #333;
+  color: #fff;
+  cursor: pointer;
+  height: auto;                  /* allow flex sizing to be natural */
+}
+
+/* subtle focus ring for accessibility */
+.task-input input[type="text"]:focus,
+.task-input button[type="submit"]:focus {
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12); /* light indigo focus */
+}
+
+/* make sure the input and button sit nicely in one row */
+.task-input form > input[type="text"],
+.task-input form > button[type="submit"] {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* small responsive tweak: stack on narrow screens */
+@media (max-width: 420px) {
+  .task-input form {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .task-input button[type="submit"] {
+    width: 100%;
+  }
+}
+
+button:hover {
+  opacity: 0.85;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+.task-list,
+.task-input,
+.theme-section {
+  background: rgba(0, 0, 0, 0.03); /* faint background */
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
