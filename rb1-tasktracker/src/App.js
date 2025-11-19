@@ -37,6 +37,18 @@ function App() {
     localStorage.setItem("storedTasks", JSON.stringify(newTaskArray));
   }
 
+  // edit task handler to child TaskItem
+  function handleEditTask(indexToEdit, editValue) {
+    const updatedTasks = [...taskArray];
+    updatedTasks[indexToEdit].taskValue = editValue;
+
+    // set edited array to current array
+    setTaskArray(updatedTasks);
+
+    // save array to localStorage
+    localStorage.setItem("storedTasks", JSON.stringify(updatedTasks));
+  }
+
   // delete task handler to child TaskInput > TaskItem
   function handleDelTask(indexToDelete) {
 
@@ -74,6 +86,7 @@ function App() {
         onGenerateTaskArray={taskArray}
         onDelTask={handleDelTask}
         onCheckUncheck={handleCheckUncheck}
+        onEditTask={handleEditTask}
       />
       <TaskInput onAddTask={handleAddTask} />
     </main>

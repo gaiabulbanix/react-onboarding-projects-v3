@@ -1,7 +1,7 @@
 import React from "react";
 import TaskItem from "./TaskItem";
 
-function TaskList({ onGenerateTaskArray = [], onDelTask, onCheckUncheck }) {
+function TaskList({ onGenerateTaskArray = [], onDelTask, onCheckUncheck, onEditTask }) {
 
     // jsx block
     return (
@@ -21,6 +21,8 @@ function TaskList({ onGenerateTaskArray = [], onDelTask, onCheckUncheck }) {
                             // here we pass on the index from TaskItem onto App.js for it to perform the functions on the specific index later
                             onDelTask={() => onDelTask(index)}
                             onCheckUncheck={() => onCheckUncheck(index)}
+                            // we require both the index passed from TaskItem, as well as a value from it, so we have two arguments here
+                            onEditTask={(editValue) => onEditTask(index, editValue)}
                         />
                     ))
                 )}
