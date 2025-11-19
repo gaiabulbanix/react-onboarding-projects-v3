@@ -39,19 +39,18 @@ function App() {
 
   // edit task handler to child TaskItem
   function handleEditTask(indexToEdit, editValue) {
-    const updatedTasks = [...taskArray];
-    updatedTasks[indexToEdit].taskValue = editValue;
+    const updatedCheckArray = [...taskArray];
+    updatedCheckArray[indexToEdit].taskValue = editValue;
 
     // set edited array to current array
-    setTaskArray(updatedTasks);
+    setTaskArray(updatedCheckArray);
 
     // save array to localStorage
-    localStorage.setItem("storedTasks", JSON.stringify(updatedTasks));
+    localStorage.setItem("storedTasks", JSON.stringify(updatedCheckArray));
   }
 
   // delete task handler to child TaskInput > TaskItem
   function handleDelTask(indexToDelete) {
-
     // create a new array with only tasks NOT to be deleted using filter
     // remember that filter and map uses (element, index, array) => callback function, in this case we don't care about the element so it's _
     const taskArrayAfterDel = taskArray.filter(
@@ -78,6 +77,17 @@ function App() {
     localStorage.setItem("storedTasks", JSON.stringify(updatedCheckArray));
   }
 
+  // clear any checked completed tasks
+  function handleClearCompleted() {
+    const filterClearedArray = taskArray.filter(task => !task.complete);
+
+    // set the filtered completed to the current array
+    setTaskArray(filterClearedArray);
+
+    // save the new array to localStorage
+    localStorage.setItem("storedTasks", JSON.stringify(filterClearedArray));
+  }
+
   return (
     <main className="app-container">
       <h1>RB1 — Task Tracker 🎨</h1>
@@ -87,6 +97,7 @@ function App() {
         onDelTask={handleDelTask}
         onCheckUncheck={handleCheckUncheck}
         onEditTask={handleEditTask}
+        onClearCompleted={handleClearCompleted}
       />
       <TaskInput onAddTask={handleAddTask} />
     </main>

@@ -1,7 +1,7 @@
 import React from "react";
 import TaskItem from "./TaskItem";
 
-function TaskList({ onGenerateTaskArray = [], onDelTask, onCheckUncheck, onEditTask }) {
+function TaskList({ onGenerateTaskArray = [], onDelTask, onCheckUncheck, onEditTask, onClearCompleted }) {
 
     // jsx block
     return (
@@ -27,6 +27,7 @@ function TaskList({ onGenerateTaskArray = [], onDelTask, onCheckUncheck, onEditT
                     ))
                 )}
             </ul>
+            <button type="button" id="clear-btn" onClick={onClearCompleted}>Clear Completed Tasks</button>
         </section>
     );
 }
