@@ -89,7 +89,7 @@ function App() {
     localStorage.setItem("storedTasks", JSON.stringify(filterClearedArray));
   }
 
-  // select a task row for highlight/options
+  // select a task row for highlight/actions
   function handleSelectTask(indexToSelect) {
     // fetch the latest loaded array req due to mutation
     const updatedSelectArray = [...taskArray];
@@ -104,6 +104,22 @@ function App() {
     localStorage.setItem("storedTasks", JSON.stringify(updatedSelectArray));
   }
 
+  // bulk delete handler
+  function handleBulkDelete() {
+    // select all non-selected tasks in the array
+    const unselectedArray = taskArray.filter(task => !task.selected);
+
+    // reset selection upon deletion
+    const cleanedArray = unselectedArray.map(task => ({ ...task, selected: false }));
+
+    // save unselected Array
+    setTaskArray(cleanedArray);
+
+    // local save
+    localStorage.setItem("storedTasks", JSON.stringify(unselectedArray));
+
+  }
+
   return (
     <main className="app-container">
       <h1>RB1 — Task Tracker 🎨</h1>
@@ -115,6 +131,7 @@ function App() {
         onEditTask={handleEditTask}
         onClearCompleted={handleClearCompleted}
         onSelect={handleSelectTask}
+        onBulkDelete={handleBulkDelete}
       />
       <TaskInput onAddTask={handleAddTask} />
     </main>
