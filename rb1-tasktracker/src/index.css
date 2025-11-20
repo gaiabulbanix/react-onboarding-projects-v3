@@ -139,3 +139,7 @@ button:active {
   padding: 1rem;
   margin-bottom: 1rem;
 }
+
+.selected {
+  background: rgba(100, 149, 237, 0.15); /* soft cornflower blue tint */
+}

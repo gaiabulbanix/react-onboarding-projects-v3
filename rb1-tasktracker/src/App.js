@@ -26,7 +26,8 @@ function App() {
     // generate new task object
     const newTaskObject = {
       taskValue: newTask,
-      complete: false
+      complete: false,
+      selected: false
     };
 
     // add new task to array, also trim just in case
@@ -39,14 +40,14 @@ function App() {
 
   // edit task handler to child TaskItem
   function handleEditTask(indexToEdit, editValue) {
-    const updatedCheckArray = [...taskArray];
-    updatedCheckArray[indexToEdit].taskValue = editValue;
+    const updatedEditArray = [...taskArray];
+    updatedEditArray[indexToEdit].taskValue = editValue;
 
     // set edited array to current array
-    setTaskArray(updatedCheckArray);
+    setTaskArray(updatedEditArray);
 
     // save array to localStorage
-    localStorage.setItem("storedTasks", JSON.stringify(updatedCheckArray));
+    localStorage.setItem("storedTasks", JSON.stringify(updatedEditArray));
   }
 
   // delete task handler to child TaskInput > TaskItem
@@ -88,6 +89,21 @@ function App() {
     localStorage.setItem("storedTasks", JSON.stringify(filterClearedArray));
   }
 
+  // select a task row for highlight/options
+  function handleSelectTask(indexToSelect) {
+    // fetch the latest loaded array req due to mutation
+    const updatedSelectArray = [...taskArray];
+
+    // set updated array with selected task
+    setTaskArray(updatedSelectArray);
+
+    // update latest array index's select value
+    updatedSelectArray[indexToSelect].selected = !updatedSelectArray[indexToSelect].selected;
+
+    // save selected array to localStorage
+    localStorage.setItem("storedTasks", JSON.stringify(updatedSelectArray));
+  }
+
   return (
     <main className="app-container">
       <h1>RB1 — Task Tracker 🎨</h1>
@@ -98,6 +114,7 @@ function App() {
         onCheckUncheck={handleCheckUncheck}
         onEditTask={handleEditTask}
         onClearCompleted={handleClearCompleted}
+        onSelect={handleSelectTask}
       />
       <TaskInput onAddTask={handleAddTask} />
     </main>
