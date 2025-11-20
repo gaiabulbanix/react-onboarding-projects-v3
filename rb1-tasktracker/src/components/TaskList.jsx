@@ -1,12 +1,17 @@
 import React from "react";
 import TaskItem from "./TaskItem";
 
-function TaskList({ onGenerateTaskArray = [], onDelTask, onCheckUncheck }) {
+function TaskList({ onGenerateTaskArray = [], onDelTask, onCheckUncheck, onEditTask, onClearCompleted, onSelect, onBulkDelete }) {
+    // count # of selected tasks (used for bulk delete)
+    const selectedCount = onGenerateTaskArray.filter(task => task.selected).length;
+
+
 
     // jsx block
     return (
         <section className="task-list">
             <h2>Task List</h2>
+            {selectedCount > 0 && <button type="button" id="bulk-del-btn" onClick={onBulkDelete}>Delete Selected</button>}
             <ul>
                 {/* make a list using a map of the array - if there is no valid array, say "no tasks yet", if there is one, make the list*/}
                 {onGenerateTaskArray.length === 0 ? (
@@ -21,10 +26,14 @@ function TaskList({ onGenerateTaskArray = [], onDelTask, onCheckUncheck }) {
                             // here we pass on the index from TaskItem onto App.js for it to perform the functions on the specific index later
                             onDelTask={() => onDelTask(index)}
                             onCheckUncheck={() => onCheckUncheck(index)}
+                            // we require both the index passed from TaskItem, as well as a value from it, so we have two arguments here
+                            onEditTask={(editValue) => onEditTask(index, editValue)}
+                            onSelect={() => onSelect(index)}
                         />
                     ))
                 )}
             </ul>
+            <button type="button" id="clear-btn" onClick={onClearCompleted}>Clear Completed Tasks</button>
         </section>
     );
 }

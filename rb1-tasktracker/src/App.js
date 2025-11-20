@@ -26,7 +26,8 @@ function App() {
     // generate new task object
     const newTaskObject = {
       taskValue: newTask,
-      complete: false
+      complete: false,
+      selected: false
     };
 
     // add new task to array, also trim just in case
@@ -37,9 +38,20 @@ function App() {
     localStorage.setItem("storedTasks", JSON.stringify(newTaskArray));
   }
 
+  // edit task handler to child TaskItem
+  function handleEditTask(indexToEdit, editValue) {
+    const updatedEditArray = [...taskArray];
+    updatedEditArray[indexToEdit].taskValue = editValue;
+
+    // set edited array to current array
+    setTaskArray(updatedEditArray);
+
+    // save array to localStorage
+    localStorage.setItem("storedTasks", JSON.stringify(updatedEditArray));
+  }
+
   // delete task handler to child TaskInput > TaskItem
   function handleDelTask(indexToDelete) {
-
     // create a new array with only tasks NOT to be deleted using filter
     // remember that filter and map uses (element, index, array) => callback function, in this case we don't care about the element so it's _
     const taskArrayAfterDel = taskArray.filter(
@@ -66,6 +78,48 @@ function App() {
     localStorage.setItem("storedTasks", JSON.stringify(updatedCheckArray));
   }
 
+  // clear any checked completed tasks
+  function handleClearCompleted() {
+    const filterClearedArray = taskArray.filter(task => !task.complete);
+
+    // set the filtered completed to the current array
+    setTaskArray(filterClearedArray);
+
+    // save the new array to localStorage
+    localStorage.setItem("storedTasks", JSON.stringify(filterClearedArray));
+  }
+
+  // select a task row for highlight/actions
+  function handleSelectTask(indexToSelect) {
+    // fetch the latest loaded array req due to mutation
+    const updatedSelectArray = [...taskArray];
+
+    // set updated array with selected task
+    setTaskArray(updatedSelectArray);
+
+    // update latest array index's select value
+    updatedSelectArray[indexToSelect].selected = !updatedSelectArray[indexToSelect].selected;
+
+    // save selected array to localStorage
+    localStorage.setItem("storedTasks", JSON.stringify(updatedSelectArray));
+  }
+
+  // bulk delete handler
+  function handleBulkDelete() {
+    // select all non-selected tasks in the array
+    const unselectedArray = taskArray.filter(task => !task.selected);
+
+    // reset selection upon deletion
+    const cleanedArray = unselectedArray.map(task => ({ ...task, selected: false }));
+
+    // save unselected Array
+    setTaskArray(cleanedArray);
+
+    // local save
+    localStorage.setItem("storedTasks", JSON.stringify(unselectedArray));
+
+  }
+
   return (
     <main className="app-container">
       <h1>RB1 — Task Tracker 🎨</h1>
@@ -74,6 +128,10 @@ function App() {
         onGenerateTaskArray={taskArray}
         onDelTask={handleDelTask}
         onCheckUncheck={handleCheckUncheck}
+        onEditTask={handleEditTask}
+        onClearCompleted={handleClearCompleted}
+        onSelect={handleSelectTask}
+        onBulkDelete={handleBulkDelete}
       />
       <TaskInput onAddTask={handleAddTask} />
     </main>
