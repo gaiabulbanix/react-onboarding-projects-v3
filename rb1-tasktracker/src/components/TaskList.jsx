@@ -5,8 +5,6 @@ function TaskList({ onGenerateTaskArray = [], onDelTask, onCheckUncheck, onEditT
     // count # of selected tasks (used for bulk delete)
     const selectedCount = onGenerateTaskArray.filter(task => task.selected).length;
 
-
-
     // jsx block
     return (
         <section className="task-list">

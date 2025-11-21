@@ -94,11 +94,11 @@ function App() {
     // fetch the latest loaded array req due to mutation
     const updatedSelectArray = [...taskArray];
 
-    // set updated array with selected task
-    setTaskArray(updatedSelectArray);
-
     // update latest array index's select value
     updatedSelectArray[indexToSelect].selected = !updatedSelectArray[indexToSelect].selected;
+
+    // set updated array with selected task
+    setTaskArray(updatedSelectArray);
 
     // save selected array to localStorage
     localStorage.setItem("storedTasks", JSON.stringify(updatedSelectArray));
