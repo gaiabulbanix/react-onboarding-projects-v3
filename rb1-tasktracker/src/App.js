@@ -3,6 +3,59 @@ import ThemeToggler from "./components/ThemeToggler";
 import TaskList from "./components/TaskList";
 import TaskInput from "./components/TaskInput";
 
+function NameForm() {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const fullName = `${firstName} ${lastName}`.trim();
+  const isValid = firstName.length > 0 && lastName.length > 0;
+
+  return (
+    <div>
+      <h2>NameForm Component</h2>
+      {/* full name */}
+      <p>Full Name = {fullName}</p>
+
+      {/* first name */}
+      <label>First Name </label>
+      <input
+        type="text"
+        value={firstName}
+        onChange={(e) => setFirstName(e.target.value)}
+        placeholder="First Name"
+      />
+
+      {/* last name */}
+      <label>Last Name </label>
+      <input
+        type="text"
+        value={lastName}
+        onChange={(e) => setLastName(e.target.value)}
+        placeholder="Last Name"
+      />
+
+      <button disabled={!isValid}>Submit Full Name</button>
+    </div>
+  );
+}
+
+
+function MiniInput() {
+  const [name, setName] = useState("");
+
+  return (
+    <div>
+      <h2>MiniInput Component</h2>
+      <input
+        type="text"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      />
+      <button onClick={() => setName("")} disabled={name.length === 0}>Clear</button>
+      <p>You typed: {name}</p>
+    </div>
+  );
+}
+
 function App() {
   // task array useStates - source of truth
   const [taskArray, setTaskArray] = useState([]);
@@ -123,6 +176,8 @@ function App() {
   return (
     <main className="app-container">
       <h1>RB1 — Task Tracker 🎨</h1>
+      <NameForm />
+      <MiniInput />
       <ThemeToggler />
       <TaskList
         onGenerateTaskArray={taskArray}
