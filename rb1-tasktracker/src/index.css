@@ -143,3 +143,9 @@ button:active {
 .selected {
   background: rgba(100, 149, 237, 0.15); /* soft cornflower blue tint */
 }
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
