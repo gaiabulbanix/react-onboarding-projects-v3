@@ -3,6 +3,63 @@ import ThemeToggler from "./components/ThemeToggler";
 import TaskList from "./components/TaskList";
 import TaskInput from "./components/TaskInput";
 
+function ProfileForm() {
+  // profile state
+  const [profile, setProfile] = useState({
+    username: "",
+    age: "",
+    email: ""
+  });
+
+  // multiple value update function
+  function updateProfile(field, value) {
+    setProfile(prev => ({
+      ...prev,
+      [field]: value
+    }));
+  }
+
+  // button validation (only when not empty)
+  const isValid =
+    profile.username.length > 0 &&
+    profile.age.length > 0 &&
+    profile.email.length > 0;
+
+  return (
+    <div>
+      <h2>ProfileForm Component</h2>
+      {/* username */}
+      <label>Username</label>
+      <input
+        type="text"
+        value={profile.username}
+        onChange={(e) => updateProfile("username", e.target.value)}
+      />
+
+      {/* age */}
+      <label>Age</label>
+      <input
+        type="text"
+        value={profile.age}
+        onChange={(e) => updateProfile("age", e.target.value)}
+      />
+
+      {/* email */}
+      <label>Email</label>
+      <input
+        type="email"
+        value={profile.email}
+        onChange={(e) => updateProfile("email", e.target.value)}
+      />
+
+      {/* submission */}
+      <button disabled={!isValid}>Save Profile</button>
+
+      <p>Current Profile: {JSON.stringify(profile)}</p>
+    </div>
+  );
+}
+
 function NameForm() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -176,6 +233,7 @@ function App() {
   return (
     <main className="app-container">
       <h1>RB1 — Task Tracker 🎨</h1>
+      <ProfileForm />
       <NameForm />
       <MiniInput />
       <ThemeToggler />
