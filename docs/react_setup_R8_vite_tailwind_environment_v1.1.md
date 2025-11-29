@@ -224,7 +224,8 @@ Add to package.json scripts:
 #   STEP 13 — Install ESLint (Minimal + Stable)
 # ============================================
 
-Command: npm install -D eslint eslint-plugin-react eslint-plugin-react-hooks
+Command:
+npm install -D eslint eslint-plugin-react eslint-plugin-react-hooks
 
 Create .eslintrc.json:
 
