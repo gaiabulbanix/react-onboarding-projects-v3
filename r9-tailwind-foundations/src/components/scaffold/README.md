@@ -16,3 +16,14 @@
   <button>Action</button>
 </ActionRow>
 ```
+
+## FormInput
+
+**Usage:**
+```jsx
+<FormInput
+  label="Username"
+  placeholder="Enter your username"
+  className="mt-2"
+/>
+```
