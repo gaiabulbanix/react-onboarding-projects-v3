@@ -1,6 +1,7 @@
 import Panel from "./components/scaffold/Panel";
 import ActionRow from "./components/scaffold/ActionRow";
 import FormInput from "./components/scaffold/FormInput";
+import SettingsPanel from "./pages/SettingsPanel";
 
 export default function App() {
   return (
@@ -29,6 +30,9 @@ export default function App() {
         <FormInput label="Email" placeholder="Enter your email" className="mt-3" />
       </Panel>
 
+      <SettingsPanel>
+
+      </SettingsPanel>
     </div>
   );
 }
