@@ -3,6 +3,7 @@ import ActionRow from "./components/scaffold/ActionRow";
 import FormInput from "./components/scaffold/FormInput";
 import SettingsPanel from "./pages/SettingsPanel";
 import NotificationSettings from "./pages/NotificationSettings";
+import PasswordSecurity from "./pages/PasswordSecurity";
 
 export default function App() {
   return (
@@ -34,6 +35,8 @@ export default function App() {
       <SettingsPanel />
 
       <NotificationSettings />
+
+      <PasswordSecurity />
     </div >
   );
 }
