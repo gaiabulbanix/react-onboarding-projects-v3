@@ -2,16 +2,17 @@ import Panel from "./components/scaffold/Panel";
 import ActionRow from "./components/scaffold/ActionRow";
 import FormInput from "./components/scaffold/FormInput";
 import SettingsPanel from "./pages/SettingsPanel";
+import NotificationSettings from "./pages/NotificationSettings";
 
 export default function App() {
   return (
     <div className="min-h-screen bg-gray-100 p-6">
       <Panel title="Default Panel">
-        <p className="text-gray-600">This is the default panel variant</p>
+        <p className="text-gray-600">This is the default panel variant.</p>
       </Panel>
 
       <Panel title="Soft Panel" variant="soft" className="mt-2">
-        <p className="text-gray-600">This is the soft panel variant</p>
+        <p className="text-gray-600">This is the soft panel variant.</p>
       </Panel>
 
       <Panel title="Actions Demo" className="mt-4">
@@ -26,13 +27,13 @@ export default function App() {
       </Panel>
 
       <Panel title="Form Input Demo" className="mt-4">
-        <FormInput label="Username" placeholder="Enter your username" />
-        <FormInput label="Email" placeholder="Enter your email" className="mt-3" />
+        <FormInput label="Username" placeholder="Enter your username." />
+        <FormInput label="Email" placeholder="Enter your email." className="mt-3" />
       </Panel>
 
-      <SettingsPanel>
+      <SettingsPanel />
 
-      </SettingsPanel>
-    </div>
+      <NotificationSettings />
+    </div >
   );
 }
