@@ -1,6 +1,7 @@
 import Panel from "../components/scaffold/Panel";
 import ActionRow from "../components/scaffold/ActionRow";
 import FormInput from "../components/scaffold/FormInput";
+import Button from "../components/scaffold/Button";
 
 export default function SettingsPanel() {
     return (
@@ -22,9 +23,9 @@ export default function SettingsPanel() {
                 <FormInput label="Email" placeholder="Enter your email." className="mt-3 mb-2">
                 </FormInput>
                 <ActionRow label="" className="mt-6 mb-1">
-                    <button className="px-3 py-1.5 bg-blue-600 text-white rounded-md">
+                    <Button className="bg-blue-600 text-white">
                         Save Changes
-                    </button>
+                    </Button>
                 </ActionRow>
             </Panel>
         </div>
