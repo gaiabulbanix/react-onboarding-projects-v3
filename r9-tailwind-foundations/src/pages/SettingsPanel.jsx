@@ -23,7 +23,7 @@ export default function SettingsPanel() {
                 <FormInput label="Email" placeholder="Enter your email." className="mt-3 mb-2">
                 </FormInput>
                 <ActionRow label="" className="mt-6 mb-1">
-                    <Button className="bg-blue-600 text-white">
+                    <Button>
                         Save Changes
                     </Button>
                 </ActionRow>
