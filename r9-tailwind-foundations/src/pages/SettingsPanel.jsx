@@ -10,12 +10,12 @@ export default function SettingsPanel() {
                 <p className="text-gray-600">Adjust your preferences below.</p>
 
                 <ActionRow label="Profile Actions" className="mt-4">
-                    <button className="px-2 py-1 bg-blue-500 text-white rounded">
+                    <Button size="sm">
                         Edit Profile
-                    </button>
-                    <button className="px-2 py-1 bg-gray-200 text-gray-700 rounded">
+                    </Button>
+                    <Button size="sm" variant="secondary">
                         View Profile
-                    </button>
+                    </Button>
                 </ActionRow>
                 <div className="mt-6 mb-2 h-px bg-gray-200" />
                 <FormInput label="Username" placeholder="Enter your username." className="mt-4">
