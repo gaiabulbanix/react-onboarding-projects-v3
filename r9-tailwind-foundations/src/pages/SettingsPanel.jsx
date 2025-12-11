@@ -11,18 +11,26 @@ export default function SettingsPanel() {
 
                 <ActionRow label="Profile Actions" className="mt-4">
                     <Button size="sm">
-                        Edit Profile
+                        Edit
                     </Button>
                     <Button size="sm" variant="secondary">
                         View Profile
                     </Button>
                 </ActionRow>
-                <div className="mt-6 mb-2 h-px bg-gray-200" />
-                <FormInput label="Username" placeholder="Enter your username." className="mt-4">
-                </FormInput>
-                <FormInput label="Email" placeholder="Enter your email." className="mt-3 mb-2">
-                </FormInput>
-                <ActionRow label="" className="mt-6 mb-1">
+
+                <div className="mt-6 h-px bg-gray-200" />
+
+                <FormInput
+                    label="Username"
+                    placeholder="Enter your username."
+                    className="mt-4"
+                />
+                <FormInput
+                    label="Email"
+                    placeholder="Enter your email."
+                    className="mt-3"
+                />
+                <ActionRow className="mt-6 mb-1">
                     <Button>
                         Save Changes
                     </Button>
