@@ -12,6 +12,7 @@ export default function Button({
         primary: "bg-blue-600 text-white hover:bg-blue-700",
         secondary: "bg-gray-200 text-gray-700 hover:bg-gray-300",
         danger: "bg-red-500 text-white hover:bg-red-600",
+        success: "bg-green-500 text-white hover:bg-green-600"
     }
 
     const sizeStyles = {

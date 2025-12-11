@@ -4,6 +4,7 @@ import FormInput from "./components/scaffold/FormInput";
 import SettingsPanel from "./pages/SettingsPanel";
 import NotificationSettings from "./pages/NotificationSettings";
 import PasswordSecurity from "./pages/PasswordSecurity";
+import Button from "./components/scaffold/Button";
 
 export default function App() {
   return (
@@ -12,24 +13,37 @@ export default function App() {
         <p className="text-gray-600">This is the default panel variant.</p>
       </Panel>
 
-      <Panel title="Soft Panel" variant="soft" className="mt-2">
+      <Panel title="Soft Panel" variant="soft" className="mt-3">
         <p className="text-gray-600">This is the soft panel variant.</p>
       </Panel>
 
       <Panel title="Actions Demo" className="mt-4">
         <ActionRow label="Profile">
-          <button className="px-2 py-1 bg-blue-500 text-white rounded">Edit</button>
-          <button className="px-2 py-1 bg-gray-200 text-gray-700 rounded">View</button>
+          <Button size="sm">
+            Edit
+          </Button>
+          <Button size="sm" variant="secondary">
+            View
+          </Button>
         </ActionRow>
 
         <ActionRow label="Settings">
-          <button className="px-2 py-1 bg-green-500 text-white rounded">Enable</button>
+          <Button size="sm" variant="success">
+            Enable
+          </Button>
         </ActionRow>
       </Panel>
 
       <Panel title="Form Input Demo" className="mt-4">
-        <FormInput label="Username" placeholder="Enter your username." />
-        <FormInput label="Email" placeholder="Enter your email." className="mt-3" />
+        <FormInput
+          label="Username"
+          placeholder="Enter your username."
+        />
+        <FormInput
+          label="Email"
+          placeholder="Enter your email."
+          className="mt-3"
+        />
       </Panel>
 
       <SettingsPanel />
