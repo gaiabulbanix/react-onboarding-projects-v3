@@ -5,11 +5,41 @@ import SettingsPanel from "./pages/SettingsPanel";
 import NotificationSettings from "./pages/NotificationSettings";
 import PasswordSecurity from "./pages/PasswordSecurity";
 import Button from "./components/scaffold/Button";
+import { useState } from "react"
 
 export default function App() {
+
+  const [activePage, setActivePage] = useState("settings");
+
   return (
     <div className="min-h-screen bg-gray-100 p-6">
-      <Panel title="Default Panel">
+      <div className="flex gap-2">
+        <Button
+          size="sm"
+          variant={activePage === "settings" ? "primary" : "secondary"}
+          onClick={() => setActivePage("settings")}
+        >
+          Settings
+        </Button>
+
+        <Button
+          size="sm"
+          variant={activePage === "notifications" ? "primary" : "secondary"}
+          onClick={() => setActivePage("notifications")}
+        >
+          Notifications
+        </Button>
+
+        <Button
+          size="sm"
+          variant={activePage === "security" ? "primary" : "secondary"}
+          onClick={() => setActivePage("security")}
+        >
+          Security
+        </Button>
+      </div>
+
+      <Panel title="Default Panel" className="mt-4">
         <p className="text-gray-600">This is the default panel variant.</p>
       </Panel>
 
@@ -46,11 +76,12 @@ export default function App() {
         />
       </Panel>
 
-      <SettingsPanel />
+      {activePage === "settings" && <SettingsPanel />}
 
-      <NotificationSettings />
+      {activePage === "notifications" && <NotificationSettings />}
 
-      <PasswordSecurity />
+      {activePage === "security" && <PasswordSecurity />}
+
     </div >
   );
 }
