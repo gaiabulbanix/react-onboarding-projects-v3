@@ -1,4 +1,4 @@
-export default function Panel({ title, children, variant = 'default', className = '' }) {
+export default function Panel({ title, children, variant = 'default', className = '', }) {
   const baseStyles = 'p-6 rounded-xl shadow-md border transition-colors duration-200';
 
   const variantStyles =
