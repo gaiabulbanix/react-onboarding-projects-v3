@@ -1,12 +1,23 @@
 import Panel from "./components/Panel";
 import ActionRow from "./components/ActionRow";
 import FormInput from "./components/FormInput";
+import { useState } from 'react';
 
 export default function App() {
+  const [name, setName] = useState('');
+
   return (
     <div className="min-h-screen bg-gray-100 p-6">
       <Panel>
         <h1>R10 UI Flows</h1>
+        {/* state test */}
+        <p>{name}</p>
+        <FormInput
+          label="Name"
+          placeholder="Enter your name here."
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
         <ActionRow
           left={<p>Primary</p>}
           right={
