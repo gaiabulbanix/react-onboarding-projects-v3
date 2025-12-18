@@ -1,8 +1,6 @@
 export default function Panel({ children, className = '', }) {
-    const baseStyles = 'p-6 rounded-xl shadow-md border transition-colors duration-200 bg-white border-gray-200';
-
     return (
-        <div className={`${baseStyles} ${className}`}>
+        <div className={`p-6 rounded-xl bg-white shadow-md border border-gray-200 ${className}`}>
             {children}
         </div>
     );
