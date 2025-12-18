@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export default function FormInput({ label, placeholder = '', className = '' }) {
+export default function FormInput({ label, placeholder = '', className = '', }) {
   const [value, setValue] = useState('');
 
   return (
