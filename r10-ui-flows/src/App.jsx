@@ -23,7 +23,12 @@ export default function App() {
           right={
             <button
               type="button"
-              className="px-2 py-1 bg-blue-600 text-white rounded-md font-medium"
+              disabled={name === ''}
+              className={`px-2 py-1 rounded-md font-medium
+                ${name === ''
+                  ? 'bg-blue-300 cursor-not-allowed'
+                  : 'bg-blue-600 text-white'
+                }`}
             >
               Primary
             </button>}
@@ -39,6 +44,6 @@ export default function App() {
             </button>}
         />
       </Panel>
-    </div>
+    </div >
   );
 }
