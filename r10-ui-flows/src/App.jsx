@@ -10,8 +10,6 @@ export default function App() {
     <div className="min-h-screen bg-gray-100 p-6">
       <Panel>
         <h1>R10 UI Flows</h1>
-        {/* state test */}
-        <p>{name}</p>
         <FormInput
           label="Name"
           placeholder="Enter your name here."
