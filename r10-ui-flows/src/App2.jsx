@@ -5,31 +5,39 @@ import FormInput from './components/FormInput';
 
 
 export default function App2() {
-    const [state, setState] = useState('');
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
 
     return (
         <div className="min-h-screen bg-gray-100 p-6">
             <Panel >
                 <ActionRow
                     left={<FormInput
-                        value={state}
-                        placeholder="Enter input here."
-                        onChange={(e) => setState(e.target.value)}
+                        value={name}
+                        placeholder="Enter name here."
+                        onChange={(e) => setName(e.target.value)}
                     />}
                     right={
                         <button
                             className={`px-3 py-1.5 rounded-md
-                        ${state === ''
+                        ${name === '' || email === ''
                                     ? "bg-blue-300 cursor-not-allowed"
                                     : "bg-blue-600 text-white"
                                 }
                         `}
-                            disabled={state === ''}
+                            disabled={name === '' || email === ''}
                         >
                             Button
                         </button>
                     }
                 >
+                </ActionRow>
+                <ActionRow
+                    left={<FormInput
+                        value={email}
+                        placeholder="Enter email here."
+                        onChange={(e) => setEmail(e.target.value)}
+                    />}>
                 </ActionRow>
             </Panel>
         </div>
