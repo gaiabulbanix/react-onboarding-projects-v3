@@ -1,6 +1,6 @@
 # React Onboarding — R8 Environment Setup (Vite + Tailwind)
-**Version: 1.2**  
-**Last updated: 2025-11-29**
+**Version: 1.3**  
+**Last updated: 2025-12-16**
 
 A complete, idiot-proof, step-by-step guide for setting up a modern React environment using Vite + Tailwind.
 
@@ -8,17 +8,17 @@ A complete, idiot-proof, step-by-step guide for setting up a modern React enviro
 
 # STEP 0 — Verify System Environment
 
-## 0.1 — Check Node.js Version
+## 0.1 — Check Node.js Version (18.x+ LTS)
 ```bash
 node -v
 ```
 
-## 0.2 — Check npm Version
+## 0.2 — Check npm Version (9.x+)
 ```bash
 npm -v
 ```
 
-## 0.3 — Check Git
+## 0.3 — Check Git Version (2.40+)
 ```bash
 git --version
 ```
@@ -31,21 +31,11 @@ git --version
 
 ---
 
-# STEP 1.1 — Add Common Project Folders
-Inside `/src`, create:
-```
-src/
-  components/
-  utils/
-  styles/
-```
-
----
-
 # STEP 2 — Initialize Vite (React + JS)
 ```bash
 npm create vite@latest .
 ```
+<!-- If a README.md was created beforehand, select ignore and continue with installation -->
 
 Choose:
 - React  
@@ -57,6 +47,22 @@ Stop server if it auto-starts:
 ```bash
 Ctrl + C
 ```
+
+<!-- Vite automatically creates `/src` and scaffolds the base React files. -->
+
+---
+
+# STEP 2.1 — (Optional) Add Common Project Folders
+Inside `/src`, optionally create:
+```
+src/
+  components/
+  utils/
+  styles/
+```
+
+<!--Optional organizational folders for larger projects.  
+Safe to skip for small demos or experiments. -->
 
 ---
 
@@ -74,7 +80,7 @@ npx tailwindcss init -p
 
 ---
 
-# STEP 5 — Configure Tailwind Content Paths
+# STEP 5 — Configure Tailwind Content Paths (tailwind.config.js)
 ```js
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -103,7 +109,7 @@ html, body, #root {
 
 ---
 
-# STEP 7 — Import Tailwind in main.jsx
+# STEP 7 — Import Tailwind in main.jsx (move it as the first line)
 ```js
 import './index.css';
 ```
@@ -129,7 +135,7 @@ export default function App() {
         </p>
         <div className="mt-6">
           <button className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
-            Nice — tailwind working
+            Nice — Tailwind working
           </button>
         </div>
       </div>
@@ -140,7 +146,7 @@ export default function App() {
 
 ---
 
-# STEP 10 — Enable Auto-Open Dev Server
+# STEP 10 — Enable Auto-Open Dev Server (vite.config.js)
 ```js
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
@@ -158,7 +164,7 @@ export default defineConfig({
 npm install -D prettier
 ```
 
-Create `.prettierrc`:
+Create `.prettierrc.json`:
 ```json
 {
   "singleQuote": true,
@@ -171,7 +177,7 @@ Create `.prettierrc`:
 
 ---
 
-# STEP 12 — Add Prettier Script
+# STEP 12 — Add Prettier Script (under scripts)
 Add to `package.json`:
 ```json
 "format": "prettier --write ."
@@ -224,7 +230,23 @@ npm run dev
 ```bash
 npm list --depth=0
 ```
+<!-- 
+Dependencies:
+- react
+- react-dom
+- clsx
 
+Dev Dependencies:
+- vite
+- @vitejs/plugin-react
+- tailwindcss
+- postcss
+- autoprefixer
+- prettier
+- eslint
+- eslint-plugin-react
+- eslint-plugin-react-hooks
+ -->
 ---
 
 # FINAL CHECKLIST
@@ -233,7 +255,6 @@ npm list --depth=0
 ☑ npm version OK  
 ☑ Vite initialized  
 ☑ Tailwind installed  
-☑ Components/utils/styles folders exist  
 ☑ index.css replaced  
 ☑ main.jsx imports index.css  
 ☑ clsx installed  
