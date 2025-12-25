@@ -8,6 +8,7 @@ export default function App2() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [notifications, setNotifications] = useState(false);
+    const [state, setState] = useState('active');
 
     return (
         <div className="min-h-screen bg-gray-100 p-6">
