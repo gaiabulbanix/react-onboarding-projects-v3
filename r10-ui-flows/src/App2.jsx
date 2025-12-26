@@ -8,7 +8,7 @@ export default function App2() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [notifications, setNotifications] = useState(false);
-    const [state, setState] = useState('active');
+    const [status, setStatus] = useState('active');
 
     return (
         <div className="min-h-screen bg-gray-100 p-6">
@@ -45,7 +45,7 @@ export default function App2() {
                     left={<p>Enable Notifications</p>}
                     right={
                         <button
-                            className={`py-3 px-1.5 rounded-md
+                            className={`px-3 py-1.5 rounded-md
                                 ${notifications
                                     ? "bg-blue-600 text-white"
                                     : "bg-blue-300"
@@ -62,8 +62,15 @@ export default function App2() {
 
                 >
                 </ActionRow>
+                <button
+                    className="px-3 py-1.5 rounded-md bg-blue-600 text-white"
+                    onClick={() => setStatus(prev => (prev === 'active' ? 'paused' : 'active'))}
+                >
+                    {status === 'active' && 'Pause'}
+                    {status === 'paused' && 'Paused'}
+                </button>
             </Panel>
-        </div>
+        </div >
 
     );
 }
