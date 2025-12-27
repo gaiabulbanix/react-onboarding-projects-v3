@@ -5,15 +5,15 @@ import FormInput from './components/FormInput';
 
 
 export default function App2() {
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [notifications, setNotifications] = useState(false);
+    // const [name, setName] = useState('');
+    // const [email, setEmail] = useState('');
+    // const [notifications, setNotifications] = useState(false);
     const [status, setStatus] = useState('active');
 
     return (
         <div className="min-h-screen bg-gray-100 p-6">
             <Panel >
-                <ActionRow
+                {/* <ActionRow
                     left={<FormInput
                         value={name}
                         placeholder="Enter name here."
@@ -59,18 +59,30 @@ export default function App2() {
                             }
                         </button>
                     }
+                >
+                </ActionRow> */}
 
+                <h2>Account Status</h2>
+                <p className="mt-3">
+                    {status === 'active' && 'Active'}
+                    {status === 'paused' && 'Paused'}
+                </p>
+
+                <ActionRow
+                    className="mt-4"
+                    left="Left Side"
+                    right={
+                        <button
+                            className="px-3 py-1.5 rounded-md bg-blue-600 text-white"
+                            onClick={() => setStatus(prev => (prev === 'active' ? 'paused' : 'active'))}
+                        >
+                            {status === 'active' && 'Pause'}
+                            {status === 'paused' && 'Paused'}
+                        </button>
+                    }
                 >
                 </ActionRow>
-                <button
-                    className="px-3 py-1.5 rounded-md bg-blue-600 text-white"
-                    onClick={() => setStatus(prev => (prev === 'active' ? 'paused' : 'active'))}
-                >
-                    {status === 'active' && 'Pause'}
-                    {status === 'paused' && 'Paused'}
-                </button>
             </Panel>
         </div >
-
     );
 }
