@@ -70,7 +70,13 @@ export default function App2() {
 
                 <ActionRow
                     className="mt-4"
-                    left="Left Side"
+                    left={
+                        <button
+                            className="px-3 py-1.5 rounded-md bg-gray-200 text-gray-700"
+                        >
+                            View Details
+                        </button>
+                    }
                     right={
                         <button
                             className="px-3 py-1.5 rounded-md bg-blue-600 text-white"
