@@ -70,11 +70,24 @@ export default function App2() {
 
                 <ActionRow
                     className="mt-4"
-                    left="Left Side"
+                    left={
+                        <button
+                            className="px-3 py-1.5 rounded-md bg-gray-200 text-gray-700"
+                        >
+                            View Details
+                        </button>
+                    }
                     right={
                         <button
-                            className="px-3 py-1.5 rounded-md bg-blue-600 text-white"
+                            className={`
+                                px-3 py-1.5 rounded-md
+                                ${status === 'paused'
+                                    ? 'bg-blue-300 cursor-not-allowed'
+                                    : 'bg-blue-600 text-white'
+                                }
+                                `}
                             onClick={() => setStatus(prev => (prev === 'active' ? 'paused' : 'active'))}
+                            disabled={status === 'paused' ? true : false}
                         >
                             {status === 'active' && 'Pause'}
                             {status === 'paused' && 'Paused'}
