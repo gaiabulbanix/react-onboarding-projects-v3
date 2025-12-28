@@ -79,8 +79,15 @@ export default function App2() {
                     }
                     right={
                         <button
-                            className="px-3 py-1.5 rounded-md bg-blue-600 text-white"
+                            className={`
+                                px-3 py-1.5 rounded-md
+                                ${status === 'paused'
+                                    ? 'bg-blue-300 cursor-not-allowed'
+                                    : 'bg-blue-600 text-white'
+                                }
+                                `}
                             onClick={() => setStatus(prev => (prev === 'active' ? 'paused' : 'active'))}
+                            disabled={status === 'paused' ? true : false}
                         >
                             {status === 'active' && 'Pause'}
                             {status === 'paused' && 'Paused'}
