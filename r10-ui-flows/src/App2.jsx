@@ -73,6 +73,11 @@ export default function App2() {
                     left={
                         <button
                             className="px-3 py-1.5 rounded-md bg-gray-200 text-gray-700"
+                            onClick={() => {
+                                if (status === 'paused') {
+                                    setStatus('active');
+                                }
+                            }}
                         >
                             View Details
                         </button>
@@ -95,7 +100,7 @@ export default function App2() {
                     }
                 >
                 </ActionRow>
-            </Panel>
+            </Panel >
         </div >
     );
 }
