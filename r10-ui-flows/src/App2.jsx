@@ -9,6 +9,7 @@ export default function App2() {
     // const [email, setEmail] = useState('');
     // const [notifications, setNotifications] = useState(false);
     const [status, setStatus] = useState('active');
+    const [billingStatus, setBillingStatus] = useState('overdue');
 
     return (
         <div className="min-h-screen bg-gray-100 p-6">
@@ -67,14 +68,12 @@ export default function App2() {
                 {/* - Primary action pauses the account */}
                 {/* - Secondary action button restores the account*/}
 
-                <h2>Account Status</h2>
-                <p className="mt-3">
-                    {status === 'active' && 'Active'}
-                    {status === 'paused' && 'Paused'}
-                </p>
+                <h2>{`Account Status - 
+                    ${status === 'active' ? 'Active' : `Paused`}
+                `}
+                </h2>
 
                 <ActionRow
-                    className="mt-4"
                     left={
                         <button
                             className="px-3 py-1.5 rounded-md bg-gray-200 text-gray-700"
@@ -108,8 +107,38 @@ export default function App2() {
 
                 {/* Billing Status Account: */}
                 {/* - Represents billing state */}
-                {/* - Primary action is will show danger when overdue */}
-                {/* - Secondary action resolves the action back to primary */}
+                {/* - Primary action constrained when overdue */}
+                {/* - Secondary action resolves billing issue */}
+
+                <h2 className="mt-4">Billing Status</h2>
+                <ActionRow
+                    left={
+                        <button
+                            className={`px-3 py-1.5 rounded-md bg-gray-200 text-gray-700`}
+                            onClick={() => {
+                                if (billingStatus === 'overdue') {
+                                    setBillingStatus('paid')
+                                };
+                            }}
+                            disabled={billingStatus === 'paid'}
+                        >
+                            Resolve Billing
+                        </button>
+
+                    }
+                    right={
+                        <button
+                            className={`px-3 py-1.5 rounded-md text-white
+                                ${billingStatus === 'overdue'
+                                    ? 'bg-red-500 cursor-not-allowed'
+                                    : 'bg-blue-600 cursor-not-allowed'
+                                }`}
+                        >
+                            {billingStatus === 'paid' && 'Paid'}
+                            {billingStatus === 'overdue' && 'Overdue'}
+                        </button>
+                    }>
+                </ActionRow>
             </Panel >
         </div >
     );
