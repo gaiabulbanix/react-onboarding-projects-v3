@@ -62,6 +62,11 @@ export default function App2() {
                 >
                 </ActionRow> */}
 
+                {/* Account Status Card: */}
+                {/* - Shows current account status (active or paused) */}
+                {/* - Primary action pauses the account */}
+                {/* - Secondary action button restores the account*/}
+
                 <h2>Account Status</h2>
                 <p className="mt-3">
                     {status === 'active' && 'Active'}
@@ -100,6 +105,11 @@ export default function App2() {
                     }
                 >
                 </ActionRow>
+
+                {/* Billing Status Account: */}
+                {/* - Represents billing state */}
+                {/* - Primary action is will show danger when overdue */}
+                {/* - Secondary action resolves the action back to primary */}
             </Panel >
         </div >
     );
