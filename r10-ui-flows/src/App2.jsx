@@ -16,6 +16,7 @@ export default function App2() {
     // const [notifications, setNotifications] = useState(false);
     const [status, setStatus] = useState('active');
     const [billingStatus, setBillingStatus] = useState('overdue');
+    const [securityStatus, setSecurityStatus] = useState('at_risk');
 
     return (
         <div className="min-h-screen bg-gray-900 p-6">
@@ -104,6 +105,66 @@ export default function App2() {
                             {billingStatus === 'overdue' && 'Overdue'}
                         </button>
                     }>
+                </ActionRow>
+
+                {/* Security Status Card */}
+                {/* - Represents account security health */}
+                {/* - Primary state shows secure or at risk */}
+                {/* - Secondary action resolves security issue */}
+                <h2 className="mt-4">
+                    Security Status -
+                    <span
+                        className={
+                            `${securityStatus === 'secure'
+                                ? 'text-green-900'
+                                : 'text-red-700'
+                            }`}
+                    >
+                        {securityStatus === 'secure' && ' Secure'}
+                        {securityStatus === 'at_risk' && ' At Risk'}
+                    </span>
+                </h2>
+                <p
+                    className="italic text-gray-300"
+                >
+                    {securityStatus === 'secure'
+                        ? 'Your account security is in good standing.'
+                        : 'Security issue detected. Action required.'}
+                </p>
+                <ActionRow
+                    left={
+                        <button
+                            className={`px-3 py-1.5 rounded-md
+                                ${securityStatus === 'secure'
+                                    ? 'bg-gray-200 text-gray-700'
+                                    : 'bg-gray-900 text-white'
+                                }
+                            `}
+                            onClick={() => {
+                                if (securityStatus === 'at_risk') {
+                                    setSecurityStatus('secure')
+                                };
+                            }}
+                            disabled={securityStatus === 'secure'}
+                        >
+                            Fix Security Issue
+                        </button>
+                    }
+                    right={
+                        <button
+                            className={`px-3 py-1.5 rounded-md text-white
+                                ${securityStatus === 'secure'
+                                    ? 'bg-green-500'
+                                    : 'bg-red-500'
+                                }
+                                `}
+                            disabled
+                        >
+                            {securityStatus === 'secure' && 'Secure'}
+                            {securityStatus === 'at_risk' && 'At Risk'}
+                        </button>
+                    }
+                >
                 </ActionRow>
             </Panel >
         </div >
