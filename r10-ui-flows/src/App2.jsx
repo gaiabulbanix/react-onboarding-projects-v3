@@ -152,18 +152,6 @@ export default function App2() {
                         </button>
                     }
                     right={
-                        // <button
-                        //     className={`px-3 py-1.5 rounded-md text-white
-                        //         ${securityStatus === 'secure'
-                        //             ? 'bg-green-500'
-                        //             : 'bg-red-500'
-                        //         }
-                        //         `}
-                        //     disabled
-                        // >
-                        //     {securityStatus === 'secure' && 'Secure'}
-                        //     {securityStatus === 'at_risk' && 'At Risk'}
-                        // </button>
                         <StatusBadge
                             label={securityStatus === 'secure' ? 'Secure' : 'At Risk'}
                             variant={securityStatus === 'secure' ? 'success' : 'danger'}

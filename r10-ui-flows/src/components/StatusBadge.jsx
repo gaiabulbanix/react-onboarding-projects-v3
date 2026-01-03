@@ -7,7 +7,7 @@ export default function StatusBadge({ label, variant = 'neutral' }) {
 
     return (
         <span
-            className={`px-2 py-0.5 rounded-md text-sm font-medium ${variantStyles[variant]}`}
+            className={`px-2 py-0.5 rounded-md text-sm font-medium ${variantStyles[variant] ?? variantStyles.neutral}`}
         >
             {label}
         </span>
