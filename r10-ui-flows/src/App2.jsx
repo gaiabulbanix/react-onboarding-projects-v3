@@ -12,12 +12,17 @@ import StatusBadge from './components/StatusBadge';
 
 
 export default function App2() {
-    // const [name, setName] = useState('');
-    // const [email, setEmail] = useState('');
-    // const [notifications, setNotifications] = useState(false);
     const [status, setStatus] = useState('active');
     const [billingStatus, setBillingStatus] = useState('overdue');
     const [securityStatus, setSecurityStatus] = useState('at_risk');
+    const [displayName, setDisplayName] = useState('');
+    const [savedDisplayName, setSavedDisplayName] = useState('');
+    const [emailNotifications, setEmailNotifications] = useState(false);
+    const [savedEmailNotifications, setSavedEmailNotifications] = useState(false);
+
+    const isDirty =
+        displayName !== savedDisplayName ||
+        emailNotifications !== savedEmailNotifications;
 
     return (
         <div className="min-h-screen bg-gray-900 p-6">
@@ -71,8 +76,7 @@ export default function App2() {
                             {status === 'paused' && 'Paused'}
                         </button>
                     }
-                >
-                </ActionRow>
+                />
 
                 {/* Billing Status Account: */}
                 {/* - Represents billing state */}
@@ -105,8 +109,8 @@ export default function App2() {
                             {billingStatus === 'paid' && 'Paid'}
                             {billingStatus === 'overdue' && 'Overdue'}
                         </button>
-                    }>
-                </ActionRow>
+                    }
+                />
 
                 {/* Security Status Card */}
                 {/* - Represents account security health */}
@@ -157,9 +161,59 @@ export default function App2() {
                             variant={securityStatus === 'secure' ? 'success' : 'danger'}
                         />
                     }
-                >
-                </ActionRow>
+                />
             </Panel >
+
+            <Panel
+                className="mt-6"
+            >
+                <h2>Profile Settings</h2>
+                <FormInput
+                    value={displayName}
+                    onChange={(e) => setDisplayName(e.target.value)}
+                    label="Display Name"
+                    placeholder="Enter your display name"
+                    className="mt-4"
+                />
+                <label className="flex items-center gap-2 mt-4">
+                    <input
+                        type="checkbox"
+                        checked={emailNotifications}
+                        onChange={(e) => setEmailNotifications(e.target.checked)}
+                    />
+                    Email Notifications
+                </label>
+
+                <ActionRow
+                    className="mt-4"
+                    left={
+                        <button
+                            className="rounded-md px-3 py-1.5 bg-gray-200 text-gray-700"
+                            onClick={() => {
+                                setDisplayName(savedDisplayName);
+                                setEmailNotifications(savedEmailNotifications);
+                            }}
+                            disabled={!isDirty}
+                        >
+                            Cancel
+                        </button>}
+                    right={
+                        <button
+                            className="rounded-md px-3 py-1.5 bg-gray-200 text-gray-700"
+                            onClick={() => {
+                                setSavedDisplayName(displayName);
+                                setSavedEmailNotifications(emailNotifications);
+                            }}
+                            disabled={!isDirty}
+                        >
+                            Save
+                        </button>}
+                />
+
+                <p className="italic text-gray-300">
+                    {`${isDirty ? 'You have unsaved changes.' : ''}`}
+                </p>
+            </Panel>
         </div >
     );
 }
