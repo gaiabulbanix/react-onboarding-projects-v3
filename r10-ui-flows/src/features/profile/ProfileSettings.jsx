@@ -3,7 +3,7 @@ import Panel from "../../components/Panel";
 import ActionRow from "../../components/ActionRow";
 import FormInput from "../../components/FormInput";
 
-export default function ProfileSettings() {
+export default function ProfileSettings({ className, onSave }) {
     const [displayName, setDisplayName] = useState('');
     const [savedDisplayName, setSavedDisplayName] = useState('');
     const [emailNotifications, setEmailNotifications] = useState(false);
@@ -14,7 +14,7 @@ export default function ProfileSettings() {
         emailNotifications !== savedEmailNotifications;
 
     return (
-        <Panel>
+        <Panel className={className}>
             <h2>Profile Settings</h2>
             <FormInput
                 value={displayName}
