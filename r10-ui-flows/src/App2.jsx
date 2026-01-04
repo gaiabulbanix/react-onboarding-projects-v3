@@ -15,6 +15,8 @@ export default function App2() {
     const [billingStatus, setBillingStatus] = useState('overdue');
     const [securityStatus, setSecurityStatus] = useState('at_risk');
 
+    const [profileLastSavedAt, setProfileLastSavedAt] = useState(null);
+
     return (
         <div className="min-h-screen bg-gray-900 p-6">
             <Panel >
@@ -155,7 +157,11 @@ export default function App2() {
                 />
             </Panel >
 
-            <ProfileSettings />
+            <p>Profile Settings Last Saved</p>
+            <ProfileSettings
+                className="mt-6"
+                onSave={() => setProfileLastSavedAt(Date.now())}
+            />
         </div >
     );
 }
