@@ -14,7 +14,6 @@ export default function App2() {
     const [status, setStatus] = useState('active');
     const [billingStatus, setBillingStatus] = useState('overdue');
     const [securityStatus, setSecurityStatus] = useState('at_risk');
-
     const [profileLastSavedAt, setProfileLastSavedAt] = useState(null);
 
     return (
@@ -157,11 +156,21 @@ export default function App2() {
                 />
             </Panel >
 
-            <p>Profile Settings Last Saved</p>
             <ProfileSettings
                 className="mt-6"
-                onSave={() => setProfileLastSavedAt(Date.now())}
+                onSave={() => {
+                    setProfileLastSavedAt(Date.now());
+                }}
             />
+            <Panel>
+                <p>
+                    {`Profile Settings Last Saved - 
+                    ${profileLastSavedAt
+                            ? new Date(profileLastSavedAt).toLocaleString()
+                            : ''}
+                    `}
+                </p>
+            </Panel>
         </div >
     );
 }

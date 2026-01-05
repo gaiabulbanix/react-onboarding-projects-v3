@@ -51,6 +51,7 @@ export default function ProfileSettings({ className, onSave }) {
                         onClick={() => {
                             setSavedDisplayName(displayName);
                             setSavedEmailNotifications(emailNotifications);
+                            onSave?.();
                         }}
                         disabled={!isDirty}
                     >
