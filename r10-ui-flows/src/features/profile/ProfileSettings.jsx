@@ -1,17 +1,20 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Panel from "../../components/Panel";
 import ActionRow from "../../components/ActionRow";
 import FormInput from "../../components/FormInput";
 
-export default function ProfileSettings({ className, onSave }) {
-    const [displayName, setDisplayName] = useState('');
-    const [savedDisplayName, setSavedDisplayName] = useState('');
-    const [emailNotifications, setEmailNotifications] = useState(false);
-    const [savedEmailNotifications, setSavedEmailNotifications] = useState(false);
+export default function ProfileSettings({ className, onSave, savedDisplayName, savedEmailNotifications }) {
+    const [displayName, setDisplayName] = useState(savedDisplayName);
+    const [emailNotifications, setEmailNotifications] = useState(savedEmailNotifications);
 
     const isDirty =
         displayName !== savedDisplayName ||
         emailNotifications !== savedEmailNotifications;
+
+    useEffect(() => {
+        setDisplayName(savedDisplayName);
+        setEmailNotifications(savedEmailNotifications);
+    }, [savedDisplayName, savedEmailNotifications]);
 
     return (
         <Panel className={className}>
@@ -49,9 +52,10 @@ export default function ProfileSettings({ className, onSave }) {
                     <button
                         className="rounded-md px-3 py-1.5 bg-gray-200 text-gray-700"
                         onClick={() => {
-                            setSavedDisplayName(displayName);
-                            setSavedEmailNotifications(emailNotifications);
-                            onSave?.();
+                            onSave?.({
+                                displayName,
+                                emailNotifications,
+                            });
                         }}
                         disabled={!isDirty}
                     >
