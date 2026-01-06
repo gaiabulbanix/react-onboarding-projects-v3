@@ -16,6 +16,9 @@ export default function App2() {
     const [securityStatus, setSecurityStatus] = useState('at_risk');
     const [profileLastSavedAt, setProfileLastSavedAt] = useState(null);
 
+    const [savedDisplayName, setSavedDisplayName] = useState('');
+    const [savedEmailNotifications, setSavedEmailNotifications] = useState(false);
+
     return (
         <div className="min-h-screen bg-gray-900 p-6">
             <Panel >
@@ -158,9 +161,14 @@ export default function App2() {
 
             <ProfileSettings
                 className="mt-6"
-                onSave={() => {
+                savedDisplayName={savedDisplayName}
+                savedEmailNotifications={savedEmailNotifications}
+                onSave={({ displayName, emailNotifications }) => {
                     setProfileLastSavedAt(Date.now());
+                    setSavedDisplayName(displayName);
+                    setSavedEmailNotifications(emailNotifications);
                 }}
+
             />
             <Panel>
                 <p>
