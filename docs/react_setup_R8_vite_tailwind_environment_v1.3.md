@@ -66,7 +66,7 @@ Safe to skip for small demos or experiments. -->
 
 ---
 
-# STEP 3 — Install Tailwind
+# STEP 3 — Install Tailwind (root folder)
 ```bash
 npm install -D tailwindcss@3.4.1 postcss autoprefixer
 ```
@@ -95,7 +95,7 @@ export default {
 
 ---
 
-# STEP 6 — Replace index.css
+# STEP 6 — Replace index.css (src folder)
 ```css
 @tailwind base;
 @tailwind components;
@@ -116,14 +116,14 @@ import './index.css';
 
 ---
 
-# STEP 8 — Install clsx
+# STEP 8 — Install clsx (root folder)
 ```bash
 npm install clsx
 ```
 
 ---
 
-# STEP 9 — Replace App.jsx With Tailwind Test UI
+# STEP 9 — Replace App.jsx With Tailwind Test UI (src folder)
 ```jsx
 export default function App() {
   return (
@@ -146,7 +146,7 @@ export default function App() {
 
 ---
 
-# STEP 10 — Enable Auto-Open Dev Server (vite.config.js)
+# STEP 10 — Enable Auto-Open Dev Server (vite.config.js, root folder)
 ```js
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
@@ -159,7 +159,7 @@ export default defineConfig({
 
 ---
 
-# STEP 11 — Install Prettier
+# STEP 11 — Install Prettier (root folder)
 ```bash
 npm install -D prettier
 ```
