@@ -4,7 +4,15 @@ import Panel from "./components/Panel";
 export default function App() {
   const [workoutName, setWorkoutName] = useState('');
   const [workoutList, setWorkoutList] = useState([]);
-
+  useEffect(() => {
+    try {
+      const loadedWorkoutList = localStorage.getItem('storedWorkouts');
+      const parsedLoadedWorkoutList = loadedWorkoutList ? JSON.parse(loadedWorkoutList) : [];
+      setWorkoutList(parsedLoadedWorkoutList);
+    } catch {
+      setWorkoutList([]);
+    }
+  }, []);
 
   return (
     // color scheme
@@ -30,15 +38,18 @@ export default function App() {
         <div className="mt-4 flex justify-between py-2">
           <div>
             <ul className="flex flex-col gap-2">
-              <li>Workout 1</li>
-              <li>Workout 2</li>
-              <li>Workout 3</li>
+              {workoutList.map((workout, index) => (
+                <li key={index}>{workout}</li>
+              ))}
             </ul>
           </div>
           <div>
             <button
               className="rounded-md px-3 py-1.5 bg-slate-100 text-slate-900"
-              onClick={() => setWorkoutList([...workoutList, workoutName])}
+              onClick={() => {
+                setWorkoutList([...workoutList, workoutName]);
+                localStorage.setItem('storedWorkouts', JSON.stringify(workoutList));
+              }}
             >Add Workout
             </button>
           </div>
