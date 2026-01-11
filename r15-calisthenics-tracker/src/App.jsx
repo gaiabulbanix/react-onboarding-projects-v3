@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Panel from "./components/Panel";
 
 export default function App() {
   const [workoutName, setWorkoutName] = useState('');
-  const workoutList = [];
+  const [workoutList, setWorkoutList] = useState([]);
 
 
   return (
@@ -38,7 +38,7 @@ export default function App() {
           <div>
             <button
               className="rounded-md px-3 py-1.5 bg-slate-100 text-slate-900"
-              onClick={() => workoutList.push(workoutName)}
+              onClick={() => setWorkoutList([...workoutList, workoutName])}
             >Add Workout
             </button>
           </div>
