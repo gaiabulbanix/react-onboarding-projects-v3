@@ -42,14 +42,21 @@ export default function App() {
               <li key={index}>{workout}</li>
             ))}
           </ul>}
-          right={<button
-            className="rounded-md px-3 py-1.5 bg-slate-100 text-slate-900"
-            onClick={() => {
-              setWorkoutList([...workoutList, workoutName]);
-              localStorage.setItem('storedWorkouts', JSON.stringify(workoutList));
-            }}
-          >Add Workout
-          </button>}
+          right={
+            <div className="flex gap-2">
+              <button
+                className="rounded-md px-3 py-1.5 bg-slate-100 text-slate-900"
+                onClick={() => {
+                  setWorkoutList([...workoutList, workoutName]);
+                  localStorage.setItem('storedWorkouts', JSON.stringify(workoutList));
+                }}
+              >Add Workout
+              </button>
+              <button className="rounded-md px-3 py-1.5 bg-slate-100 text-slate-900">
+                Remove Workouts
+              </button>
+            </div>
+          }
         />
       </Panel>
     </div>
