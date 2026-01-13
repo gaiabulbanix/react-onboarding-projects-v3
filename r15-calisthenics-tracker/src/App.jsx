@@ -5,16 +5,18 @@ import Button from './components/Button';
 
 export default function App() {
   const [workoutName, setWorkoutName] = useState('');
-  const [workoutList, setWorkoutList] = useState([]);
-  useEffect(() => {
+  const [workoutList, setWorkoutList] = useState(() => {
     try {
       const loadedWorkoutList = localStorage.getItem('storedWorkouts');
-      const parsedLoadedWorkoutList = loadedWorkoutList ? JSON.parse(loadedWorkoutList) : [];
-      setWorkoutList(parsedLoadedWorkoutList);
+      return loadedWorkoutList ? JSON.parse(loadedWorkoutList) : [];
     } catch {
-      setWorkoutList([]);
+      return [];
     }
-  }, []);
+  });
+
+  useEffect(() => {
+    localStorage.setItem('storedWorkouts', JSON.stringify(workoutList));
+  }, [workoutList]);
 
   return (
     // color scheme
@@ -47,14 +49,17 @@ export default function App() {
             <div className="flex gap-2">
               <Button
                 onClick={() => {
-                  setWorkoutList([...workoutList, workoutName]);
-                  localStorage.setItem('storedWorkouts', JSON.stringify(workoutList));
-                }}
-              >
-                Add Workout
+                  if (!workoutName.trim()) return;
+                  setWorkoutList(prev => [...prev, workoutName]);
+                  setWorkoutName('');
+                }}>
+                Add Workout and Save to Storage
               </Button>
-              <Button>
-                Remove Workouts
+              <Button
+                onClick={() => {
+                  setWorkoutList([]);
+                }}>
+                Remove Workouts and Save to Storage
               </Button>
             </div>
           }
