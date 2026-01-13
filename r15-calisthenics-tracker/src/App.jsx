@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Panel from "./components/Panel";
 import ActionRow from './components/ActionRow';
+import Button from './components/Button';
 
 export default function App() {
   const [workoutName, setWorkoutName] = useState('');
@@ -44,17 +45,17 @@ export default function App() {
           </ul>}
           right={
             <div className="flex gap-2">
-              <button
-                className="rounded-md px-3 py-1.5 bg-slate-100 text-slate-900"
+              <Button
                 onClick={() => {
                   setWorkoutList([...workoutList, workoutName]);
                   localStorage.setItem('storedWorkouts', JSON.stringify(workoutList));
                 }}
-              >Add Workout
-              </button>
-              <button className="rounded-md px-3 py-1.5 bg-slate-100 text-slate-900">
+              >
+                Add Workout
+              </Button>
+              <Button>
                 Remove Workouts
-              </button>
+              </Button>
             </div>
           }
         />
