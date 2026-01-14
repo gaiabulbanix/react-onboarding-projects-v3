@@ -33,6 +33,7 @@ export default function App() {
           <label htmlFor="workoutInput">Input Workout</label>
           <p>{workoutName}</p>
           <input
+            className="px-3 py-1.5 rounded md border-teal-800 border-2 text-slate-900"
             id="workoutInput"
             type="text"
             value={workoutName}
