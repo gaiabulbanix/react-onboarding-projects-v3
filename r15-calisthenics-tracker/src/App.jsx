@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Panel from "./components/Panel";
 import ActionRow from './components/ActionRow';
 import Button from './components/Button';
+import FormInput from './components/FormInput';
 
 export default function App() {
   const [workout, setWorkout] = useState('');
