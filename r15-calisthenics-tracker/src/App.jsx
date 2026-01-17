@@ -30,28 +30,31 @@ export default function App() {
         <h1>Calisthenics Tracker</h1>
       </Panel>
       <Panel className="mt-6">
-        <div className="flex flex-col gap-2">
-          <label htmlFor="workoutInput">Input Workout:</label>
+        <FormInput
+          inputClassName="px-3 py-1.5 rounded-md border-teal-800 border-2 text-slate-900"
+          label="Input Workout:"
+          htmlFor="workoutInput"
+          id="workoutInput"
+          type="text"
+          value={workout}
+          onChange={(e) => setWorkout(e.target.value)}
+          placeholder="Enter your workout here."
+        >
           <p>{workout}</p>
-          <input
-            className="px-3 py-1.5 rounded md border-teal-800 border-2 text-slate-900"
-            id="workoutInput"
-            type="text"
-            value={workout}
-            onChange={(e) => setWorkout(e.target.value)}
-            placeholder="Enter your workout here." />
-        </div>
-        <div className="flex flex-col gap-2 mt-4">
-          <label htmlFor="workoutInputReps">Input Reps:</label>
+        </FormInput>
+        <FormInput
+          wrapperClassName="mt-4"
+          inputClassName="px-3 py-1.5 rounded-md border-teal-800 border-2 text-slate-900"
+          label="Input Reps:"
+          htmlFor="workoutRepsInput"
+          in="workoutRepsInput"
+          type="text"
+          value={workoutReps}
+          onChange={(e) => setWorkoutReps(e.target.value)}
+          placeholder="Enter your reps here - input a number for now."
+        >
           <p>{workoutReps}</p>
-          <input
-            className="px-3 py-1.5 rounded md border-teal-800 border-2 text-slate-900"
-            id="workoutInputReps"
-            type="text"
-            value={workoutReps}
-            onChange={(e) => setWorkoutReps(e.target.value)}
-            placeholder="Enter your reps here - input a number for now." />
-        </div>
+        </FormInput>
         <ActionRow className="mt-4"
           left={<ul className="flex flex-col gap-2">
             {workoutList.map((workout, index) => (
