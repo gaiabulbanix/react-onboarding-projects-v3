@@ -48,9 +48,11 @@ export default function App() {
           htmlFor="workoutRepsInput"
           in="workoutRepsInput"
           type="number"
+          min={1}
+          step={1}
           value={workoutReps}
           onChange={(e) => setWorkoutReps(e.target.value)}
-          placeholder="Enter your reps here - input a number for now."
+          placeholder="Enter your number of reps here."
         >
         </FormInput>
         <ActionRow className="mt-4"
