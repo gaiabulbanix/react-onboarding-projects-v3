@@ -1,4 +1,4 @@
-export default function Button({ children, className = '', onClick }) {
+export default function Button({ children, className = '', onClick, }) {
     return (
         <button
             className={`rounded-md px-3 py-1.5 ${className}

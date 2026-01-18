@@ -40,7 +40,6 @@ export default function App() {
           onChange={(e) => setWorkout(e.target.value)}
           placeholder="Enter your workout here."
         >
-          <p>{workout}</p>
         </FormInput>
         <FormInput
           wrapperClassName="mt-4"
@@ -48,12 +47,11 @@ export default function App() {
           label="Input Reps:"
           htmlFor="workoutRepsInput"
           in="workoutRepsInput"
-          type="text"
+          type="number"
           value={workoutReps}
           onChange={(e) => setWorkoutReps(e.target.value)}
           placeholder="Enter your reps here - input a number for now."
         >
-          <p>{workoutReps}</p>
         </FormInput>
         <ActionRow className="mt-4"
           left={<ul className="flex flex-col gap-2">
@@ -69,7 +67,7 @@ export default function App() {
                   setWorkoutList(prev => [...prev,
                   {
                     workout,
-                    reps: Number(workoutReps)
+                    reps: Number(workoutReps),
                   }]);
                   setWorkout('');
                   setWorkoutReps('');
