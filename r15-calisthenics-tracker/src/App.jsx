@@ -58,7 +58,7 @@ export default function App() {
         <ActionRow className="mt-4"
           left={<ul className="flex flex-col gap-2">
             {workoutList.map((workout, index) => (
-              <li key={index}>{workout.workout} - {workout.reps} reps</li>
+              <li key={workout.id}>{index + 1} - {workout.workout} - {workout.reps} reps</li>
             ))}
           </ul>}
           right={
@@ -68,6 +68,7 @@ export default function App() {
                   if (!workout.trim()) return;
                   setWorkoutList(prev => [...prev,
                   {
+                    id: crypto.randomUUID(),
                     workout,
                     reps: Number(workoutReps),
                   }]);
