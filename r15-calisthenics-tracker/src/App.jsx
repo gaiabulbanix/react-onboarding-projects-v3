@@ -58,7 +58,16 @@ export default function App() {
         <ActionRow className="mt-4"
           left={<ul className="flex flex-col gap-2">
             {workoutList.map((workout, index) => (
-              <li key={workout.id}>{index + 1} - {workout.workout} - {workout.reps} reps</li>
+              <li
+                key={workout.id}
+                className="flex gap-2 items-center">
+                <span>
+                  {index + 1} - {workout.workout} - {workout.reps} rep(s)
+                </span>
+                <Button>
+                  Remove
+                </Button>
+              </li>
             ))}
           </ul>}
           right={
@@ -86,7 +95,7 @@ export default function App() {
             </div>
           }
         />
-      </Panel>
-    </div>
+      </Panel >
+    </div >
   );
 }
