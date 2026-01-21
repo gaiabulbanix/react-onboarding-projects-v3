@@ -61,12 +61,17 @@ export default function App() {
               <li
                 key={workout.id}
                 className="flex gap-2 items-center">
-                <span>
+                <span className="flex items-center">
                   {index + 1} - {workout.workout} - {workout.reps} rep(s)
                 </span>
-                <Button>
-                  Remove
-                </Button>
+                <div className="flex items-center gap-2">
+                  <Button>
+                    Remove
+                  </Button>
+                  <Button>
+                    Edit
+                  </Button>
+                </div>
               </li>
             ))}
           </ul>}
