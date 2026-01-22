@@ -60,11 +60,11 @@ export default function App() {
             {workoutList.map((workout, index) => (
               <li
                 key={workout.id}
-                className="flex gap-2 items-center">
-                <span className="flex items-center">
+                className="flex gap-4 items-center justify-between">
+                <span>
                   {index + 1} - {workout.workout} - {workout.reps} rep(s)
                 </span>
-                <div className="flex items-center gap-2">
+                <div className="flex gap-2">
                   <Button>
                     Remove
                   </Button>
