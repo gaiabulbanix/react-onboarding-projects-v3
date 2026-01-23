@@ -46,7 +46,7 @@ export default function App() {
           inputClassName="px-3 py-1.5 rounded-md border-teal-800 border-2 text-slate-900"
           label="Input Reps:"
           htmlFor="workoutRepsInput"
-          in="workoutRepsInput"
+          id="workoutRepsInput"
           type="number"
           min={1}
           step={1}
@@ -65,7 +65,10 @@ export default function App() {
                   {index + 1} - {workout.workout} - {workout.reps} rep(s)
                 </span>
                 <div className="flex gap-2">
-                  <Button>
+                  <Button
+                    onClick={() => {
+                      setWorkoutList(prev => prev.filter(thisWorkout => thisWorkout.id !== workout.id));
+                    }}>
                     Remove
                   </Button>
                   <Button>
@@ -84,7 +87,7 @@ export default function App() {
                   {
                     id: crypto.randomUUID(),
                     workout,
-                    reps: Number(workoutReps),
+                    reps: Number(workoutReps) || 1,
                   }]);
                   setWorkout('');
                   setWorkoutReps('');
