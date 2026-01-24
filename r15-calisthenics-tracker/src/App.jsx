@@ -71,7 +71,10 @@ export default function App() {
                     }}>
                     Remove
                   </Button>
-                  <Button>
+                  <Button
+                    onClick={() => {
+
+                    }}>
                     Edit
                   </Button>
                 </div>
