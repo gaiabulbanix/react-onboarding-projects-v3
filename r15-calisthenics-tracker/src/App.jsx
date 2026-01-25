@@ -73,7 +73,9 @@ export default function App() {
                   </Button>
                   <Button
                     onClick={() => {
-
+                      const editedWorkout = null;
+                      prompt("Edit workout:", editedWorkout);
+                      console.log(editedWorkout);
                     }}>
                     Edit
                   </Button>
