@@ -73,9 +73,18 @@ export default function App() {
                   </Button>
                   <Button
                     onClick={() => {
-                      const editedWorkout = null;
-                      prompt("Edit workout:", editedWorkout);
-                      console.log(editedWorkout);
+                      const newWorkout = prompt("Enter new workout:");
+                      if (newWorkout === null) return;
+                      if (newWorkout.trim() === "") return;
+
+                      setWorkoutList(prev => prev.map(thisWorkout => {
+                        if (thisWorkout.id === workout.id) {
+                          return {
+                            ...thisWorkout,
+                            workout: newWorkout,
+                          };
+                        } return workout;
+                      }));
                     }}>
                     Edit
                   </Button>
