@@ -67,7 +67,7 @@ export default function App() {
                 <div className="flex gap-2">
                   <Button
                     onClick={() => {
-                      setWorkoutList(prev => prev.filter(thisWorkout => thisWorkout.id !== workout.id));
+                      setWorkoutList(prev => prev.filter(w => w.id !== workout.id));
                     }}>
                     Remove
                   </Button>
@@ -77,13 +77,13 @@ export default function App() {
                       if (newWorkout === null) return;
                       if (newWorkout.trim() === "") return;
 
-                      setWorkoutList(prev => prev.map(thisWorkout => {
-                        if (thisWorkout.id === workout.id) {
+                      setWorkoutList(prev => prev.map(w => {
+                        if (w.id === workout.id) {
                           return {
-                            ...thisWorkout,
+                            ...w,
                             workout: newWorkout,
                           };
-                        } return workout;
+                        } return w;
                       }));
                     }}>
                     Edit
