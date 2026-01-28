@@ -73,18 +73,23 @@ export default function App() {
                   </Button>
                   <Button
                     onClick={() => {
-                      const newWorkout = prompt("Enter new workout:");
-                      if (newWorkout === null) return;
-                      if (newWorkout.trim() === "") return;
+                      const newWorkout = prompt('Edit workout:', workout.workout);
+                      const newWorkoutReps = prompt('Edit reps:', workout.reps);
+                      const newWorkoutRepsNum = Number(newWorkoutReps);
 
-                      setWorkoutList(prev => prev.map(w => {
-                        if (w.id === workout.id) {
-                          return {
+
+                      if (!newWorkout || newWorkout.trim() === '') return;
+                      if (!Number.isInteger(newWorkoutRepsNum) || newWorkoutRepsNum < 1) return;
+
+                      setWorkoutList(prev => prev.map(w =>
+                        w.id === workout.id
+                          ? {
                             ...w,
                             workout: newWorkout,
-                          };
-                        } return w;
-                      }));
+                            reps: newWorkoutRepsNum,
+                          }
+                          : w
+                      ));
                     }}>
                     Edit
                   </Button>
