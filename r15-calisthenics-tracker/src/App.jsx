@@ -115,6 +115,7 @@ export default function App() {
               </Button>
               <Button
                 onClick={() => {
+                  if (!confirm('Are you sure you want to delete all workouts?')) return;
                   setWorkoutList([]);
                 }}>
                 Remove Workouts and Save to Storage
