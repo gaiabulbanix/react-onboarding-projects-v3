@@ -57,6 +57,11 @@ export default function App() {
         </FormInput>
         <ActionRow className="mt-4"
           left={<ul className="flex flex-col gap-2">
+            {workoutList.length === 0 && (
+              <li className="italic text-slate-400">
+                "No workouts yet - Add one to get Started!"
+              </li>
+            )}
             {workoutList.map((workout, index) => (
               <li
                 key={workout.id}
