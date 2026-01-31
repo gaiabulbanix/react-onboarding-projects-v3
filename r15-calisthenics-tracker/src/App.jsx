@@ -71,12 +71,16 @@ export default function App() {
                 </span>
                 <div className="flex gap-2">
                   <Button
+                    buttonStyle="danger"
+                    buttonSize="sm"
                     onClick={() => {
                       setWorkoutList(prev => prev.filter(w => w.id !== workout.id));
                     }}>
                     Remove
                   </Button>
                   <Button
+                    buttonStyle="primary"
+                    buttonSize="sm"
                     onClick={() => {
                       const newWorkout = prompt('Edit workout:', workout.workout);
                       const newWorkoutReps = prompt('Edit reps:', workout.reps);
@@ -105,6 +109,8 @@ export default function App() {
           right={
             <div className="flex gap-2">
               <Button
+                buttonStyle="primary"
+                buttonSize="md"
                 onClick={() => {
                   if (!workout.trim()) return;
                   setWorkoutList(prev => [...prev,
@@ -116,14 +122,18 @@ export default function App() {
                   setWorkout('');
                   setWorkoutReps('');
                 }}>
-                Add Workout and Save to Storage
+                Add Workout
               </Button>
               <Button
+                buttonStyle={workoutList.length === 0 ? 'secondary' : 'danger'}
+                buttonSize="md"
                 onClick={() => {
                   if (!confirm('Are you sure you want to delete all workouts?')) return;
                   setWorkoutList([]);
-                }}>
-                Remove Workouts and Save to Storage
+                }}
+                disabled={workoutList.length === 0}
+              >
+                Remove All Workouts
               </Button>
             </div>
           }
