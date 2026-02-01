@@ -2,6 +2,7 @@ export default function Button({ children, className = '', buttonStyle = 'primar
     const buttonStyles = {
         primary: 'bg-slate-100 text-slate-900 hover:bg-slate-200',
         secondary: 'bg-slate-300 text-slate-900 hover:bg-slate-400',
+        disabled: 'bg-slate-400 text-slate-900',
         danger: 'bg-red-500 text-slate-900 hover:bg-red-600',
         success: 'bg-green-500 text-slate-900 hover:bg-green-600',
     }
