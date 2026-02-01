@@ -5,6 +5,7 @@ import Button from './components/Button';
 import FormInput from './components/FormInput';
 
 export default function App() {
+  // state and validation
   const [workout, setWorkout] = useState('');
   const [workoutList, setWorkoutList] = useState(() => {
     try {
@@ -18,6 +19,13 @@ export default function App() {
   useEffect(() => {
     localStorage.setItem('storedWorkoutList', JSON.stringify(workoutList));
   }, [workoutList]);
+
+  const workoutRepsNumber = Number(workoutReps);
+  const isValidWorkout = workout.trim();
+  const isValidWorkoutReps = Number.isInteger(workoutRepsNumber) && workoutRepsNumber >= 1;
+  const isValidEntry = isValidWorkout && isValidWorkoutReps;
+  const isEmptyList = workoutList.length === 0;
+
 
   return (
     // color scheme
@@ -38,7 +46,7 @@ export default function App() {
           type="text"
           value={workout}
           onChange={(e) => setWorkout(e.target.value)}
-          placeholder="Enter your workout here."
+          placeholder="Enter your workout name/type here."
         >
         </FormInput>
         <FormInput
@@ -59,7 +67,7 @@ export default function App() {
           left={<ul className="flex flex-col gap-2">
             {workoutList.length === 0 && (
               <li className="italic text-slate-400">
-                "No workouts yet - Add one to get Started!"
+                No workouts yet - Add one to get Started!
               </li>
             )}
             {workoutList.map((workout, index) => (
@@ -84,18 +92,15 @@ export default function App() {
                     onClick={() => {
                       const newWorkout = prompt('Edit workout:', workout.workout);
                       const newWorkoutReps = prompt('Edit reps:', workout.reps);
-                      const newWorkoutRepsNum = Number(newWorkoutReps);
-
-
+                      const newWorkoutRepsNumber = Number(newWorkoutReps);
                       if (!newWorkout || newWorkout.trim() === '') return;
-                      if (!Number.isInteger(newWorkoutRepsNum) || newWorkoutRepsNum < 1) return;
-
+                      if (!Number.isInteger(newWorkoutRepsNumber) || newWorkoutRepsNumber < 1) return;
                       setWorkoutList(prev => prev.map(w =>
                         w.id === workout.id
                           ? {
                             ...w,
                             workout: newWorkout,
-                            reps: newWorkoutRepsNum,
+                            reps: newWorkoutRepsNumber,
                           }
                           : w
                       ));
@@ -109,29 +114,31 @@ export default function App() {
           right={
             <div className="flex gap-2">
               <Button
-                buttonStyle="primary"
+                buttonStyle={!isValidEntry ? 'disabled' : 'primary'}
                 buttonSize="md"
                 onClick={() => {
-                  if (!workout.trim()) return;
+                  if (!isValidEntry) return;
                   setWorkoutList(prev => [...prev,
                   {
                     id: crypto.randomUUID(),
                     workout,
-                    reps: Number(workoutReps) || 1,
+                    reps: workoutRepsNumber,
                   }]);
                   setWorkout('');
                   setWorkoutReps('');
-                }}>
+                }}
+                disabled={!isValidEntry}
+              >
                 Add Workout
               </Button>
               <Button
-                buttonStyle={workoutList.length === 0 ? 'secondary' : 'danger'}
+                buttonStyle={isEmptyList ? 'disabled' : 'danger'}
                 buttonSize="md"
                 onClick={() => {
                   if (!confirm('Are you sure you want to delete all workouts?')) return;
                   setWorkoutList([]);
                 }}
-                disabled={workoutList.length === 0}
+                disabled={isEmptyList}
               >
                 Remove All Workouts
               </Button>
