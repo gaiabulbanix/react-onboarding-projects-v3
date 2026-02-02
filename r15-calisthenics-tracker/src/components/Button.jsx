@@ -1,11 +1,13 @@
-export default function Button({ children, className = '', buttonStyle = 'primary', buttonSize = 'md', ...buttonProps }) {
+export default function Button({ children, className = '', buttonStyle = 'primary', buttonSize = 'md', disabled = false, ...buttonProps }) {
     const buttonStyles = {
         primary: 'bg-slate-100 text-slate-900 hover:bg-slate-200',
         secondary: 'bg-slate-300 text-slate-900 hover:bg-slate-400',
-        disabled: 'bg-slate-400 text-slate-900',
+        disabled: 'bg-slate-400 text-slate-900 cursor-not-allowed',
         danger: 'bg-red-500 text-slate-900 hover:bg-red-600',
         success: 'bg-green-500 text-slate-900 hover:bg-green-600',
     }
+
+    const resolvedStyle = disabled ? 'disabled' : buttonStyle;
 
     const buttonSizes = {
         lg: '',
@@ -17,7 +19,7 @@ export default function Button({ children, className = '', buttonStyle = 'primar
         <button
             className={`rounded-md font-medium transition-colors duration-200
                 ${className}
-                ${buttonStyles[buttonStyle]}
+                ${buttonStyles[resolvedStyle]}
                 ${buttonSizes[buttonSize]}`}
             {...buttonProps}>
             {children}
