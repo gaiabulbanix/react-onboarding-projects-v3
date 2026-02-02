@@ -64,7 +64,7 @@ export default function App() {
         >
         </FormInput>
         <ActionRow className="mt-4"
-          left={<ul className="flex flex-col gap-2">
+          left={<ul className="flex flex-col gap-2 min-h-[3rem]">
             {workoutList.length === 0 && (
               <li className="italic text-slate-400">
                 No workouts yet - add one to get Started!
@@ -143,9 +143,9 @@ export default function App() {
                 >
                   Remove All Workouts
                 </Button>
-                {!isValidEntry && (
+                {!isValidEntry && (workout || workoutReps) && (
                   <p className="mt-2 italic text-slate-400">
-                    Enter a workout name and at least 1 rep to add.
+                    Enter a workout name and at least 1 rep.
                   </p>
                 )}
               </div>
