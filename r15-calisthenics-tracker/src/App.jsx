@@ -67,7 +67,7 @@ export default function App() {
           left={<ul className="flex flex-col gap-2">
             {workoutList.length === 0 && (
               <li className="italic text-slate-400">
-                No workouts yet - Add one to get Started!
+                No workouts yet - add one to get Started!
               </li>
             )}
             {workoutList.map((workout, index) => (
@@ -112,36 +112,43 @@ export default function App() {
             ))}
           </ul>}
           right={
-            <div className="flex gap-2">
-              <Button
-                buttonStyle={!isValidEntry ? 'disabled' : 'primary'}
-                buttonSize="md"
-                onClick={() => {
-                  if (!isValidEntry) return;
-                  setWorkoutList(prev => [...prev,
-                  {
-                    id: crypto.randomUUID(),
-                    workout,
-                    reps: workoutRepsNumber,
-                  }]);
-                  setWorkout('');
-                  setWorkoutReps('');
-                }}
-                disabled={!isValidEntry}
-              >
-                Add Workout
-              </Button>
-              <Button
-                buttonStyle={isEmptyList ? 'disabled' : 'danger'}
-                buttonSize="md"
-                onClick={() => {
-                  if (!confirm('Are you sure you want to delete all workouts?')) return;
-                  setWorkoutList([]);
-                }}
-                disabled={isEmptyList}
-              >
-                Remove All Workouts
-              </Button>
+            <div className="flex flex-col gap-2 items-end">
+              <div className="flex gap-2">
+                <Button
+                  buttonStyle={!isValidEntry ? 'disabled' : 'primary'}
+                  buttonSize="md"
+                  onClick={() => {
+                    if (!isValidEntry) return;
+                    setWorkoutList(prev => [...prev,
+                    {
+                      id: crypto.randomUUID(),
+                      workout,
+                      reps: workoutRepsNumber,
+                    }]);
+                    setWorkout('');
+                    setWorkoutReps('');
+                  }}
+                  disabled={!isValidEntry}
+                >
+                  Add Workout
+                </Button>
+                <Button
+                  buttonStyle={isEmptyList ? 'disabled' : 'danger'}
+                  buttonSize="md"
+                  onClick={() => {
+                    if (!confirm('Are you sure you want to delete all workouts?')) return;
+                    setWorkoutList([]);
+                  }}
+                  disabled={isEmptyList}
+                >
+                  Remove All Workouts
+                </Button>
+                {!isValidEntry && (
+                  <p className="mt-2 italic text-slate-400">
+                    Enter a workout name and at least 1 rep to add.
+                  </p>
+                )}
+              </div>
             </div>
           }
         />
