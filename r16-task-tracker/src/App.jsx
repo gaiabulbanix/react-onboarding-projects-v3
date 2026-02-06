@@ -1,3 +1,5 @@
+import Panel from "./components/Panel"
+
 export default function App() {
   // color scheme
   // -dark mode: bg-slate-900 text-slate-100
@@ -6,7 +8,12 @@ export default function App() {
 
   return (
     <div className="p-8 min-h-screen bg-slate-900 text-slate-100">
-
-    </div>
+      <Panel>
+        <h1>Task Tracker</h1>
+      </Panel>
+      <Panel className='mt-6'>
+        <p>the main task tracker cards go here</p>
+      </Panel>
+    </div >
   )
 }
