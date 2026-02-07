@@ -12,7 +12,10 @@ export default function App() {
         <h1>Task Tracker</h1>
       </Panel>
       <Panel className='mt-6'>
-        <p>the main task tracker cards go here</p>
+        <form action="" className>
+          <label htmlFor=""></label>
+          <input type="text" />
+        </form>
       </Panel>
     </div >
   )
