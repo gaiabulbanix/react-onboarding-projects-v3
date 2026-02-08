@@ -12,10 +12,14 @@ export default function App() {
         <h1>Task Tracker</h1>
       </Panel>
       <Panel className='mt-6'>
-        <form action="" className>
-          <label htmlFor=""></label>
+        <form action="" className="flex flex-col gap-2">
+          <label htmlFor="">Task Input</label>
           <input type="text" />
         </form>
+        <div className="flex justify-between mt-4 py-2">
+          <div>Left Content</div>
+          <div>Right Content</div>
+        </div>
       </Panel>
     </div >
   )
