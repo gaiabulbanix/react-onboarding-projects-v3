@@ -1,4 +1,5 @@
 import Panel from "./components/Panel"
+import Button from "./components/Button"
 
 export default function App() {
   // color scheme
@@ -17,8 +18,17 @@ export default function App() {
           <input type="text" />
         </form>
         <div className="flex justify-between mt-4 py-2">
-          <div>Left Content</div>
-          <div>Right Content</div>
+          <div>
+            Task List
+          </div>
+          <div className="flex gap-2">
+            <Button>
+              Add Task
+            </Button>
+            <Button>
+              Remove All Tasks
+            </Button>
+          </div>
         </div>
       </Panel>
     </div >
