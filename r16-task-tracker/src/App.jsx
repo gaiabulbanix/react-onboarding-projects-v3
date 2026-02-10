@@ -19,7 +19,11 @@ export default function App() {
         </form>
         <div className="flex justify-between mt-4 py-2">
           <div>
-            Task List
+            <ul>
+              <li>Task 1 - Date - Completed? - Edit - Delete</li>
+              <li>Task 2 - Date - Completed? - Edit - Delete</li>
+              <li>Task 3 - Date - Completed? - Edit - Delete</li>
+            </ul>
           </div>
           <div className="flex gap-2">
             <Button>
