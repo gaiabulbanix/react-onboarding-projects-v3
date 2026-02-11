@@ -7,6 +7,8 @@ export default function App() {
   // -dark mode accent: border-teal-800
   // -light mode: bg-slate-100 text-slate-900
 
+  const [tasks, setTasks] = ('');
+
   return (
     <div className="p-8 min-h-screen bg-slate-900 text-slate-100">
       <Panel>
@@ -15,14 +17,17 @@ export default function App() {
       <Panel className='mt-6'>
         <form action="" className="flex flex-col gap-2">
           <label htmlFor="">Task Input</label>
-          <input type="text" />
+          <input
+            className="px-3 py-1.5 rounded-md border-teal-800 border-2 text-slate-900"
+            type="text"
+          />
         </form>
-        <div className="flex justify-between mt-4 py-2">
+        <div className="flex justify-between mt-4 py-2 items-start">
           <div>
             <ul>
-              <li>Task 1 - Date - Completed? - Edit - Delete</li>
-              <li>Task 2 - Date - Completed? - Edit - Delete</li>
-              <li>Task 3 - Date - Completed? - Edit - Delete</li>
+              <li>Task 1 - Completed? - Edit - Delete</li>
+              <li>Task 2 - Completed? - Edit - Delete</li>
+              <li>Task 3 - Completed? - Edit - Delete</li>
             </ul>
           </div>
           <div className="flex gap-2">
