@@ -1,5 +1,6 @@
 import Panel from "./Panel";
 import Button from "./Button";
+import { useState } from "react";
 
 export default function TaskTracker() {
     // color scheme
@@ -8,7 +9,13 @@ export default function TaskTracker() {
     // -light mode: bg-slate-100 text-slate-900
 
     // states
-    const [tasks, setTasks] = ('');
+    const [taskList, setTaskList] = useState([{
+        id: 1,
+        title: 'Test Task',
+        completed: false,
+    }]);
+
+    const [taskInput, setTaskInput] = useState('')
 
     return (
         <>
@@ -18,21 +25,39 @@ export default function TaskTracker() {
             <Panel className='mt-6'>
                 <form action="" className="flex flex-col gap-2">
                     <label htmlFor="">Task Input</label>
+                    <p>{taskInput}</p>
                     <input
                         className="px-3 py-1.5 rounded-md border-teal-800 border-2 text-slate-900"
                         type="text"
+                        value={taskInput}
+                        onChange={(e) => setTaskInput(e.target.value)}
                     />
                 </form>
                 <div className="flex justify-between mt-4 py-2 items-start">
                     <div>
                         <ul>
-                            <li>Task 1 - Completed? - Edit - Delete</li>
-                            <li>Task 2 - Completed? - Edit - Delete</li>
-                            <li>Task 3 - Completed? - Edit - Delete</li>
+                            {taskList.map((task) => (
+                                <li
+                                    key={task.id}
+                                >
+                                    ID: {task.id} - {task.title} - {
+                                        task.completed
+                                            ? 'Complete!'
+                                            : 'Pending'
+                                    }
+                                </li>
+                            ))}
                         </ul>
                     </div>
                     <div className="flex gap-2">
-                        <Button>
+                        <Button
+                            onClick={() => setTaskList(
+                                ...taskList, {
+                                id: { ...taskList.id + 1 },
+                                title: taskInput,
+                                completed: false,
+                            })}
+                        >
                             Add Task
                         </Button>
                         <Button>
