@@ -17,6 +17,24 @@ export default function TaskTracker() {
 
     const [taskInput, setTaskInput] = useState('')
 
+    // handlers
+    const handleAddTask = () => {
+        setTaskList(prev => {
+            let nextId;
+            if (prev.length === 0) {
+                nextId = 1;
+            } else {
+                const lastTask = prev[prev.length - 1];
+                nextId = lastTask.id + 1;
+            };
+            return [...prev, {
+                id: nextId,
+                title: taskInput,
+                completed: false,
+            }]
+        });
+    };
+
     return (
         <>
             <Panel>
@@ -51,12 +69,7 @@ export default function TaskTracker() {
                     </div>
                     <div className="flex gap-2">
                         <Button
-                            onClick={() => setTaskList(
-                                ...taskList, {
-                                id: { ...taskList.id + 1 },
-                                title: taskInput,
-                                completed: false,
-                            })}
+                            onClick={handleAddTask}
                         >
                             Add Task
                         </Button>
@@ -65,7 +78,7 @@ export default function TaskTracker() {
                         </Button>
                     </div>
                 </div>
-            </Panel>
+            </Panel >
         </>
     );
 }
