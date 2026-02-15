@@ -19,17 +19,22 @@ export default function TaskTracker() {
 
     // handlers
     const handleAddTask = () => {
+        if (!taskInput.trim()) {
+            return;
+        }
+
+        let nextId;
+        if (taskList.length === 0) {
+            nextId = 1;
+        } else {
+            const lastTask = taskList[taskList.length - 1];
+            nextId = lastTask.id + 1;
+        };
+
         setTaskList(prev => {
-            let nextId;
-            if (prev.length === 0) {
-                nextId = 1;
-            } else {
-                const lastTask = prev[prev.length - 1];
-                nextId = lastTask.id + 1;
-            };
             return [...prev, {
                 id: nextId,
-                title: taskInput,
+                title: taskInput.trim(),
                 completed: false,
             }]
         });
