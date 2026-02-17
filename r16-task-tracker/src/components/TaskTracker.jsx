@@ -48,6 +48,10 @@ export default function TaskTracker() {
         })
     }
 
+    const handleDeleteTask = (id) => {
+        return;
+    }
+
     return (
         <>
             <Panel>
