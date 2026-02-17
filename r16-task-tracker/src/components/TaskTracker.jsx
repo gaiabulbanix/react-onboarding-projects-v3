@@ -69,19 +69,19 @@ export default function TaskTracker() {
                         <ul>
                             {taskList.map((task) => (
                                 <li key={task.id} className="flex gap-2">
-                                    ID: {task.id} - {task.title} - {task.completed ? 'Pending' : 'Complete!'}
-                                    <Button
-                                        className="px-2 py-1"
-                                        onClick={() => handleToggleTask(task.id)}
-                                    >
-                                        {task.completed ? 'Toggle' : 'Complete Task'}
-                                    </Button>
+                                    ID: {task.id} - {task.title} - {task.completed ? 'Complete!' : 'Pending'}
+                                    <input
+                                        type="checkbox"
+                                        checked={task.completed}
+                                        onChange={() => handleToggleTask(task.id)}
+                                    />
                                 </li>
 
                             ))}
                         </ul>
                     </div>
                     <div className="flex gap-2">
+
                         <Button
                             onClick={handleAddTask}
                         >
