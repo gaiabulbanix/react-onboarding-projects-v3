@@ -38,6 +38,16 @@ export default function TaskTracker() {
         setTaskInput('');
     };
 
+    const handleToggleTask = (id) => {
+        setTaskList(prev => {
+            return prev.map(task => {
+                if (task.id === id) {
+                    return { ...task, completed: !task.completed };
+                } return task;
+            })
+        })
+    }
+
     return (
         <>
             <Panel>
@@ -58,19 +68,20 @@ export default function TaskTracker() {
                     <div>
                         <ul>
                             {taskList.map((task) => (
-                                <li
-                                    key={task.id}
-                                >
-                                    ID: {task.id} - {task.title} - {
-                                        task.completed
-                                            ? 'Complete!'
-                                            : 'Pending'
-                                    }
+                                <li key={task.id} className="flex gap-2">
+                                    ID: {task.id} - {task.title} - {task.completed ? 'Complete!' : 'Pending'}
+                                    <input
+                                        type="checkbox"
+                                        checked={task.completed}
+                                        onChange={() => handleToggleTask(task.id)}
+                                    />
                                 </li>
+
                             ))}
                         </ul>
                     </div>
                     <div className="flex gap-2">
+
                         <Button
                             onClick={handleAddTask}
                         >
