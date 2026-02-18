@@ -49,7 +49,9 @@ export default function TaskTracker() {
     }
 
     const handleDeleteTask = (id) => {
-        return;
+        setTaskList(prev => {
+            return prev.filter(task => task.id !== id)
+        });
     }
 
     return (
@@ -72,13 +74,19 @@ export default function TaskTracker() {
                     <div>
                         <ul>
                             {taskList.map((task) => (
-                                <li key={task.id} className="flex gap-2">
+                                <li key={task.id} className="flex gap-2 mt-2">
                                     ID: {task.id} - {task.title} - {task.completed ? 'Complete!' : 'Pending'}
                                     <input
                                         type="checkbox"
                                         checked={task.completed}
                                         onChange={() => handleToggleTask(task.id)}
                                     />
+                                    <Button
+                                        className="px-1 py-0.5"
+                                        onClick={() => handleDeleteTask(task.id)}
+                                    >
+                                        Delete Task
+                                    </Button>
                                 </li>
 
                             ))}
