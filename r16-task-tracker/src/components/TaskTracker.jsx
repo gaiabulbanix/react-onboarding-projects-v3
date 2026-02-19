@@ -9,11 +9,7 @@ export default function TaskTracker() {
     // -light mode: bg-slate-100 text-slate-900
 
     // states
-    const [taskList, setTaskList] = useState([{
-        id: 1,
-        title: 'Test Task',
-        completed: false,
-    }]);
+    const [taskList, setTaskList] = useState([]);
 
     const [taskInput, setTaskInput] = useState('')
 
@@ -53,6 +49,10 @@ export default function TaskTracker() {
         setTaskList(prev => {
             return prev.filter(task => task.id !== id)
         });
+    }
+
+    const handleClearTasks = () => {
+        setTaskList([]);
     }
 
     return (
@@ -100,7 +100,9 @@ export default function TaskTracker() {
                             >
                                 Add Task
                             </Button>
-                            <Button>
+                            <Button
+                                onClick={handleClearTasks}
+                            >
                                 Remove All Tasks
                             </Button>
                         </div>
