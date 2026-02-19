@@ -18,7 +18,8 @@ export default function TaskTracker() {
     const [taskInput, setTaskInput] = useState('')
 
     // handlers
-    const handleAddTask = () => {
+    const handleAddTask = (e) => {
+        e.preventDefault();
         if (!taskInput.trim()) return;
         setTaskList(prev => {
             let nextId;
@@ -60,7 +61,10 @@ export default function TaskTracker() {
                 <h1>Task Tracker</h1>
             </Panel>
             <Panel className='mt-6'>
-                <form action="" className="flex flex-col gap-2">
+                <form
+                    className="flex flex-col gap-2"
+                    onSubmit={handleAddTask}
+                >
                     <label htmlFor="">Task Input</label>
                     <p>{taskInput}</p>
                     <input
@@ -69,41 +73,39 @@ export default function TaskTracker() {
                         value={taskInput}
                         onChange={(e) => setTaskInput(e.target.value)}
                     />
+                    <div className="flex justify-between mt-4 py-2 items-start">
+                        <div>
+                            <ul>
+                                {taskList.map((task) => (
+                                    <li key={task.id} className="flex gap-2 mt-2">
+                                        ID: {task.id} - {task.title} - {task.completed ? 'Complete!' : 'Pending'}
+                                        <input
+                                            type="checkbox"
+                                            checked={task.completed}
+                                            onChange={() => handleToggleTask(task.id)}
+                                        />
+                                        <Button
+                                            className="px-1 py-0.5"
+                                            onClick={() => handleDeleteTask(task.id)}
+                                        >
+                                            Delete Task
+                                        </Button>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                        <div className="flex gap-2">
+                            <Button
+                                type="submit"
+                            >
+                                Add Task
+                            </Button>
+                            <Button>
+                                Remove All Tasks
+                            </Button>
+                        </div>
+                    </div>
                 </form>
-                <div className="flex justify-between mt-4 py-2 items-start">
-                    <div>
-                        <ul>
-                            {taskList.map((task) => (
-                                <li key={task.id} className="flex gap-2 mt-2">
-                                    ID: {task.id} - {task.title} - {task.completed ? 'Complete!' : 'Pending'}
-                                    <input
-                                        type="checkbox"
-                                        checked={task.completed}
-                                        onChange={() => handleToggleTask(task.id)}
-                                    />
-                                    <Button
-                                        className="px-1 py-0.5"
-                                        onClick={() => handleDeleteTask(task.id)}
-                                    >
-                                        Delete Task
-                                    </Button>
-                                </li>
-
-                            ))}
-                        </ul>
-                    </div>
-                    <div className="flex gap-2">
-
-                        <Button
-                            onClick={handleAddTask}
-                        >
-                            Add Task
-                        </Button>
-                        <Button>
-                            Remove All Tasks
-                        </Button>
-                    </div>
-                </div>
             </Panel >
         </>
     );
