@@ -1,5 +1,6 @@
 import Panel from "./Panel";
 import Button from "./Button";
+import TaskItem from "./TaskItem";
 import { useState } from "react";
 
 export default function TaskTracker() {
