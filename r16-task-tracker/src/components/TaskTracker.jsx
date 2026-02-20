@@ -78,20 +78,28 @@ export default function TaskTracker() {
                         <div>
                             <ul>
                                 {taskList.map((task) => (
-                                    <li key={task.id} className="flex gap-2 mt-2">
-                                        ID: {task.id} - {task.title} - {task.completed ? 'Complete!' : 'Pending'}
-                                        <input
-                                            type="checkbox"
-                                            checked={task.completed}
-                                            onChange={() => handleToggleTask(task.id)}
-                                        />
-                                        <Button
-                                            className="px-1 py-0.5"
-                                            onClick={() => handleDeleteTask(task.id)}
-                                        >
-                                            Delete Task
-                                        </Button>
-                                    </li>
+                                    <TaskItem
+                                        className="flex gap-2 mt-2"
+                                        key={task.id}
+                                        onToggle={handleToggleTask}
+                                        onDelete={handleDeleteTask}
+                                        task={task}
+                                    >
+                                    </TaskItem>
+                                    // <li key={task.id} className="flex gap-2 mt-2">
+                                    //     ID: {task.id} - {task.title} - {task.completed ? 'Complete!' : 'Pending'}
+                                    //     <input
+                                    //         type="checkbox"
+                                    //         checked={task.completed}
+                                    //         onChange={() => handleToggleTask(task.id)}
+                                    //     />
+                                    //     <Button
+                                    //         className="px-1 py-0.5"
+                                    //         onClick={() => handleDeleteTask(task.id)}
+                                    //     >
+                                    //         Delete Task
+                                    //     </Button>
+                                    // </li>
                                 ))}
                             </ul>
                         </div>
@@ -108,7 +116,7 @@ export default function TaskTracker() {
                             </Button>
                         </div>
                     </div>
-                </form>
+                </form >
             </Panel >
         </>
     );
