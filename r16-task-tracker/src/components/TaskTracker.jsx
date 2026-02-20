@@ -1,5 +1,6 @@
 import Panel from "./Panel";
 import Button from "./Button";
+import TaskList from "./TaskList";
 import TaskItem from "./TaskItem";
 import { useState } from "react";
 
@@ -86,20 +87,6 @@ export default function TaskTracker() {
                                         task={task}
                                     >
                                     </TaskItem>
-                                    // <li key={task.id} className="flex gap-2 mt-2">
-                                    //     ID: {task.id} - {task.title} - {task.completed ? 'Complete!' : 'Pending'}
-                                    //     <input
-                                    //         type="checkbox"
-                                    //         checked={task.completed}
-                                    //         onChange={() => handleToggleTask(task.id)}
-                                    //     />
-                                    //     <Button
-                                    //         className="px-1 py-0.5"
-                                    //         onClick={() => handleDeleteTask(task.id)}
-                                    //     >
-                                    //         Delete Task
-                                    //     </Button>
-                                    // </li>
                                 ))}
                             </ul>
                         </div>
