@@ -77,7 +77,7 @@ export default function TaskTracker() {
                     />
                     <div className="flex justify-between mt-4 py-2 items-start">
                         <div>
-                            <ul>
+                            <TaskList>
                                 {taskList.map((task) => (
                                     <TaskItem
                                         className="flex gap-2 mt-2"
@@ -88,7 +88,7 @@ export default function TaskTracker() {
                                     >
                                     </TaskItem>
                                 ))}
-                            </ul>
+                            </TaskList>
                         </div>
                         <div className="flex gap-2">
                             <Button
