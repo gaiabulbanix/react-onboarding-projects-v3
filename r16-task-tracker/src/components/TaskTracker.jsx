@@ -1,7 +1,6 @@
 import Panel from "./Panel";
 import Button from "./Button";
 import TaskList from "./TaskList";
-import TaskItem from "./TaskItem";
 import { useState } from "react";
 
 export default function TaskTracker() {
@@ -77,18 +76,11 @@ export default function TaskTracker() {
                     />
                     <div className="flex justify-between mt-4 py-2 items-start">
                         <div>
-                            <TaskList>
-                                {taskList.map((task) => (
-                                    <TaskItem
-                                        className="flex gap-2 mt-2"
-                                        key={task.id}
-                                        onToggle={handleToggleTask}
-                                        onDelete={handleDeleteTask}
-                                        task={task}
-                                    >
-                                    </TaskItem>
-                                ))}
-                            </TaskList>
+                            <TaskList
+                                tasks={taskList}
+                                onToggle={handleToggleTask}
+                                onDelete={handleAddTask}
+                            />
                         </div>
                         <div className="flex gap-2">
                             <Button

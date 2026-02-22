@@ -1,8 +1,18 @@
-export default function TaskList({ children, className = ' ', }) {
+import TaskItem from "./TaskItem";
+
+export default function TaskList({ className = ' ', tasks, onToggle, onDelete }) {
     return (
         <ul className={`${className}`}>
-            <p>test paragraph</p>
-            {children}
+            {tasks.map((task) => (
+                <TaskItem
+                    className="flex gap-2 mt-2"
+                    key={task.id}
+                    onToggle={onToggle}
+                    onDelete={onDelete}
+                    task={task}
+                >
+                </TaskItem>
+            ))}
         </ul>
     );
 }
