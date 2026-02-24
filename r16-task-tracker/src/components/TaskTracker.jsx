@@ -2,6 +2,7 @@ import Panel from "./Panel";
 import Button from "./Button";
 import TaskList from "./TaskList";
 import { useState } from "react";
+import TaskForm from "./TaskForm";
 
 export default function TaskTracker() {
     // color scheme
@@ -62,11 +63,17 @@ export default function TaskTracker() {
                 <h1>Task Tracker</h1>
             </Panel>
             <Panel className='mt-6'>
+                <TaskForm
+                    className="flex flex-col gap-2"
+                    onSubmit={handleAddTask}
+                >
+
+                </TaskForm>
                 <form
                     className="flex flex-col gap-2"
                     onSubmit={handleAddTask}
                 >
-                    <label htmlFor="">Task Input</label>
+                    <label>Task Input</label>
                     <p>{taskInput}</p>
                     <input
                         className="px-3 py-1.5 rounded-md border-teal-800 border-2 text-slate-900"
