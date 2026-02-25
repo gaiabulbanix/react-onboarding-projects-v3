@@ -1,4 +1,6 @@
 export default function TaskForm({ className = '', onSubmit, }) {
+    const [taskInput, setTaskInput] = useState('');
+
     return (
         <form
             className={`${className}`}

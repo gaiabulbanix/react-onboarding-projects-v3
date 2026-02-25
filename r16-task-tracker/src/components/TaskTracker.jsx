@@ -63,12 +63,12 @@ export default function TaskTracker() {
                 <h1>Task Tracker</h1>
             </Panel>
             <Panel className='mt-6'>
-                <TaskForm
+                {/* <TaskForm
                     className="flex flex-col gap-2"
                     onSubmit={handleAddTask}
                 >
 
-                </TaskForm>
+                </TaskForm> */}
                 <form
                     className="flex flex-col gap-2"
                     onSubmit={handleAddTask}
