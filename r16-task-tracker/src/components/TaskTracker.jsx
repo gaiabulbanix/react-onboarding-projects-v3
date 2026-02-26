@@ -1,8 +1,8 @@
 import Panel from "./Panel";
-import Button from "./Button";
 import TaskList from "./TaskList";
 import { useState } from "react";
 import TaskForm from "./TaskForm";
+import Button from "./Button";
 
 export default function TaskTracker() {
     // color scheme
@@ -86,15 +86,10 @@ export default function TaskTracker() {
                             <TaskList
                                 tasks={taskList}
                                 onToggle={handleToggleTask}
-                                onDelete={handleAddTask}
+                                onDelete={handleDeleteTask}
                             />
                         </div>
                         <div className="flex gap-2">
-                            <Button
-                                type="submit"
-                            >
-                                Add Task
-                            </Button>
                             <Button
                                 onClick={handleClearTasks}
                             >
