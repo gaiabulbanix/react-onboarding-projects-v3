@@ -1,3 +1,5 @@
+import Button from "./Button";
+
 export default function TaskForm({ className = '', onSubmit, }) {
     const [taskInput, setTaskInput] = useState('');
 
@@ -7,13 +9,17 @@ export default function TaskForm({ className = '', onSubmit, }) {
             onSubmit={onSubmit}
         >
             <label>Task Input</label>
-            <p>{taskInput}</p>
             <input
                 className="px-3 py-1.5 rounded-md border-teal-800 border-2 text-slate-900"
                 type="text"
                 value={taskInput}
                 onChange={(e) => setTaskInput(e.target.value)}
             />
+            <Button
+                type="submit"
+            >
+                Add Task
+            </Button>
         </form>
     );
 }
