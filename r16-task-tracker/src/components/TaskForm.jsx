@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Button from "./Button";
 
 export default function TaskForm({ className = '', onSubmit, }) {
@@ -6,7 +7,12 @@ export default function TaskForm({ className = '', onSubmit, }) {
     return (
         <form
             className={`${className}`}
-            onSubmit={onSubmit}
+            onSubmit={(e) => {
+                e.preventDefault();
+                if (!taskInput.trim()) return;
+                onSubmit(taskInput);
+                setTaskInput('');
+            }}
         >
             <label>Task Input</label>
             <input
