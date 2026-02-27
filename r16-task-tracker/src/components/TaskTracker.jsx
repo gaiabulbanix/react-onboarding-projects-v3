@@ -13,12 +13,9 @@ export default function TaskTracker() {
     // states
     const [taskList, setTaskList] = useState([]);
 
-    const [taskInput, setTaskInput] = useState('')
-
     // handlers
-    const handleAddTask = (e) => {
-        e.preventDefault();
-        if (!taskInput.trim()) return;
+    const handleAddTask = (title) => {
+        if (!title.trim()) return;
         setTaskList(prev => {
             let nextId;
             if (prev.length === 0) {
@@ -30,7 +27,7 @@ export default function TaskTracker() {
 
             return [...prev, {
                 id: nextId,
-                title: taskInput.trim(),
+                title: title.trim(),
                 completed: false,
             }]
         });
@@ -63,41 +60,28 @@ export default function TaskTracker() {
                 <h1>Task Tracker</h1>
             </Panel>
             <Panel className='mt-6'>
-                {/* <TaskForm
+                <TaskForm
                     className="flex flex-col gap-2"
                     onSubmit={handleAddTask}
                 >
 
-                </TaskForm> */}
-                <form
-                    className="flex flex-col gap-2"
-                    onSubmit={handleAddTask}
-                >
-                    <label>Task Input</label>
-                    <p>{taskInput}</p>
-                    <input
-                        className="px-3 py-1.5 rounded-md border-teal-800 border-2 text-slate-900"
-                        type="text"
-                        value={taskInput}
-                        onChange={(e) => setTaskInput(e.target.value)}
-                    />
-                    <div className="flex justify-between mt-4 py-2 items-start">
-                        <div>
-                            <TaskList
-                                tasks={taskList}
-                                onToggle={handleToggleTask}
-                                onDelete={handleDeleteTask}
-                            />
-                        </div>
-                        <div className="flex gap-2">
-                            <Button
-                                onClick={handleClearTasks}
-                            >
-                                Remove All Tasks
-                            </Button>
-                        </div>
+                </TaskForm>
+                <div className="flex justify-between mt-4 py-2 items-start">
+                    <div>
+                        <TaskList
+                            tasks={taskList}
+                            onToggle={handleToggleTask}
+                            onDelete={handleDeleteTask}
+                        />
                     </div>
-                </form >
+                    <div className="flex gap-2">
+                        <Button
+                            onClick={handleClearTasks}
+                        >
+                            Remove All Tasks
+                        </Button>
+                    </div>
+                </div>
             </Panel >
         </>
     );
