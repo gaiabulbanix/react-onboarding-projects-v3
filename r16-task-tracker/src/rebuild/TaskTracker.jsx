@@ -5,6 +5,20 @@ export default function TaskTracker() {
     const [tasks, setTasks] = useState([]);
     const [input, setInput] = useState('');
 
+    // handlers
+    const handleAddTask = (e) => {
+        e.preventDefault();
+        if (!input.trim()) return;
+        setTasks(prev => {
+            return [...prev, {
+                id: Date.now(),
+                task: input.trim(),
+                completed: false,
+            }]
+        });
+        setInput('');
+    }
+
     return (
         <>
             <div>
@@ -12,10 +26,13 @@ export default function TaskTracker() {
                 <p>Total Tasks: {tasks.length}</p>
             </div>
             <div>
-                <form>
+                <form
+                    onSubmit={handleAddTask}
+                >
                     <input
                         type="text"
                         value={input}
+                        onChange={(e) => setInput(e.target.value)}
                     />
                 </form>
             </div>
