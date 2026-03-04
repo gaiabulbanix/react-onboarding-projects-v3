@@ -2,28 +2,28 @@ import { useState } from "react";
 
 export default function TaskTracker() {
     // states
-    const [tasks, setTasks] = useState([]);
-    const [input, setInput] = useState('');
+    const [taskArray, setTaskArray] = useState([]);
+    const [taskInput, setTaskInput] = useState('');
 
     // handlers
     const handleAddTask = (e) => {
         e.preventDefault();
-        if (!input.trim()) return;
-        setTasks(prev => {
+        if (!taskInput.trim()) return;
+        setTaskArray(prev => {
             return [...prev, {
                 id: Date.now(),
-                task: input.trim(),
+                taskName: taskInput.trim(),
                 completed: false,
             }]
         });
-        setInput('');
-    }
+        setTaskInput('');
+    };
 
     return (
         <>
             <div>
                 <h1>Task Tracker</h1>
-                <p>Total Tasks: {tasks.length}</p>
+                <p>Total Tasks: {taskArray.length}</p>
             </div>
             <div>
                 <form
@@ -31,14 +31,18 @@ export default function TaskTracker() {
                 >
                     <input
                         type="text"
-                        value={input}
-                        onChange={(e) => setInput(e.target.value)}
+                        value={taskInput}
+                        onChange={(e) => setTaskInput(e.target.value)}
                     />
                 </form>
             </div>
             <div>
                 <ul>
-
+                    {taskArray.map(task => (
+                        <li key={task.id}>
+                            {task.taskName} - {task.completed ? "Complete" : "Pending"}
+                        </li>
+                    ))}
                 </ul>
                 <button>Remove All Tasks</button>
             </div>
