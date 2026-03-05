@@ -19,6 +19,10 @@ export default function TaskTracker() {
         setTaskInput('');
     };
 
+    const handleToggleTask = () => {
+        return ('');
+    }
+
     return (
         <>
             <div>
@@ -26,14 +30,13 @@ export default function TaskTracker() {
                 <p>Total Tasks: {taskArray.length}</p>
             </div>
             <div>
-                <form
-                    onSubmit={handleAddTask}
-                >
+                <form onSubmit={handleAddTask}>
                     <input
                         type="text"
                         value={taskInput}
                         onChange={(e) => setTaskInput(e.target.value)}
                     />
+                    <button type="submit">Add Task</button>
                 </form>
             </div>
             <div>
