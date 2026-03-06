@@ -19,8 +19,17 @@ export default function TaskTracker() {
         setTaskInput('');
     };
 
-    const handleToggleTask = () => {
-        return ('');
+    const handleToggleTask = (id) => {
+        setTaskArray(prev => {
+            return prev.map(task => {
+                if (task.id === id) {
+                    return {
+                        ...task,
+                        completed: !task.completed,
+                    };
+                } return task;
+            })
+        });
     }
 
     return (
@@ -44,6 +53,11 @@ export default function TaskTracker() {
                     {taskArray.map(task => (
                         <li key={task.id}>
                             {task.taskName} - {task.completed ? "Complete" : "Pending"}
+                            <input
+                                type="checkbox"
+                                checked={task.completed}
+                                onChange={() => handleToggleTask(task.id)}
+                            />
                         </li>
                     ))}
                 </ul>
