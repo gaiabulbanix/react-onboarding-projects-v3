@@ -32,6 +32,10 @@ export default function TaskTracker() {
         });
     }
 
+    const handleRemoveAllTasks = () => {
+        setTaskArray([]);
+    }
+
     return (
         <>
             <div>
