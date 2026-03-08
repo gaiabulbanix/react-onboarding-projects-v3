@@ -32,8 +32,14 @@ export default function TaskTracker() {
         });
     }
 
-    const handleRemoveAllTasks = () => {
+    const handleDeleteAllTasks = () => {
         setTaskArray([]);
+    }
+
+    const handleDeleteTask = (id) => {
+        setTaskArray(prev =>
+            prev.filter(task => task.id !== id)
+        );
     }
 
     return (
@@ -62,11 +68,20 @@ export default function TaskTracker() {
                                 checked={task.completed}
                                 onChange={() => handleToggleTask(task.id)}
                             />
+                            <button
+                                onClick={() => handleDeleteTask(task.id)}
+                            >
+                                Delete Task
+                            </button>
                         </li>
                     ))}
                 </ul>
-                <button>Remove All Tasks</button>
-            </div>
+                <button
+                    onClick={handleDeleteAllTasks}
+                >
+                    Remove All Tasks
+                </button>
+            </div >
         </>
     );
 }
