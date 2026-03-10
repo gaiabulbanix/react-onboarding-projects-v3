@@ -7,8 +7,13 @@ export default function TaskTracker() {
 
     // handlers
     const handleAddTask = () => {
-        return
+        e.preventDefault();
+        setTaskArray(prev => [...prev, newTask])
     };
+
+    const handleRenderTask = () => {
+
+    }
 
     // jsx block
     return (
@@ -17,6 +22,9 @@ export default function TaskTracker() {
                 <form>
                     <input
                         type="text"
+                        value="taskItem"
+                        onChange={(e) => setTaskItem(e.target.value)}
+                        onSubmit={handleAddTask}
                     />
                     <button
                         type="submit"
@@ -27,8 +35,11 @@ export default function TaskTracker() {
             </div>
             <div>
                 <ul>
-                    <li>
-                    </li>
+                    {
+                        taskArray.map(){
+
+                    }
+                    }
                 </ul>
             </div>
         </>
