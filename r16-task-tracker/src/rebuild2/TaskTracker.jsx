@@ -11,10 +11,6 @@ export default function TaskTracker() {
         setTaskArray(prev => [...prev, newTask])
     };
 
-    const handleRenderTask = () => {
-
-    }
-
     // jsx block
     return (
         <>
@@ -36,9 +32,11 @@ export default function TaskTracker() {
             <div>
                 <ul>
                     {
-                        taskArray.map(){
-
-                    }
+                        taskArray.map((taskItem, index) => {
+                            <li>
+                                {`${index} - ${taskItem.name} - ${taskItem.complete}`}
+                            </li>
+                        })
                     }
                 </ul>
             </div>
