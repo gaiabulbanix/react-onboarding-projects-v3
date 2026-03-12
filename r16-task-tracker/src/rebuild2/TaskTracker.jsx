@@ -6,21 +6,30 @@ export default function TaskTracker() {
     const [taskItem, setTaskItem] = useState('');
 
     // handlers
-    const handleAddTask = () => {
+    const handleAddTask = (e) => {
         e.preventDefault();
-        setTaskArray(prev => [...prev, newTask])
+        let newTaskItem = taskItem.trim();
+        if (!newTaskItem) return;
+        setTaskArray(prev => [...prev, {
+            id: new Date(Date.now()).toLocaleString(),
+            name: newTaskItem,
+            complete: false,
+        }])
+        setTaskItem('');
     };
 
     // jsx block
     return (
         <>
             <div>
-                <form>
+                <form
+                    onSubmit={handleAddTask}
+                >
                     <input
                         type="text"
-                        value="taskItem"
+                        value={taskItem}
                         onChange={(e) => setTaskItem(e.target.value)}
-                        onSubmit={handleAddTask}
+
                     />
                     <button
                         type="submit"
@@ -33,9 +42,13 @@ export default function TaskTracker() {
                 <ul>
                     {
                         taskArray.map((taskItem, index) => {
-                            <li>
-                                {`${index} - ${taskItem.name} - ${taskItem.complete}`}
-                            </li>
+                            return (
+                                <li
+                                    key={taskItem.id}
+                                >
+                                    {`${index} - ${taskItem.id} - ${taskItem.name} - ${taskItem.complete}`}
+                                </li>
+                            );
                         })
                     }
                 </ul>
