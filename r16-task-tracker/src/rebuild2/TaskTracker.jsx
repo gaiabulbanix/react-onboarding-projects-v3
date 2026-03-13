@@ -11,48 +11,64 @@ export default function TaskTracker() {
         let newTaskItem = taskItem.trim();
         if (!newTaskItem) return;
         setTaskArray(prev => [...prev, {
-            id: new Date(Date.now()).toLocaleString(),
+            id: crypto.randomUUID(),
             name: newTaskItem,
+            date: new Date(Date.now()).toLocaleString(),
             complete: false,
         }])
         setTaskItem('');
     };
 
-    // jsx block
-    return (
-        <>
-            <div>
-                <form
-                    onSubmit={handleAddTask}
-                >
-                    <input
-                        type="text"
-                        value={taskItem}
-                        onChange={(e) => setTaskItem(e.target.value)}
+    const handleToggleTask = () => {
+        setTaskArray(prev =>
+            prev.map(task =>
+                task.id === 
+                ? toggle task.complete
+                : return task unchanged
+            )
 
-                    />
-                    <button
-                        type="submit"
-                    >
-                        Add Task
-                    </button>
-                </form>
-            </div>
-            <div>
-                <ul>
-                    {
-                        taskArray.map((taskItem, index) => {
-                            return (
-                                <li
-                                    key={taskItem.id}
-                                >
-                                    {`${index} - ${taskItem.id} - ${taskItem.name} - ${taskItem.complete}`}
-                                </li>
-                            );
-                        })
-                    }
-                </ul>
-            </div>
-        </>
-    );
+        )
+}
+
+// jsx block
+return (
+    <>
+        <div>
+            <form
+                onSubmit={handleAddTask}
+            >
+                <input
+                    type="text"
+                    value={taskItem}
+                    onChange={(e) => setTaskItem(e.target.value)}
+
+                />
+                <button
+                    type="submit"
+                >
+                    Add Task
+                </button>
+            </form>
+        </div>
+        <div>
+            <ul>
+                {
+                    taskArray.map((task, index) => {
+                        return (
+                            <li
+                                key={taskItem.id}
+                            >
+                                {`${index} - ${task.id} - ${task.name} - ${task.date} - ${task.complete}`}
+                                <input
+                                    type="checkbox"
+                                    onChahnge={() => handleToggleTask()}
+                                />
+                            </li>
+                        );
+                    })
+                }
+            </ul>
+        </div>
+    </>
+);
 }
