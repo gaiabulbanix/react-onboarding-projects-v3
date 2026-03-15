@@ -19,8 +19,13 @@ export default function TaskTracker() {
         setTaskItem('');
     };
 
-    const handleToggleTask = () => {
+    const handleToggleTask = (id) => {
         setTaskArray(prev =>
+            prev.map(task =>
+                task.id === id
+                    ? { ...task, complete: !task.complete }
+                    : task
+            )
         )
     }
 
@@ -50,12 +55,13 @@ export default function TaskTracker() {
                         taskArray.map((task, index) => {
                             return (
                                 <li
-                                    key={taskItem.id}
+                                    key={task.id}
                                 >
-                                    {`${index} - ${task.id} - ${task.name} - ${task.date} - ${task.complete}`}
+                                    {`${index} - ${task.id} - ${task.name} - ${task.date} - ${task.complete ? 'Complete' : 'Incomplete'}`}
                                     <input
                                         type="checkbox"
-                                        onChahnge={() => handleToggleTask()}
+                                        checked={task.complete}
+                                        onChange={() => handleToggleTask(task.id)}
                                     />
                                 </li>
                             );
