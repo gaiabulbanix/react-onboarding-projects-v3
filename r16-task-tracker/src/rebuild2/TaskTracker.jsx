@@ -63,6 +63,9 @@ export default function TaskTracker() {
                                         checked={task.complete}
                                         onChange={() => handleToggleTask(task.id)}
                                     />
+                                    <button>
+                                        Delete Task
+                                    </button>
                                 </li>
                             );
                         })
