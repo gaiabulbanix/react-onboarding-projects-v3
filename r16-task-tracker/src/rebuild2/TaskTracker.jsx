@@ -29,6 +29,14 @@ export default function TaskTracker() {
         )
     }
 
+    const handleDeleteTask = () => {
+        setTaskArray(prev =>
+            prev.filter(
+
+            )
+        )
+    }
+
     // jsx block
     return (
         <>
