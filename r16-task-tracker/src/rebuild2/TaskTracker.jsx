@@ -32,11 +32,8 @@ export default function TaskTracker() {
     const handleDeleteTask = () => {
         setTaskArray(prev =>
             prev.filter(
-                // the code should use a linked id from the input, and then it will filter it out if the id is equal to the one asked to be removed
-
             )
         );
-        return '';
     }
 
     // jsx block
