@@ -15,26 +15,21 @@ export default function TaskTracker() {
             name: newTaskItem,
             date: new Date(Date.now()).toLocaleString(),
             complete: false,
-        }])
+        }]);
         setTaskItem('');
     };
 
     const handleToggleTask = (id) => {
         setTaskArray(prev =>
-            prev.map(task =>
-                task.id === id
-                    ? { ...task, complete: !task.complete }
-                    : task
-            )
-        )
-    }
-
-    const handleDeleteTask = () => {
-        setTaskArray(prev =>
-            prev.filter(
-            )
+            prev.map(task => task.id === id
+                ? { ...task, complete: !task.complete }
+                : task)
         );
-    }
+    };
+
+    const handleDeleteTask = (id) => {
+        setTaskArray(prev => prev.filter(task => task.id !== id));
+    };
 
     // jsx block
     return (
@@ -71,7 +66,7 @@ export default function TaskTracker() {
                                         onChange={() => handleToggleTask(task.id)}
                                     />
                                     <button
-                                        onClick={() => handleDeleteTask}
+                                        onClick={() => handleDeleteTask(task.id)}
                                     >
                                         Delete Task
                                     </button>
