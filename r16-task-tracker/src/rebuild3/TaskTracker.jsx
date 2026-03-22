@@ -5,33 +5,18 @@ export default function TaskTracker() {
     const [taskList, setTaskList] = useState([]);
     const [taskItem, setTaskItem] = useState('');
 
-    // handler
-
-    const handleAddTask = () => {
-        setTaskList(prev => {
-            taskList.map(task => )
-        });
-    };
-
-    const handleDisplayTaskList = () => {
-        setTaskList
-    };
-
-    const handleDeleteTaskItem;
-
-    const handleDeleteAllTasks;
-
     // jsx
     return (
         <>
             <div>
-                <form
-                    onSubmit={() => handleAddTask}
-                >
+                <form>
                     <input
+                        className="text-slate-900"
                         type="text"
-                        value={(e) => setTaskItem(e.target.value)}
+                        value={taskItem}
+                        onChange={(e) => setTaskItem(e.target.value)}
                     />
+                    <p>{taskItem}</p>
                     <button
                         type="Submit"
                     >
