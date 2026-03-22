@@ -4,30 +4,19 @@ export default function TaskTracker() {
     // hooks
     const [taskList, setTaskList] = useState([]);
     const [taskItem, setTaskItem] = useState('');
+
     useEffect(() => {
         console.log(taskList);
     }, [taskList]);
 
-    // handler
+    // handlers
     const handleAddTask = (e) => {
         e.preventDefault();
         const newTask = taskItem.trim();
         if (!newTask) return;
         setTaskList(prev => [...prev, newTask]);
         setTaskItem('');
-    }
-
-    const handleRenderTask = () => {
-        return taskList.map((task, index) => {
-            return (
-                <li
-                    key={index}
-                >
-                    {`${task}`}
-                </li>
-            );
-        });
-    }
+    };
 
     // jsx
     return (
@@ -52,7 +41,13 @@ export default function TaskTracker() {
             </div>
             <div>
                 <ul>
-                    {handleRenderTask()}
+                    {taskList.map((task, index) => (
+                        <li
+                            key={index}
+                        >
+                            {`${task}`}
+                        </li>
+                    ))}
                 </ul>
             </div>
         </>
