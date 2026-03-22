@@ -31,7 +31,15 @@ export default function TaskTracker() {
                 complete: !task.complete,
             };
         }));
-    }
+    };
+
+    const handleDeleteTask = (id) => {
+        setTaskList(prev => prev.filter(task => id !== task.id))
+    };
+
+    const handleDeleteAllTasks = () => (
+        setTaskList([])
+    )
 
     // jsx
     return (
@@ -60,6 +68,11 @@ export default function TaskTracker() {
                             key={task.id}
                         >
                             {index + 1}. {task.name} - {task.complete ? 'Complete' : 'Pending'}
+                            <button
+                                onClick={() => handleDeleteTask(task.id)}
+                            >
+                                Delete
+                            </button>
                             <input
                                 type="checkbox"
                                 checked={task.complete}
@@ -69,6 +82,11 @@ export default function TaskTracker() {
                     ))}
                 </ul>
             </div>
+            <div>
+                <button onClick={handleDeleteAllTasks}>
+                    Delete All Tasks
+                </button>
+            </div>
         </>
     );
-}
+};
