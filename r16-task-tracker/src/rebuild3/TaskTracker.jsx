@@ -14,7 +14,12 @@ export default function TaskTracker() {
         e.preventDefault();
         const newTask = taskItem.trim();
         if (!newTask) return;
-        setTaskList(prev => [...prev, newTask]);
+        setTaskList(prev => [...prev, {
+            id: crypto.randomUUID(),
+            name: newTask,
+            complete: false,
+
+        }]);
         setTaskItem('');
     };
 
@@ -31,7 +36,6 @@ export default function TaskTracker() {
                         value={taskItem}
                         onChange={(e) => setTaskItem(e.target.value)}
                     />
-                    <p>{taskItem}</p>
                     <button
                         type="submit"
                     >
@@ -43,9 +47,9 @@ export default function TaskTracker() {
                 <ul>
                     {taskList.map((task, index) => (
                         <li
-                            key={index}
+                            key={task.id}
                         >
-                            {`${task}`}
+                            {`${index + 1} - ${task.name} - ${task.complete ? 'Complete' : 'Pending'}`}
                         </li>
                     ))}
                 </ul>
