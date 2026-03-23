@@ -55,7 +55,15 @@ export default function TaskTracker() {
                 </form>
             </Panel>
             <Panel className="mt-6 w-1/2">
-                <p>{taskItem}</p>
+                <ul>
+                    {taskList.map((task, index) => {
+                        return (
+                            <li key={task.id}>
+                                {index + 1}. {task.name} - {task.date} - {task.compelte ? 'Complete' : 'Pending'}
+                            </li>
+                        );
+                    })}
+                </ul>
             </Panel>
         </>
     );
