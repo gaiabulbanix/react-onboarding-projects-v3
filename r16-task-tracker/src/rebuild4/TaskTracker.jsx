@@ -41,6 +41,10 @@ export default function TaskTracker() {
 
     const handleDeleteTask = (id) => (
         setTaskList(prev => prev.filter(task => id !== task.id))
+    );
+
+    const handleDeleteAllTasks = () => (
+        setTaskList([])
     )
 
     // jsx block
@@ -88,6 +92,12 @@ export default function TaskTracker() {
                         </li>
                     ))}
                 </ul>
+                <button
+                    className="px-2 py-1 rounded-md bg-slate-100 text-slate-900"
+                    onClick={handleDeleteAllTasks}
+                >
+                    Delete all Tasks
+                </button>
             </Panel>
         </>
     );
