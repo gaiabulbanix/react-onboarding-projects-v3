@@ -15,6 +15,7 @@ export default function TaskTracker() {
         console.log(taskList);
     }, [taskList]);
 
+    // handlers
     const handleAddTask = (e) => {
         e.preventDefault();
         const newTask = taskItem.trim();
@@ -29,6 +30,17 @@ export default function TaskTracker() {
         setTaskItem('');
     };
 
+    const handleCompleteTask = (id) => {
+        setTaskList(prev => prev.map((task) => {
+            if (id !== task.id) return;
+            return {
+                ...task,
+                completed: !task.completed,
+            };
+        }))
+    };
+
+    // jsx block
     return (
         <>
             <Panel className="w-1/2">
@@ -56,13 +68,21 @@ export default function TaskTracker() {
             </Panel>
             <Panel className="mt-6 w-1/2">
                 <ul>
-                    {taskList.map((task, index) => {
-                        return (
-                            <li key={task.id}>
-                                {index + 1}. {task.name} - {task.date} - {task.compelte ? 'Complete' : 'Pending'}
-                            </li>
-                        );
-                    })}
+                    {taskList.map((task, index) => (
+                        <li key={task.id} className="flex gap-2">
+                            {index + 1}. {task.name} - {task.date} - {task.completed ? 'Complete' : 'Pending'}
+                            <input
+                                type="checkbox"
+                                onChange={() => handleCompleteTask(task.id)}
+                                checked={task.completed}
+                            />
+                            <button
+                                className="px-2 py-1 rounded-md bg-slate-100 text-slate-900"
+                            >
+                                Delete Task
+                            </button>
+                        </li>
+                    ))}
                 </ul>
             </Panel>
         </>
