@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Panel from './Panel';
 
 export default function TaskTracker() {
@@ -9,7 +9,25 @@ export default function TaskTracker() {
 
     // hooks
     const [taskItem, setTaskItem] = useState('');
+    const [taskList, setTaskList] = useState([]);
 
+    useEffect(() => {
+        console.log(taskList);
+    }, [taskList]);
+
+    const handleAddTask = (e) => {
+        e.preventDefault();
+        const newTask = taskItem.trim();
+        if (!newTask) return;
+        const now = new Date().toLocaleString();
+        setTaskList(prev => [...prev, {
+            id: crypto.randomUUID(),
+            name: newTask,
+            date: now,
+            completed: false,
+        }]);
+        setTaskItem('');
+    };
 
     return (
         <>
@@ -19,7 +37,7 @@ export default function TaskTracker() {
             <Panel className="mt-6 flex-col w-1/2">
                 <form
                     className="flex items-center gap-2"
-                    onSubmit={''}
+                    onSubmit={handleAddTask}
                 >
                     <input
                         className="text-slate-900 border-teal-800 border-2 px-2 py-1 rounded-md"
