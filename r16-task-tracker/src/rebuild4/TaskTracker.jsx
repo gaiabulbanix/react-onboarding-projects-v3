@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Panel from './Panel';
 
 export default function TaskTracker() {
     // color scheme
@@ -9,21 +10,35 @@ export default function TaskTracker() {
     // hooks
     const [taskItem, setTaskItem] = useState('');
 
+
     return (
         <>
-            <div>
-                <form>
+            <Panel className="w-1/2">
+                <h1>Task Tracker</h1>
+            </Panel>
+            <Panel className="mt-6 flex-col w-1/2">
+                <form
+                    className="flex items-center gap-2"
+                    onSubmit={''}
+                >
                     <input
-                        className="text-slate-900"
+                        className="text-slate-900 border-teal-800 border-2 px-2 py-1 rounded-md"
                         type="text"
                         value={taskItem}
+                        placeholder="Input a Task here..."
                         onChange={(e) => setTaskItem(e.target.value)}
                     />
+                    <button
+                        className="px-2 py-1 rounded-md bg-slate-100 text-slate-900"
+                        type="submit"
+                    >
+                        Add Task
+                    </button>
                 </form>
-            </div >
-            <div>
+            </Panel>
+            <Panel className="mt-6 w-1/2">
                 <p>{taskItem}</p>
-            </div>
+            </Panel>
         </>
     );
 };
