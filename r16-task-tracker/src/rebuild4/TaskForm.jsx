@@ -19,4 +19,4 @@ export default function TaskForm({ handleAddTask, taskItem, setTaskItem }) {
             </button>
         </form>
     );
-}
+};
