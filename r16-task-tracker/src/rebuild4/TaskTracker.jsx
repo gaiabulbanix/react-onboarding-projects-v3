@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Panel from './Panel';
 import TaskForm from './TaskForm';
+import TaskList from './TaskList';
 
 export default function TaskTracker() {
     // color scheme
@@ -33,7 +34,7 @@ export default function TaskTracker() {
 
     const handleCompleteTask = (id) => (
         setTaskList(prev => prev.map((task) => {
-            if (id !== task.id) return task;
+            if (task.id !== id) return task;
             return {
                 ...task,
                 completed: !task.completed,
@@ -41,7 +42,7 @@ export default function TaskTracker() {
         })));
 
     const handleDeleteTask = (id) => (
-        setTaskList(prev => prev.filter(task => id !== task.id))
+        setTaskList(prev => prev.filter(task => task.id !== id))
     );
 
     const handleDeleteAllTasks = () => (
@@ -62,31 +63,18 @@ export default function TaskTracker() {
                 />
             </Panel>
             <Panel className="mt-6 w-2/3">
-                <ul>
-                    {taskList.map((task, index) => (
-                        <li key={task.id} className="flex gap-2 mt-2">
-                            {index + 1}. {task.name} - {task.date} - {task.completed ? 'Complete' : 'Pending'}
-                            <input
-                                type="checkbox"
-                                onChange={() => handleCompleteTask(task.id)}
-                                checked={task.completed}
-                            />
-                            <button
-                                className="px-2 py-1 rounded-md bg-slate-100 text-slate-900"
-                                onClick={() => handleDeleteTask(task.id)}
-                            >
-                                Delete Task
-                            </button>
-                        </li>
-                    ))}
-                </ul>
+                <TaskList
+                    handleDeleteTask={handleDeleteTask}
+                    taskList={taskList}
+                    handleCompleteTask={handleCompleteTask}
+                />
                 <button
                     className="px-2 py-1 rounded-md bg-slate-100 text-slate-900"
                     onClick={handleDeleteAllTasks}
                 >
                     Delete all Tasks
                 </button>
-            </Panel>
+            </Panel >
         </>
     );
 };
