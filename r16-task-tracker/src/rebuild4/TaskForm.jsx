@@ -1,4 +1,4 @@
-export default function TaskForm({ handleAddTask, taskItem, setTaskItem }) {
+export default function TaskForm({ handleAddTask, taskItem, setTaskItem, }) {
     return (
         <form
             className="flex items-center gap-2"
