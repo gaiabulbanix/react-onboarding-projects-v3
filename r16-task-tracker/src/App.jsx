@@ -1,4 +1,4 @@
-import TaskTracker from "./rebuild5/TaskTracker";
+import TaskTracker from "./components/TaskTracker";
 
 export default function App() {
   // color scheme
