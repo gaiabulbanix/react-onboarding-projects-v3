@@ -50,17 +50,14 @@ export default function TaskTracker() {
         setTaskList([]);
     }
 
-    // filter logic
-    // const filteredTasks = () => {
-    //     if (filter === 'all') {
-    //         // return tasklist here regardless of completion
-    //     } else if (filter === 'completed') {
-    //         // return tasklist but filtered only for completed === true, use taskList.filter probably
-    //     } else if (filter === 'pending') {
-    //         // return tasklist but filtered only for completed === false, use taskList.filter probably
-    //     } else return;
-    //     // return if there's an error
-    // };
+    // filter logic\
+    const filteredTasks =
+        filter === 'all'
+            ? taskList
+            : filter === 'completed'
+                ? taskList.filter(task => task.completed)
+                : taskList.filter(task => !task.completed);
+
 
     // jsx block
     return (
