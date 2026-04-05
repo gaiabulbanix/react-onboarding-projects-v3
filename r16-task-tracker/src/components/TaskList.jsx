@@ -1,6 +1,6 @@
 import TaskItem from "./TaskItem";
 
-export default function TaskList({ className = '', taskList, handleToggleTask, handleDeleteTask }) {
+export default function TaskList({ className = '', taskList, handleToggleTask, handleDeleteTask, children, }) {
     return (
         <ul className={`${className}`}>
             {taskList.map((task, index) => (

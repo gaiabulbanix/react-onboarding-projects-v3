@@ -73,6 +73,15 @@ export default function TaskTracker() {
                 />
             </Panel>
             {taskList.length > 0 && <Panel className="mt-6 w-fit">
+                <div className="flex gap-2 items-center">
+                    <h2>Task List</h2>
+                    <span>
+                        <Button>Show All</Button>
+                        <Button>Show Completed</Button>
+                        <Button>Show Pending</Button>
+                    </span>
+                </div>
+
                 <TaskList
                     taskList={taskList}
                     handleToggleTask={handleToggleTask}
