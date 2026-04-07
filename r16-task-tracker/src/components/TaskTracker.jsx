@@ -5,6 +5,11 @@ import TaskList from './TaskList';
 import Button from './Button';
 
 export default function TaskTracker() {
+    // color scheme
+    // -dark mode: bg-slate-900 text-slate-100
+    // -dark mode accent: border-teal-800
+    // -light mode: bg-slate-100 text-slate-900
+
     // **hooks**
     const [taskItem, setTaskItem] = useState('');
     const [taskList, setTaskList] = useState([]);
@@ -58,7 +63,6 @@ export default function TaskTracker() {
                 ? taskList.filter(task => task.completed)
                 : taskList.filter(task => !task.completed);
 
-
     // jsx block
     return (
         <>
@@ -87,7 +91,7 @@ export default function TaskTracker() {
                     handleToggleTask={handleToggleTask}
                     handleDeleteTask={handleDeleteTask}
                 />
-                <Button onClick={handleDeleteAllTasks}>Delete All Items</Button>
+                <Button onClick={handleDeleteAllTasks} buttonStyle='danger'>Delete All Items</Button>
             </Panel>}
 
         </>
