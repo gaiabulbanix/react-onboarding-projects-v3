@@ -7,7 +7,7 @@ export default function TaskInput({ className = '', taskItem, setTaskItem, handl
                 Task Input
             </label>
             <input
-                className="p-1 rounded-md border border-teal text-slate-900"
+                className="p-1 rounded-md border-2 border-teal-800 text-slate-900"
                 type="text"
                 value={taskItem}
                 onChange={(e) => setTaskItem(e.target.value)}
