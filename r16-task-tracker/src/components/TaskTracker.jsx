@@ -80,9 +80,9 @@ export default function TaskTracker() {
                 <div className="flex gap-2 items-center">
                     <h2>Task List</h2>
                     <span>
-                        <Button>Show All</Button>
-                        <Button>Show Completed</Button>
-                        <Button>Show Pending</Button>
+                        <Button buttonStyle=''>Show All</Button>
+                        <Button buttonStyle=''>Show Completed</Button>
+                        <Button buttonStyle=''>Show Pending</Button>
                     </span>
                 </div>
 
