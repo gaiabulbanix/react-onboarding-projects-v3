@@ -82,21 +82,21 @@ export default function TaskTracker() {
                     <span>
                         <Button
                             buttonStyle=''
-                            onClick={setFilter('all')}
+                            onClick={() => setFilter('all')}
                         >Show All</Button>
                         <Button
                             buttonStyle=''
-                            onClick={setFilter('completed')}
+                            onClick={() => setFilter('completed')}
                         >Show Completed</Button>
                         <Button
                             buttonStyle=''
-                            onClick={setFilter('pending')}
+                            onClick={() => setFilter('pending')}
                         >Show Pending</Button>
                     </span>
                 </div>
 
                 <TaskList
-                    taskList={taskList}
+                    taskList={filteredTasks}
                     handleToggleTask={handleToggleTask}
                     handleDeleteTask={handleDeleteTask}
                 />
