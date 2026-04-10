@@ -81,15 +81,15 @@ export default function TaskTracker() {
                     <h2>Task List</h2>
                     <span>
                         <Button
-                            buttonStyle=''
+                            buttonStyle={filter === 'all' ? 'secondary' : 'primary'}
                             onClick={() => setFilter('all')}
                         >Show All</Button>
                         <Button
-                            buttonStyle=''
+                            buttonStyle={filter === 'completed' ? 'secondary' : 'primary'}
                             onClick={() => setFilter('completed')}
                         >Show Completed</Button>
                         <Button
-                            buttonStyle=''
+                            buttonStyle={filter === 'pending' ? 'secondary' : 'primary'}
                             onClick={() => setFilter('pending')}
                         >Show Pending</Button>
                     </span>
