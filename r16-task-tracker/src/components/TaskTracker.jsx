@@ -76,7 +76,7 @@ export default function TaskTracker() {
                     handleAddTask={handleAddTask}
                 />
             </Panel>
-            {taskList.length > 0 && <Panel className="mt-6 w-fit">
+            <Panel className="mt-6 w-fit">
                 <div className="flex gap-2 items-center">
                     <h2>Task List</h2>
                     <span>
@@ -101,8 +101,7 @@ export default function TaskTracker() {
                     handleDeleteTask={handleDeleteTask}
                 />
                 <Button onClick={handleDeleteAllTasks} buttonStyle='danger'>Delete All Items</Button>
-            </Panel>}
-
+            </Panel>
         </>
     );
 };
