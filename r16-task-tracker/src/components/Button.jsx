@@ -1,4 +1,4 @@
-export default function Button({ className = '', children, buttonSize = 'sm', buttonStyle = 'primary', ...props }) {
+export default function Button({ className = '', children, buttonSize = 'sm', buttonStyle = 'primary', disabled ...props }) {
     const buttonStyles = {
         primary: 'bg-slate-100 text-slate-900',
         secondary: 'bg-slate-900 text-slate-100',
@@ -14,7 +14,9 @@ export default function Button({ className = '', children, buttonSize = 'sm', bu
 
     return (
         <>
-            <button className={`rounded-md border-2 border-teal-800 ${className} ${buttonStyles[buttonStyle]} ${buttonSizes[buttonSize]}`} {...props}>
+            <button className={`rounded-md border-2 border-teal-800 ${className} ${buttonStyles[buttonStyle]} ${buttonSizes[buttonSize]}`}
+                disabled={disabled}
+                {...props}>
                 {children}
             </button>
         </>
