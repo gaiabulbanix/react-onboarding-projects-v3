@@ -83,14 +83,17 @@ export default function TaskTracker() {
                         <Button
                             buttonStyle={filter === 'all' ? 'secondary' : 'primary'}
                             onClick={() => setFilter('all')}
+                            disabled={taskList.length === 0}
                         >Show All</Button>
                         <Button
                             buttonStyle={filter === 'completed' ? 'secondary' : 'primary'}
                             onClick={() => setFilter('completed')}
+                            disabled={taskList.length === 0}
                         >Show Completed</Button>
                         <Button
                             buttonStyle={filter === 'pending' ? 'secondary' : 'primary'}
                             onClick={() => setFilter('pending')}
+                            disabled={taskList.length === 0}
                         >Show Pending</Button>
                     </span>
                 </div>
@@ -100,7 +103,8 @@ export default function TaskTracker() {
                     handleToggleTask={handleToggleTask}
                     handleDeleteTask={handleDeleteTask}
                 />
-                <Button onClick={handleDeleteAllTasks} buttonStyle='danger'>Delete All Items</Button>
+                <Button onClick={handleDeleteAllTasks} buttonStyle='danger' disabled={taskList.length === 0}
+                >Delete All Items</Button>
             </Panel>
         </>
     );

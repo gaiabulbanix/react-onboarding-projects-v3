@@ -5,7 +5,7 @@ export default function TaskList({ className = '', taskList, handleToggleTask, h
         return <p className="mt-2 mb-2">No tasks yet - add one above!</p>;
     }
     return (
-        <ul className={`${className}`}>
+        <ul className={`${className} mt-2 mb-2`}>
             {taskList.map((task, index) => (
                 <TaskItem key={task.id} handleToggleTask={handleToggleTask} handleDeleteTask={handleDeleteTask} task={task} index={index} />
             ))}
