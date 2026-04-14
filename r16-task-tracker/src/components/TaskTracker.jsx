@@ -99,9 +99,14 @@ export default function TaskTracker() {
                 </div>
 
                 <TaskList
-                    taskList={filteredTasks}
+                    tasks={filteredTasks}
                     handleToggleTask={handleToggleTask}
                     handleDeleteTask={handleDeleteTask}
+                    emptyMessage={
+                        filter === 'all'
+                            ? "No tasks yet - add one above!"
+                            : "No tasks match this filter."
+                    }
                 />
                 <Button onClick={handleDeleteAllTasks} buttonStyle='danger' disabled={taskList.length === 0}
                 >Delete All Items</Button>
