@@ -66,17 +66,19 @@ export default function TaskTracker() {
     // jsx block
     return (
         <>
-            <Panel className="w-fit">
+            <Panel className="w-full max-w-3xl">
                 <h1>Task Tracker</h1>
             </Panel>
-            <Panel className="mt-6 w-fit">
+
+            <Panel className="mt-6 w-full max-w-3xl">
                 <TaskInput
                     taskItem={taskItem}
                     setTaskItem={setTaskItem}
                     handleAddTask={handleAddTask}
                 />
             </Panel>
-            <Panel className="mt-6 w-fit">
+
+            <Panel className="mt-6 w-full max-w-3xl">
                 <div className="flex gap-2 items-center">
                     <h2>Task List</h2>
                     <span>
