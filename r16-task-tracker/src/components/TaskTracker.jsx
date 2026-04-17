@@ -9,6 +9,10 @@ export default function TaskTracker() {
     // -dark mode: bg-slate-900 text-slate-100
     // -dark mode accent: border-teal-800
     // -light mode: bg-slate-100 text-slate-900
+    // - primary: 'bg-slate-100 text-slate-900',
+    // - secondary: 'bg-slate-900 text-slate-100',
+    // - danger: 'bg-red-500 text-slate-900 font-bold',
+    // *use slightly lower/higher values where needed for contrast (200)
 
     // **hooks**
     const [taskItem, setTaskItem] = useState('');
@@ -38,9 +42,9 @@ export default function TaskTracker() {
 
     // toggle task
     const handleToggleTask = (id) => {
-        setTaskList(prev => (
+        setTaskList(prev =>
             prev.map(task => (task.id === id ? { ...task, completed: !task.completed } : task)
-            )));
+            ));
     };
 
     // delete task
@@ -54,6 +58,18 @@ export default function TaskTracker() {
     const handleDeleteAllTasks = () => {
         setTaskList([]);
     }
+
+    // edit single task
+    const handleEditTask = ({ taskId, editInput, }) => {
+        const editInputTrimmed = editInput.trim();
+        if (!editInputTrimmed) return;
+        setTaskList(prev =>
+            prev.map((task) => (
+                taskId === task.id
+                    ? { ...task, name: editInputTrimmed, }
+                    : task
+            )));
+    };
 
     // filter logic
     const filteredTasks =
@@ -104,6 +120,7 @@ export default function TaskTracker() {
                     tasks={filteredTasks}
                     handleToggleTask={handleToggleTask}
                     handleDeleteTask={handleDeleteTask}
+                    handleEditTask={handleEditTask}
                     emptyMessage={
                         filter === 'all'
                             ? "No tasks yet - add one above!"
