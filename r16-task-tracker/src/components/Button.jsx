@@ -23,9 +23,9 @@ export default function Button({ className = '', children, buttonSize = 'sm', bu
                     : buttonStyle === "primary"
                         ? "hover:bg-slate-300"
                         : buttonStyle === "secondary"
-                            ? "hover:bg-slate-800"
+                            ? "hover:bg-slate-700"
                             : buttonStyle === "danger"
-                                ? "hover:bg-red-600" : ""}
+                                ? "hover:bg-red-700" : ""}
             `}
                 disabled={disabled}
                 {...props}>
