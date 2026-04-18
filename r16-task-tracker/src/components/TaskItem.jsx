@@ -18,10 +18,14 @@ export default function TaskItem({ className = '', task, index, handleToggleTask
 
                 </div>
                 <div className="flex gap-0.5">
-                    <Button type="button" buttonSize="xs" buttonStyle="primary" onClick={() => {
-                        handleEditTask({ taskId: task.id, editInput: editInput, });
-                        setEditState(false);
-                    }}>
+                    <Button
+                        type="button" buttonSize="xs" buttonStyle="primary"
+                        onClick={() => {
+                            handleEditTask({ taskId: task.id, editInput: editInput, });
+                            setEditState(false);
+                        }}
+                        disabled={!editInput.trim() || editInput.trim() === task.name}
+                    >
                         Save
                     </Button>
                     <Button type="button" buttonSize="xs" buttonStyle="primary" onClick={() => {
