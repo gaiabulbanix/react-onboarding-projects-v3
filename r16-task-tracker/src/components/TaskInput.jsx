@@ -12,6 +12,11 @@ export default function TaskInput({ className = '', taskItem, setTaskItem, handl
                 value={taskItem}
                 onChange={(e) => setTaskItem(e.target.value)}
                 placeholder="Please add an item..."
+                onKeyDown={(e) => {
+                    if (e.key === 'Escape') {
+                        setTaskItem('');
+                    }
+                }}
             />
             <Button type="submit">
                 Add Task
