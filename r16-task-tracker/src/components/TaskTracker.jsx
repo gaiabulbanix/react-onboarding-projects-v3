@@ -24,6 +24,17 @@ export default function TaskTracker() {
         console.log(taskList);
     }, [taskList]);
 
+    // load from local storage
+    useEffect(() => {
+        const savedTasks = JSON.parse(localStorage.getItem("savedTasks")) || [];
+        setTaskList(savedTasks);
+    }, []);
+
+    // save to local storge
+    useEffect(() => {
+        localStorage.setItem("savedTasks", JSON.stringify(taskList));
+    }, [taskList])
+
     // add task
     const handleAddTask = (e) => {
         e.preventDefault();
