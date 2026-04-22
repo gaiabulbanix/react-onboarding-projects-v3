@@ -19,15 +19,18 @@ export default function TaskTracker() {
     const [taskList, setTaskList] = useState([]);
     const [filter, setFilter] = useState('all');
 
-    // log array
-    useEffect(() => {
-        console.log(taskList);
-    }, [taskList]);
-
     // load from local storage
     useEffect(() => {
-        const savedTasks = JSON.parse(localStorage.getItem("savedTasks")) || [];
-        setTaskList(savedTasks);
+        const raw = localStorage.getItem("savedTasks");
+        if (!raw) return;
+        try {
+            const parsed = JSON.parse(raw);
+            if (Array.isArray(parsed)) {
+                setTaskList(parsed);
+            }
+        } catch {
+            console.warn("Failed to parse saved tasks");
+        };
     }, []);
 
     // save to local storge
