@@ -57,7 +57,11 @@ export default function TaskItem({ className = '', task, index, handleToggleTask
                     </span>
                 </div>
                 <div className="flex items-center gap-0.5 shrink-0">
-                    <input type="checkbox" checked={task.completed} onChange={() => handleToggleTask(task.id)} />
+                    <input
+                        type="checkbox"
+                        checked={task.completed}
+                        onChange={() => handleToggleTask(task.id)}
+                    />
                     <Button type="button" onClick={() => handleDeleteTask(task.id)} buttonSize="xs" buttonStyle="primary">Delete</Button>
                     <Button type="button" buttonSize="xs" buttonStyle="primary"
                         onClick={() => {

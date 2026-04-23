@@ -29,7 +29,7 @@ export default function TaskTracker() {
                 setTaskList(parsed);
             }
         } catch {
-            console.warn("Failed to parse saved tasks");
+            console.warn("Invalid JSON in localStorage (savedTasks)");
         };
     }, []);
 
@@ -141,8 +141,12 @@ export default function TaskTracker() {
                             : "No tasks match this filter."
                     }
                 />
-                <Button onClick={handleDeleteAllTasks} buttonStyle='danger' disabled={taskList.length === 0}
-                >Delete All Items</Button>
+                <Button onClick={handleDeleteAllTasks} buttonStyle='danger' disabled={taskList.length === 0}>
+                    Delete All Items
+                </Button>
+                <Button>
+                    Clear All Completed
+                </Button>
             </Panel>
         </>
     );
