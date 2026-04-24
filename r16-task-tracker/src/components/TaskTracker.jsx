@@ -16,22 +16,18 @@ export default function TaskTracker() {
 
     // **hooks**
     const [taskItem, setTaskItem] = useState('');
-    const [taskList, setTaskList] = useState([]);
-    const [filter, setFilter] = useState('all');
-
-    // load from local storage
-    useEffect(() => {
+    const [taskList, setTaskList] = useState(() => {
         const raw = localStorage.getItem("savedTasks");
-        if (!raw) return;
+        if (!raw) return [];
         try {
             const parsed = JSON.parse(raw);
-            if (Array.isArray(parsed)) {
-                setTaskList(parsed);
-            }
+            return Array.isArray(parsed) ? parsed : [];
         } catch {
             console.warn("Invalid JSON in localStorage (savedTasks)");
+            return [];
         };
-    }, []);
+    });
+    const [filter, setFilter] = useState('all');
 
     // save to local storge
     useEffect(() => {
@@ -84,6 +80,11 @@ export default function TaskTracker() {
                     : task
             )));
     };
+
+    // clear completed tasks
+    const handleClearCompleted = () => {
+
+    }
 
     // filter logic
     const filteredTasks =
@@ -141,10 +142,10 @@ export default function TaskTracker() {
                             : "No tasks match this filter."
                     }
                 />
-                <Button onClick={handleDeleteAllTasks} buttonStyle='danger' disabled={taskList.length === 0}>
+                <Button onClick={handleDeleteAllTasks} buttonStyle="danger" disabled={taskList.length === 0}>
                     Delete All Items
                 </Button>
-                <Button>
+                <Button onClick={''} buttonStyle="secondary" disabled={''}>
                     Clear All Completed
                 </Button>
             </Panel>
