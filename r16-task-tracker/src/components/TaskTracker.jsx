@@ -83,8 +83,10 @@ export default function TaskTracker() {
 
     // clear completed tasks
     const handleClearCompleted = () => {
-
-    }
+        setTaskList(prev =>
+            prev.filter(task => !task.completed)
+        );
+    };
 
     // filter logic
     const filteredTasks =
@@ -145,7 +147,7 @@ export default function TaskTracker() {
                 <Button onClick={handleDeleteAllTasks} buttonStyle="danger" disabled={taskList.length === 0}>
                     Delete All Items
                 </Button>
-                <Button onClick={''} buttonStyle="secondary" disabled={''}>
+                <Button onClick={handleClearCompleted} buttonStyle="secondary" disabled={!taskList.some(task => task.completed)}>
                     Clear All Completed
                 </Button>
             </Panel>
