@@ -148,7 +148,9 @@ export default function TaskTracker() {
                     Delete All Items
                 </Button>
                 <Button onClick={handleClearCompleted} buttonStyle="secondary" disabled={!taskList.some(task => task.completed)}>
-                    Clear All Completed
+                    {taskList.some(task => task.completed)
+                        ? "Clear All Completed"
+                        : "No Completed Tasks"}
                 </Button>
             </Panel>
         </>
