@@ -49,7 +49,7 @@ export default function TaskItem({ className = '', task, index, handleToggleTask
             :
             <li className="flex gap-2 items-center">
                 <div className="flex flex-1 min-w-0 items-center overflow-hidden gap-4">
-                    <span className="truncate min-w-0">
+                    <span className={`truncate min-w-0 ${task.completed && "opacity-50 line-through"}`}>
                         {index + 1}. {task.name}
                     </span>
                     <span className="shrink-0 text-sm ml-auto text-slate-400">
@@ -74,3 +74,5 @@ export default function TaskItem({ className = '', task, index, handleToggleTask
             </li>
     );
 };
+
+// opacity-50 bg-slate-900 text-slate-100 line-through
