@@ -9,20 +9,28 @@ export default function CalisthenicsTracker() {
     // -dark mode: bg-slate-900 text-slate-100
     // -dark mode accent: border-teal-800
     // -light mode: bg-slate-100 text-slate-900
+    // - primary: 'bg-slate-100 text-slate-900',
+    // - secondary: 'bg-slate-900 text-slate-100',
+    // - danger: 'bg-red-500 text-slate-900 font-bold',
+    // *use slightly lower/higher values where needed for contrast (200)
 
-    // state and validation
+    // **hooks**
     const [workout, setWorkout] = useState('');
+    const [workoutReps, setWorkoutReps] = useState('');
     const [workoutList, setWorkoutList] = useState(() => {
+        const raw = localStorage.getItem('savedWorkouts')
+        if (!raw) return [];
         try {
-            const loadedWorkoutList = localStorage.getItem('storedWorkoutList');
-            return loadedWorkoutList ? JSON.parse(loadedWorkoutList) : [];
+            const parsed = JSON.parse(raw);
+            return Array.isArray(parsed) ? parsed : [];
         } catch {
+            console.warn("Invalid JSON in localStorage (savedWorkouts)");
             return [];
         }
     });
-    const [workoutReps, setWorkoutReps] = useState('');
+
     useEffect(() => {
-        localStorage.setItem('storedWorkoutList', JSON.stringify(workoutList));
+        localStorage.setItem('savedWorkouts', JSON.stringify(workoutList));
     }, [workoutList]);
 
     const workoutRepsNumber = Number(workoutReps);
