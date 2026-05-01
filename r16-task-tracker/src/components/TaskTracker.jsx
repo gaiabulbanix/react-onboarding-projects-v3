@@ -16,8 +16,9 @@ export default function TaskTracker() {
 
     // **hooks**
     const [taskItem, setTaskItem] = useState('');
+    const [filter, setFilter] = useState('all');
     const [taskList, setTaskList] = useState(() => {
-        const raw = localStorage.getItem("savedTasks");
+        const raw = localStorage.getItem('savedTasks');
         if (!raw) return [];
         try {
             const parsed = JSON.parse(raw);
@@ -27,9 +28,7 @@ export default function TaskTracker() {
             return [];
         };
     });
-    const [filter, setFilter] = useState('all');
 
-    // save to local storge
     useEffect(() => {
         localStorage.setItem("savedTasks", JSON.stringify(taskList));
     }, [taskList])
