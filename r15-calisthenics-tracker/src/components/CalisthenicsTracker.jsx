@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import Panel from "./components/Panel";
-import ActionRow from './components/ActionRow';
-import Button from './components/Button';
-import FormInput from './components/FormInput';
+import Panel from './Panel';
+import ActionRow from './ActionRow';
+import Button from './Button';
+import FormInput from './FormInput';
 
 export default function CalisthenicsTracker() {
     // color scheme
