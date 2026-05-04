@@ -3,6 +3,7 @@ import Panel from './Panel';
 import ActionRow from './ActionRow';
 import Button from './Button';
 import FormInput from './FormInput';
+import WorkoutInput from './WorkoutInput';
 
 export default function CalisthenicsTracker() {
     // color scheme
@@ -32,6 +33,19 @@ export default function CalisthenicsTracker() {
     useEffect(() => {
         localStorage.setItem('savedWorkouts', JSON.stringify(workoutList));
     }, [workoutList]);
+
+    // **handlers**
+    const handleAddWorkout = () => {
+        if (!isValidEntry) return;
+        setWorkoutList(prev => [...prev,
+        {
+            id: crypto.randomUUID(),
+            workout,
+            reps: workoutRepsNumber,
+        }]);
+        setWorkout('');
+        setWorkoutReps('');
+    }
 
     const workoutRepsNumber = Number(workoutReps);
     const isValidWorkout = workout.trim();
@@ -124,17 +138,7 @@ export default function CalisthenicsTracker() {
                                 <Button
                                     buttonStyle={!isValidEntry ? 'disabled' : 'primary'}
                                     buttonSize="md"
-                                    onClick={() => {
-                                        if (!isValidEntry) return;
-                                        setWorkoutList(prev => [...prev,
-                                        {
-                                            id: crypto.randomUUID(),
-                                            workout,
-                                            reps: workoutRepsNumber,
-                                        }]);
-                                        setWorkout('');
-                                        setWorkoutReps('');
-                                    }}
+                                    onClick={handleAddWorkout}
                                     disabled={!isValidEntry}
                                 >
                                     Add Workout
