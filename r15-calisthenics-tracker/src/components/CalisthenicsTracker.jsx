@@ -35,7 +35,8 @@ export default function CalisthenicsTracker() {
     }, [workoutList]);
 
     // **handlers**
-    const handleAddWorkout = () => {
+    const handleAddWorkout = (e) => {
+        e.preventDefault();
         if (!isValidEntry) return;
         setWorkoutList(prev => [...prev,
         {
@@ -59,110 +60,114 @@ export default function CalisthenicsTracker() {
                 <h1>Calisthenics Tracker</h1>
             </Panel>
             <Panel className="mt-6">
-                <FormInput
-                    inputClassName="px-3 py-1.5 rounded-md border-teal-800 border-2 text-slate-900"
-                    label="Input Workout:"
-                    htmlFor="workoutInput"
-                    id="workoutInput"
-                    type="text"
-                    value={workout}
-                    onChange={(e) => setWorkout(e.target.value)}
-                    placeholder="Enter your workout name/type here."
+                <form
+                    onSubmit={handleAddWorkout}
                 >
-                </FormInput>
-                <FormInput
-                    wrapperClassName="mt-4"
-                    inputClassName="px-3 py-1.5 rounded-md border-teal-800 border-2 text-slate-900"
-                    label="Input Reps:"
-                    htmlFor="workoutRepsInput"
-                    id="workoutRepsInput"
-                    type="number"
-                    min={1}
-                    step={1}
-                    value={workoutReps}
-                    onChange={(e) => setWorkoutReps(e.target.value)}
-                    placeholder="Enter your number of reps here."
-                >
-                </FormInput>
-                <ActionRow className="mt-4"
-                    left={<ul className="flex flex-col gap-2 min-h-[3rem]">
-                        {workoutList.length === 0 && (
-                            <li className="italic text-slate-400">
-                                No workouts yet - add one to get Started!
-                            </li>
-                        )}
-                        {workoutList.map((workout, index) => (
-                            <li
-                                key={workout.id}
-                                className="flex gap-4 items-center justify-between">
-                                <span>
-                                    {index + 1} - {workout.workout} - {workout.reps} rep(s)
-                                </span>
+                    <FormInput
+                        inputClassName="px-3 py-1.5 rounded-md border-teal-800 border-2 text-slate-900"
+                        label="Input Workout:"
+                        htmlFor="workoutInput"
+                        id="workoutInput"
+                        type="text"
+                        value={workout}
+                        onChange={(e) => setWorkout(e.target.value)}
+                        placeholder="Enter your workout name/type here."
+                    >
+                    </FormInput>
+                    <FormInput
+                        wrapperClassName="mt-4"
+                        inputClassName="px-3 py-1.5 rounded-md border-teal-800 border-2 text-slate-900"
+                        label="Input Reps:"
+                        htmlFor="workoutRepsInput"
+                        id="workoutRepsInput"
+                        type="number"
+                        min={1}
+                        step={1}
+                        value={workoutReps}
+                        onChange={(e) => setWorkoutReps(e.target.value)}
+                        placeholder="Enter your number of reps here."
+                    >
+                    </FormInput>
+                    <ActionRow className="mt-4"
+                        left={<ul className="flex flex-col gap-2 min-h-[3rem]">
+                            {workoutList.length === 0 && (
+                                <li className="italic text-slate-400">
+                                    No workouts yet - add one to get Started!
+                                </li>
+                            )}
+                            {workoutList.map((workout, index) => (
+                                <li
+                                    key={workout.id}
+                                    className="flex gap-4 items-center justify-between">
+                                    <span>
+                                        {index + 1} - {workout.workout} - {workout.reps} rep(s)
+                                    </span>
+                                    <div className="flex gap-2">
+                                        <Button
+                                            buttonStyle="danger"
+                                            buttonSize="sm"
+                                            onClick={() => {
+                                                setWorkoutList(prev => prev.filter(w => w.id !== workout.id));
+                                            }}>
+                                            Remove
+                                        </Button>
+                                        <Button
+                                            buttonStyle="primary"
+                                            buttonSize="sm"
+                                            onClick={() => {
+                                                const newWorkout = prompt('Edit workout:', workout.workout);
+                                                const newWorkoutReps = prompt('Edit reps:', workout.reps);
+                                                const newWorkoutRepsNumber = Number(newWorkoutReps);
+                                                if (!newWorkout || newWorkout.trim() === '') return;
+                                                if (!Number.isInteger(newWorkoutRepsNumber) || newWorkoutRepsNumber < 1) return;
+                                                setWorkoutList(prev => prev.map(w =>
+                                                    w.id === workout.id
+                                                        ? {
+                                                            ...w,
+                                                            workout: newWorkout,
+                                                            reps: newWorkoutRepsNumber,
+                                                        }
+                                                        : w
+                                                ));
+                                            }}>
+                                            Edit
+                                        </Button>
+                                    </div>
+                                </li>
+                            ))}
+                        </ul>}
+                        right={
+                            <div className="flex flex-col gap-2 items-end">
                                 <div className="flex gap-2">
                                     <Button
-                                        buttonStyle="danger"
-                                        buttonSize="sm"
-                                        onClick={() => {
-                                            setWorkoutList(prev => prev.filter(w => w.id !== workout.id));
-                                        }}>
-                                        Remove
+                                        type="submit"
+                                        buttonStyle={!isValidEntry ? 'disabled' : 'primary'}
+                                        buttonSize="md"
+                                        disabled={!isValidEntry}
+                                    >
+                                        Add Workout
                                     </Button>
                                     <Button
-                                        buttonStyle="primary"
-                                        buttonSize="sm"
+                                        buttonStyle={isEmptyList ? 'disabled' : 'danger'}
+                                        buttonSize="md"
                                         onClick={() => {
-                                            const newWorkout = prompt('Edit workout:', workout.workout);
-                                            const newWorkoutReps = prompt('Edit reps:', workout.reps);
-                                            const newWorkoutRepsNumber = Number(newWorkoutReps);
-                                            if (!newWorkout || newWorkout.trim() === '') return;
-                                            if (!Number.isInteger(newWorkoutRepsNumber) || newWorkoutRepsNumber < 1) return;
-                                            setWorkoutList(prev => prev.map(w =>
-                                                w.id === workout.id
-                                                    ? {
-                                                        ...w,
-                                                        workout: newWorkout,
-                                                        reps: newWorkoutRepsNumber,
-                                                    }
-                                                    : w
-                                            ));
-                                        }}>
-                                        Edit
+                                            if (!confirm('Are you sure you want to delete all workouts?')) return;
+                                            setWorkoutList([]);
+                                        }}
+                                        disabled={isEmptyList}
+                                    >
+                                        Remove All Workouts
                                     </Button>
+                                    {!isValidEntry && (workout || workoutReps) && (
+                                        <p className="mt-2 italic text-slate-400">
+                                            Enter a workout name and at least 1 rep.
+                                        </p>
+                                    )}
                                 </div>
-                            </li>
-                        ))}
-                    </ul>}
-                    right={
-                        <div className="flex flex-col gap-2 items-end">
-                            <div className="flex gap-2">
-                                <Button
-                                    buttonStyle={!isValidEntry ? 'disabled' : 'primary'}
-                                    buttonSize="md"
-                                    onClick={handleAddWorkout}
-                                    disabled={!isValidEntry}
-                                >
-                                    Add Workout
-                                </Button>
-                                <Button
-                                    buttonStyle={isEmptyList ? 'disabled' : 'danger'}
-                                    buttonSize="md"
-                                    onClick={() => {
-                                        if (!confirm('Are you sure you want to delete all workouts?')) return;
-                                        setWorkoutList([]);
-                                    }}
-                                    disabled={isEmptyList}
-                                >
-                                    Remove All Workouts
-                                </Button>
-                                {!isValidEntry && (workout || workoutReps) && (
-                                    <p className="mt-2 italic text-slate-400">
-                                        Enter a workout name and at least 1 rep.
-                                    </p>
-                                )}
                             </div>
-                        </div>
-                    }
-                />
+                        }
+                    />
+                </form>
             </Panel >
         </>
     );
