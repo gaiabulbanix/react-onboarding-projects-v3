@@ -35,6 +35,7 @@ export default function CalisthenicsTracker() {
     }, [workoutList]);
 
     // **handlers**
+    // add task
     const handleAddWorkout = (e) => {
         e.preventDefault();
         if (!isValidEntry) return;
@@ -47,6 +48,13 @@ export default function CalisthenicsTracker() {
         setWorkout('');
         setWorkoutReps('');
     }
+
+    // remove all tasks
+    const handleRemoveAllWorkouts = () => {
+        if (!confirm('Are you sure you want to delete all workouts?')) return;
+        setWorkoutList([]);
+    }
+
 
     const workoutRepsNumber = Number(workoutReps);
     const isValidWorkout = workout.trim();
@@ -150,10 +158,7 @@ export default function CalisthenicsTracker() {
                                     <Button
                                         buttonStyle={isEmptyList ? 'disabled' : 'danger'}
                                         buttonSize="md"
-                                        onClick={() => {
-                                            if (!confirm('Are you sure you want to delete all workouts?')) return;
-                                            setWorkoutList([]);
-                                        }}
+                                        onClick={handleRemoveAllWorkouts}
                                         disabled={isEmptyList}
                                     >
                                         Remove All Workouts
