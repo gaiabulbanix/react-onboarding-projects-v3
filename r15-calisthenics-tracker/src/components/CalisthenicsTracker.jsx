@@ -35,7 +35,7 @@ export default function CalisthenicsTracker() {
     }, [workoutList]);
 
     // **handlers**
-    // add task
+    // add workout
     const handleAddWorkout = (e) => {
         e.preventDefault();
         if (!isValidEntry) return;
@@ -49,13 +49,22 @@ export default function CalisthenicsTracker() {
         setWorkoutReps('');
     }
 
-    // remove all tasks
+    // remove single workout
+    const handleRemoveWorkout = () => {
+        return ('');
+    }
+
+
+    // edit single workout
+
+
+    // remove all workouts
     const handleRemoveAllWorkouts = () => {
         if (!confirm('Are you sure you want to delete all workouts?')) return;
         setWorkoutList([]);
     }
 
-
+    // **derived states**
     const workoutRepsNumber = Number(workoutReps);
     const isValidWorkout = workout.trim();
     const isValidWorkoutReps = Number.isInteger(workoutRepsNumber) && workoutRepsNumber >= 1;
