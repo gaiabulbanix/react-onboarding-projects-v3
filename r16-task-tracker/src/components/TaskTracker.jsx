@@ -65,6 +65,7 @@ export default function TaskTracker() {
 
     // delete all tasks
     const handleDeleteAllTasks = () => {
+        if (!confirm('Are you sure you want to delete all tasks?')) return;
         setTaskList([]);
     }
 
