@@ -49,9 +49,9 @@ export default function CalisthenicsTracker() {
         setWorkoutReps('');
     }
 
-    // remove single workout
-    const handleRemoveWorkout = () => {
-        return ('');
+    // remove workout
+    const handleRemoveWorkout = (id) => {
+        setWorkoutList(prev => prev.filter(w => w.id !== id));
     }
 
 
@@ -123,9 +123,7 @@ export default function CalisthenicsTracker() {
                                         <Button
                                             buttonStyle="danger"
                                             buttonSize="sm"
-                                            onClick={() => {
-                                                setWorkoutList(prev => prev.filter(w => w.id !== workout.id));
-                                            }}>
+                                            onClick={() => handleRemoveWorkout(workout.id)}>
                                             Remove
                                         </Button>
                                         <Button
