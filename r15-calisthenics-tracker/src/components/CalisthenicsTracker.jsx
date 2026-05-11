@@ -56,7 +56,22 @@ export default function CalisthenicsTracker() {
 
 
     // edit single workout
-
+    const handleEditWorkout = (id) => {
+        const newWorkout = prompt('Edit workout:', workout.workout);
+        const newWorkoutReps = prompt('Edit reps:', workout.reps);
+        const newWorkoutRepsNumber = Number(newWorkoutReps);
+        if (!newWorkout || newWorkout.trim() === '') return;
+        if (!Number.isInteger(newWorkoutRepsNumber) || newWorkoutRepsNumber < 1) return;
+        setWorkoutList(prev => prev.map(w =>
+            w.id === workout.id
+                ? {
+                    ...w,
+                    workout: newWorkout,
+                    reps: newWorkoutRepsNumber,
+                }
+                : w
+        ));
+    }
 
     // remove all workouts
     const handleRemoveAllWorkouts = () => {
@@ -129,22 +144,7 @@ export default function CalisthenicsTracker() {
                                         <Button
                                             buttonStyle="primary"
                                             buttonSize="sm"
-                                            onClick={() => {
-                                                const newWorkout = prompt('Edit workout:', workout.workout);
-                                                const newWorkoutReps = prompt('Edit reps:', workout.reps);
-                                                const newWorkoutRepsNumber = Number(newWorkoutReps);
-                                                if (!newWorkout || newWorkout.trim() === '') return;
-                                                if (!Number.isInteger(newWorkoutRepsNumber) || newWorkoutRepsNumber < 1) return;
-                                                setWorkoutList(prev => prev.map(w =>
-                                                    w.id === workout.id
-                                                        ? {
-                                                            ...w,
-                                                            workout: newWorkout,
-                                                            reps: newWorkoutRepsNumber,
-                                                        }
-                                                        : w
-                                                ));
-                                            }}>
+                                            onClick={() => handleEditWorkout(workout.id)}>
                                             Edit
                                         </Button>
                                     </div>
