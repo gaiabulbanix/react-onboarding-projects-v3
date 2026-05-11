@@ -33,6 +33,7 @@ export default function TaskTracker() {
         localStorage.setItem("savedTasks", JSON.stringify(taskList));
     }, [taskList])
 
+    // **handlers**
     // add task
     const handleAddTask = (e) => {
         e.preventDefault();
