@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import Panel from './Panel';
 import ActionRow from './ActionRow';
 import Button from './Button';
-import FormInput from './FormInput';
 import WorkoutInput from './WorkoutInput';
 
 export default function CalisthenicsTracker() {
@@ -91,9 +90,17 @@ export default function CalisthenicsTracker() {
                 <h1>Calisthenics Tracker</h1>
             </Panel>
 
-            <Panel>
-                <WorkoutInput />
+            <Panel className="mt-6">
+                <WorkoutInput
+                    workout={workout}
+                    setWorkout={setWorkout}
+                    workoutReps={workoutReps}
+                    setWorkoutReps={setWorkoutReps}
+                    handleAddWorkout={handleAddWorkout}
+                    isValidEntry={isValidEntry}
+                />
             </Panel>
+
             <Panel className="mt-6">
                 <ActionRow className="mt-4"
                     left={<ul className="flex flex-col gap-2 min-h-[3rem]">
@@ -145,7 +152,8 @@ export default function CalisthenicsTracker() {
                             </div>
                         </div>
                     }
-            </Panel >
+                />
+            </Panel>
         </>
     );
 }

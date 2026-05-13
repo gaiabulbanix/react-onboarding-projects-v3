@@ -1,6 +1,7 @@
 import FormInput from "./FormInput";
+import Button from "./Button";
 
-export default function WorkoutInput() {
+export default function WorkoutInput({ className = '', workout, setWorkout, workoutReps, setWorkoutReps, handleAddWorkout, isValidEntry }) {
     return (
         <form
             onSubmit={handleAddWorkout}
@@ -31,6 +32,7 @@ export default function WorkoutInput() {
             >
             </FormInput>
             <Button
+                className="mt-4"
                 type="submit"
                 buttonStyle={!isValidEntry ? 'disabled' : 'primary'}
                 buttonSize="md"
