@@ -50,19 +50,19 @@ export default function CalisthenicsTracker() {
     }
 
     // remove workout
-    const handleRemoveWorkout = (id) => {
-        setWorkoutList(prev => prev.filter(w => w.id !== id));
+    const handleRemoveWorkout = (workoutItem) => {
+        setWorkoutList(prev => prev.filter(w => w.id !== workoutItem.id));
     }
 
     // edit single workout
-    const handleEditWorkout = (workout) => {
-        const newWorkout = prompt('Edit workout:', workout.workout);
-        const newWorkoutReps = prompt('Edit reps:', workout.reps);
+    const handleEditWorkout = (workoutItem) => {
+        const newWorkout = prompt('Edit workout:', workoutItem.workout);
+        const newWorkoutReps = prompt('Edit reps:', workoutItem.reps);
         const newWorkoutRepsNumber = Number(newWorkoutReps);
         if (!newWorkout || newWorkout.trim() === '') return;
         if (!Number.isInteger(newWorkoutRepsNumber) || newWorkoutRepsNumber < 1) return;
         setWorkoutList(prev => prev.map(w =>
-            w.id === workout.id
+            w.id === workoutItem.id
                 ? {
                     ...w,
                     workout: newWorkout,

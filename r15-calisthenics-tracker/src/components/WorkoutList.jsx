@@ -1,7 +1,7 @@
 import Panel from "./Panel";
 import Button from "./Button";
 
-export default function WorkoutList({ className = '', workoutList, handleRemoveWorkout, handleRemoveAllWorkouts, handleEditWorkout, isEmptyList, isValidEntry, workout, workoutReps }) {
+export default function WorkoutList({ className = '', workoutList, handleRemoveWorkout, handleRemoveAllWorkouts, handleEditWorkout, isEmptyList, isValidEntry, workoutItem, workoutReps }) {
     return (
         <>
             <ul className="flex flex-col gap-2 min-h-[3rem]">
@@ -10,24 +10,24 @@ export default function WorkoutList({ className = '', workoutList, handleRemoveW
                         No workouts yet - add one to get Started!
                     </li>
                 )}
-                {workoutList.map((workout, index) => (
+                {workoutList.map((workoutItem, index) => (
                     <li
-                        key={workout.id}
+                        key={workoutItem.id}
                         className="flex gap-4 items-center justify-between">
                         <span>
-                            {index + 1} - {workout.workout} - {workout.reps} rep(s)
+                            {index + 1} - {workoutItem.workout} - {workoutItem.reps} rep(s)
                         </span>
                         <div className="flex gap-2">
                             <Button
                                 buttonStyle="danger"
                                 buttonSize="sm"
-                                onClick={() => handleRemoveWorkout(workout)}>
+                                onClick={() => handleRemoveWorkout(workoutItem)}>
                                 Remove
                             </Button>
                             <Button
                                 buttonStyle="primary"
                                 buttonSize="sm"
-                                onClick={() => handleEditWorkout(workout)}>
+                                onClick={() => handleEditWorkout(workoutItem)}>
                                 Edit
                             </Button>
                         </div>
@@ -45,7 +45,7 @@ export default function WorkoutList({ className = '', workoutList, handleRemoveW
                     >
                         Remove All Workouts
                     </Button>
-                    {!isValidEntry && (workout || workoutReps) && (
+                    {!isValidEntry && (workoutItem || workoutReps) && (
                         <p className="mt-2 italic text-slate-400">
                             Enter a workout name and at least 1 rep.
                         </p>
