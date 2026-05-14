@@ -3,6 +3,7 @@ import Panel from './Panel';
 import ActionRow from './ActionRow';
 import Button from './Button';
 import WorkoutInput from './WorkoutInput';
+import WorkoutList from './WorkoutList';
 
 export default function CalisthenicsTracker() {
     // color scheme
@@ -102,57 +103,54 @@ export default function CalisthenicsTracker() {
             </Panel>
 
             <Panel className="mt-6">
-                <ActionRow className="mt-4"
-                    left={<ul className="flex flex-col gap-2 min-h-[3rem]">
-                        {workoutList.length === 0 && (
-                            <li className="italic text-slate-400">
-                                No workouts yet - add one to get Started!
-                            </li>
-                        )}
-                        {workoutList.map((workout, index) => (
-                            <li
-                                key={workout.id}
-                                className="flex gap-4 items-center justify-between">
-                                <span>
-                                    {index + 1} - {workout.workout} - {workout.reps} rep(s)
-                                </span>
-                                <div className="flex gap-2">
-                                    <Button
-                                        buttonStyle="danger"
-                                        buttonSize="sm"
-                                        onClick={() => handleRemoveWorkout(workout.id)}>
-                                        Remove
-                                    </Button>
-                                    <Button
-                                        buttonStyle="primary"
-                                        buttonSize="sm"
-                                        onClick={() => handleEditWorkout(workout.id)}>
-                                        Edit
-                                    </Button>
-                                </div>
-                            </li>
-                        ))}
-                    </ul>}
-                    right={
-                        <div className="flex flex-col gap-2 items-end">
+                <ul className="flex flex-col gap-2 min-h-[3rem]">
+                    {workoutList.length === 0 && (
+                        <li className="italic text-slate-400">
+                            No workouts yet - add one to get Started!
+                        </li>
+                    )}
+                    {workoutList.map((workout, index) => (
+                        <li
+                            key={workout.id}
+                            className="flex gap-4 items-center justify-between">
+                            <span>
+                                {index + 1} - {workout.workout} - {workout.reps} rep(s)
+                            </span>
                             <div className="flex gap-2">
                                 <Button
-                                    buttonStyle={isEmptyList ? 'disabled' : 'danger'}
-                                    buttonSize="md"
-                                    onClick={handleRemoveAllWorkouts}
-                                    disabled={isEmptyList}
-                                >
-                                    Remove All Workouts
+                                    buttonStyle="danger"
+                                    buttonSize="sm"
+                                    onClick={() => handleRemoveWorkout(workout.id)}>
+                                    Remove
                                 </Button>
-                                {!isValidEntry && (workout || workoutReps) && (
-                                    <p className="mt-2 italic text-slate-400">
-                                        Enter a workout name and at least 1 rep.
-                                    </p>
-                                )}
+                                <Button
+                                    buttonStyle="primary"
+                                    buttonSize="sm"
+                                    onClick={() => handleEditWorkout(workout.id)}>
+                                    Edit
+                                </Button>
                             </div>
-                        </div>
-                    }
-                />
+                        </li>
+                    ))}
+                </ul>
+                <div className="flex flex-col gap-2 items-end">
+                    <div className="flex gap-2">
+                        <Button
+                            className="mt-4"
+                            buttonStyle={isEmptyList ? 'disabled' : 'danger'}
+                            buttonSize="md"
+                            onClick={handleRemoveAllWorkouts}
+                            disabled={isEmptyList}
+                        >
+                            Remove All Workouts
+                        </Button>
+                        {!isValidEntry && (workout || workoutReps) && (
+                            <p className="mt-2 italic text-slate-400">
+                                Enter a workout name and at least 1 rep.
+                            </p>
+                        )}
+                    </div>
+                </div>
             </Panel>
         </>
     );
