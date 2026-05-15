@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import Panel from './Panel';
-import ActionRow from './ActionRow';
 import Button from './Button';
 import WorkoutInput from './WorkoutInput';
 import WorkoutList from './WorkoutList';
