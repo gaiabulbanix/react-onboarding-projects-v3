@@ -1,7 +1,7 @@
 import FormInput from "./FormInput";
 import Button from "./Button";
 
-export default function WorkoutInput({ className = '', workout, setWorkout, workoutReps, setWorkoutReps, handleAddWorkout, isValidEntry }) {
+export default function WorkoutInput({ className = '', workout, setWorkout, workoutReps, setWorkoutReps, handleAddWorkout, isValidEntry, }) {
     return (
         <form
             onSubmit={handleAddWorkout}

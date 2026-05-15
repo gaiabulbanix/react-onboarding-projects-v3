@@ -1,7 +1,7 @@
 import Panel from "./Panel";
 import Button from "./Button";
 
-export default function WorkoutList({ className = '', workoutList, handleRemoveWorkout, handleRemoveAllWorkouts, handleEditWorkout, isEmptyList, isValidEntry, workoutItem, workoutReps }) {
+export default function WorkoutList({ className = '', workoutList, handleRemoveWorkout, handleRemoveAllWorkouts, handleEditWorkout, isEmptyList, }) {
     return (
         <>
             <ul className="flex flex-col gap-2 min-h-[3rem]">
@@ -45,11 +45,6 @@ export default function WorkoutList({ className = '', workoutList, handleRemoveW
                     >
                         Remove All Workouts
                     </Button>
-                    {!isValidEntry && (workoutItem || workoutReps) && (
-                        <p className="mt-2 italic text-slate-400">
-                            Enter a workout name and at least 1 rep.
-                        </p>
-                    )}
                 </div>
             </div>
         </>
