@@ -12,7 +12,7 @@ export default function WorkoutItem({ className = '', index, workoutItem, handle
                 <Button
                     buttonStyle="danger"
                     buttonSize="sm"
-                    onClick={() => handleRemoveWorkout(workoutItem)}>
+                    onClick={() => handleRemoveWorkout(workoutItem.id)}>
                     Remove
                 </Button>
                 <Button

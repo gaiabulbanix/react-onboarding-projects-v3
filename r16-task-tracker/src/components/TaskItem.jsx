@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Button from "./Button";
 
-export default function TaskItem({ className = '', task, index, handleToggleTask, handleDeleteTask, handleEditTask, }) {
+export default function TaskItem({ className = '', task, index, handleToggleTask, handleRemoveTask, handleEditTask, }) {
     const [editState, setEditState] = useState(false);
     const [editInput, setEditInput] = useState('');
 
@@ -62,7 +62,7 @@ export default function TaskItem({ className = '', task, index, handleToggleTask
                         checked={task.completed}
                         onChange={() => handleToggleTask(task.id)}
                     />
-                    <Button type="button" onClick={() => handleDeleteTask(task.id)} buttonSize="xs" buttonStyle="primary">Delete</Button>
+                    <Button type="button" onClick={() => handleRemoveTask(task.id)} buttonSize="xs" buttonStyle="primary">Delete</Button>
                     <Button type="button" buttonSize="xs" buttonStyle="primary"
                         onClick={() => {
                             setEditInput(task.name);

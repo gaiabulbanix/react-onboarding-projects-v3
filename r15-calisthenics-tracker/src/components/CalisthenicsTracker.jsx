@@ -26,7 +26,7 @@ export default function CalisthenicsTracker() {
         } catch {
             console.warn("Invalid JSON in localStorage (savedWorkouts)");
             return [];
-        }
+        };
     });
 
     useEffect(() => {
@@ -38,20 +38,20 @@ export default function CalisthenicsTracker() {
     const handleAddWorkout = (e) => {
         e.preventDefault();
         if (!isValidEntry) return;
-        setWorkoutList(prev => [...prev,
-        {
-            id: crypto.randomUUID(),
-            workout,
-            reps: workoutRepsNumber,
-        }]);
+        setWorkoutList(prev =>
+            [...prev, {
+                id: crypto.randomUUID(),
+                workout,
+                reps: workoutRepsNumber,
+            }]);
         setWorkout('');
         setWorkoutReps('');
-    }
+    };
 
     // remove workout
-    const handleRemoveWorkout = (workoutItem) => {
-        setWorkoutList(prev => prev.filter(w => w.id !== workoutItem.id));
-    }
+    const handleRemoveWorkout = (id) => {
+        setWorkoutList(prev => prev.filter(w => w.id !== id));
+    };
 
     // edit single workout
     const handleEditWorkout = (workoutItem) => {
@@ -77,7 +77,7 @@ export default function CalisthenicsTracker() {
         setWorkoutList([]);
     }
 
-    // **derived states**
+    // **derived**
     const workoutRepsNumber = Number(workoutReps);
     const isValidWorkout = workout.trim();
     const isValidWorkoutReps = Number.isInteger(workoutRepsNumber) && workoutRepsNumber >= 1;
