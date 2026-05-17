@@ -1,8 +1,8 @@
 import { useState, useEffect, } from 'react';
 import Panel from './Panel';
+import Button from './Button';
 import TaskInput from './TaskInput';
 import TaskList from './TaskList';
-import Button from './Button';
 
 export default function TaskTracker() {
     // color scheme
@@ -37,38 +37,21 @@ export default function TaskTracker() {
     // add task
     const handleAddTask = (e) => {
         e.preventDefault();
-        const newTask = taskItem.trim();
         if (!newTask) return;
-        const now = new Date().toLocaleString();
-        setTaskList(prev => (
+        setTaskList(prev =>
             [...prev, {
                 id: crypto.randomUUID(),
                 name: newTask,
-                date: now,
+                date: dateNow,
                 completed: false,
-            }]));
+            }]);
         setTaskItem('');
     };
 
-    // toggle task
-    const handleToggleTask = (id) => {
-        setTaskList(prev =>
-            prev.map(task => (task.id === id ? { ...task, completed: !task.completed } : task)
-            ));
+    // remove task
+    const handleRemoveTask = (id) => {
+        setTaskList(prev => prev.filter(t => t.id !== id))
     };
-
-    // delete task
-    const handleDeleteTask = (id) => {
-        setTaskList(prev =>
-            prev.filter(task => task.id !== id)
-        );
-    };
-
-    // delete all tasks
-    const handleDeleteAllTasks = () => {
-        if (!confirm('Are you sure you want to delete all tasks?')) return;
-        setTaskList([]);
-    }
 
     // edit single task
     const handleEditTask = ({ taskId, editInput, }) => {
@@ -81,6 +64,19 @@ export default function TaskTracker() {
                     : task
             )));
     };
+
+    // toggle task
+    const handleToggleTask = (id) => {
+        setTaskList(prev =>
+            prev.map(task => (task.id === id ? { ...task, completed: !task.completed } : task)
+            ));
+    };
+
+    // delete all tasks
+    const handleDeleteAllTasks = () => {
+        if (!confirm('Are you sure you want to delete all tasks?')) return;
+        setTaskList([]);
+    }
 
     // clear completed tasks
     const handleClearCompleted = () => {
@@ -96,6 +92,10 @@ export default function TaskTracker() {
             : filter === 'completed'
                 ? taskList.filter(task => task.completed)
                 : taskList.filter(task => !task.completed);
+
+    // **derived**
+    const newTask = taskItem.trim();
+    const dateNow = new Date().toLocaleString();
 
     // jsx block
     return (
@@ -137,7 +137,7 @@ export default function TaskTracker() {
                 <TaskList
                     tasks={filteredTasks}
                     handleToggleTask={handleToggleTask}
-                    handleDeleteTask={handleDeleteTask}
+                    handleDeleteTask={handleRemoveTask}
                     handleEditTask={handleEditTask}
                     emptyMessage={
                         filter === 'all'

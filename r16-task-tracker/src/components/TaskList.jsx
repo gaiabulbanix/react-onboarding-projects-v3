@@ -1,6 +1,6 @@
 import TaskItem from "./TaskItem";
 
-export default function TaskList({ className = '', tasks, handleToggleTask, handleDeleteTask, emptyMessage, handleEditTask, }) {
+export default function TaskList({ className = '', tasks, handleToggleTask, handleRemoveTask, emptyMessage, handleEditTask, }) {
     if (tasks.length === 0) {
         return <p>{emptyMessage}</p>;
     }
@@ -9,7 +9,7 @@ export default function TaskList({ className = '', tasks, handleToggleTask, hand
             {tasks.map((task, index) => (
                 <TaskItem key={task.id}
                     handleToggleTask={handleToggleTask}
-                    handleDeleteTask={handleDeleteTask}
+                    handleDeleteTask={handleRemoveTask}
                     task={task}
                     index={index}
                     handleEditTask={handleEditTask}
