@@ -72,8 +72,8 @@ export default function TaskTracker() {
             ));
     };
 
-    // delete all tasks
-    const handleDeleteAllTasks = () => {
+    // remove all tasks
+    const handleRemoveAllTasks = () => {
         if (!confirm('Are you sure you want to delete all tasks?')) return;
         setTaskList([]);
     }
@@ -145,7 +145,7 @@ export default function TaskTracker() {
                             : "No tasks match this filter."
                     }
                 />
-                <Button onClick={handleDeleteAllTasks} buttonStyle="danger" disabled={taskList.length === 0}>
+                <Button onClick={handleRemoveAllTasks} buttonStyle="danger" disabled={taskList.length === 0}>
                     Delete All Items
                 </Button>
                 <Button onClick={handleClearCompleted} buttonStyle="secondary" disabled={!taskList.some(task => task.completed)}>

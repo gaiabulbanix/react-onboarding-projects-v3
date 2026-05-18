@@ -86,11 +86,11 @@ export default function CalisthenicsTracker() {
 
     return (
         <>
-            <Panel>
+            <Panel className="w-full max-w-3xl">
                 <h1>Calisthenics Tracker</h1>
             </Panel>
 
-            <Panel className="mt-6">
+            <Panel className="mt-6 w-full max-w-3xl">
                 <WorkoutInput
                     workout={workout}
                     setWorkout={setWorkout}
@@ -101,7 +101,7 @@ export default function CalisthenicsTracker() {
                 />
             </Panel>
 
-            <Panel className="mt-6">
+            <Panel className="mt-6 w-full max-w-3xl">
                 <WorkoutList
                     workoutList={workoutList}
                     handleRemoveWorkout={handleRemoveWorkout}
