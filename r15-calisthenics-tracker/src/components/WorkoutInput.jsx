@@ -1,4 +1,4 @@
-import FormInput from "./FormInput";
+import InputField from "./InputField";
 import Button from "./Button";
 
 export default function WorkoutInput({ className = '', workout, setWorkout, workoutReps, setWorkoutReps, handleAddWorkout, isValidEntry, }) {
@@ -6,7 +6,7 @@ export default function WorkoutInput({ className = '', workout, setWorkout, work
         <form
             onSubmit={handleAddWorkout}
         >
-            <FormInput
+            <InputField
                 inputClassName="px-3 py-1.5 rounded-md border-teal-800 border-2 text-slate-900"
                 label="Input Workout:"
                 htmlFor="workoutInput"
@@ -16,8 +16,8 @@ export default function WorkoutInput({ className = '', workout, setWorkout, work
                 onChange={(e) => setWorkout(e.target.value)}
                 placeholder="Enter your workout name/type here."
             >
-            </FormInput>
-            <FormInput
+            </InputField>
+            <InputField
                 wrapperClassName="mt-4"
                 inputClassName="px-3 py-1.5 rounded-md border-teal-800 border-2 text-slate-900"
                 label="Input Reps:"
@@ -30,7 +30,7 @@ export default function WorkoutInput({ className = '', workout, setWorkout, work
                 onChange={(e) => setWorkoutReps(e.target.value)}
                 placeholder="Enter your number of reps here."
             >
-            </FormInput>
+            </InputField>
             <Button
                 className="mt-4"
                 type="submit"
