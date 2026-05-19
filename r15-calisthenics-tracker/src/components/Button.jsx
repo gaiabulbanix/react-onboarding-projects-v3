@@ -1,4 +1,4 @@
-export default function Button({ children, className = '', buttonStyle = 'primary', buttonSize = 'md', disabled = false, ...buttonProps }) {
+export default function Button({ children, className = '', buttonStyle = 'primary', buttonSize = 'sm', disabled = false, ...buttonProps }) {
     const buttonStyles = {
         primary: 'bg-slate-100 text-slate-900 hover:bg-slate-200',
         secondary: 'bg-slate-300 text-slate-900 hover:bg-slate-400',
@@ -10,9 +10,9 @@ export default function Button({ children, className = '', buttonStyle = 'primar
     const resolvedStyle = disabled ? 'disabled' : buttonStyle;
 
     const buttonSizes = {
-        lg: '',
-        md: 'px-3 py-1.5',
+        xs: 'px-1 py-0.5',
         sm: 'px-2 py-1',
+        md: 'px-3 py-1.5',
     }
 
     return (

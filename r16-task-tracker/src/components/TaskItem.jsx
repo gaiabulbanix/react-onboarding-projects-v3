@@ -11,7 +11,7 @@ export default function TaskItem({ className = '', task, index, handleToggleTask
             <li className="flex justify-between items-center">
                 <div>
                     <input type="text"
-                        className="p-1/2 rounded-md border-2 border-teal-800 text-slate-100 bg-slate-900"
+                        className="p-0.5 rounded-md border-2 border-teal-800 text-slate-100 bg-slate-900"
                         value={editInput}
                         onChange={(e) => setEditInput(e.target.value)}
                         onKeyDown={(e) => {
@@ -39,7 +39,6 @@ export default function TaskItem({ className = '', task, index, handleToggleTask
                         Save
                     </Button>
                     <Button type="button" buttonSize="xs" buttonStyle="primary" onClick={() => {
-                        setEditInput(task.name);
                         setEditState(false);
                     }}>
                         Cancel
