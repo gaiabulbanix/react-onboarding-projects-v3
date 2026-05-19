@@ -54,9 +54,10 @@ export default function CalisthenicsTracker() {
     };
 
     // edit single workout
-    const handleEditWorkout = (workoutItem) => {
-        const newWorkout = prompt('Edit workout:', workoutItem.workout);
-        const newWorkoutReps = prompt('Edit reps:', workoutItem.reps);
+    const handleEditWorkout = (e, workoutItem, editWorkoutInput, editWorkoutReps) => {
+        e.preventDefault();
+        const newWorkout = editWorkoutInput;
+        const newWorkoutReps = editWorkoutReps;
         const newWorkoutRepsNumber = Number(newWorkoutReps);
         if (!newWorkout || newWorkout.trim() === '') return;
         if (!Number.isInteger(newWorkoutRepsNumber) || newWorkoutRepsNumber < 1) return;
@@ -102,6 +103,7 @@ export default function CalisthenicsTracker() {
             </Panel>
 
             <Panel className="mt-6 w-full max-w-3xl">
+                <h2>Task List</h2>
                 <WorkoutList
                     workoutList={workoutList}
                     handleRemoveWorkout={handleRemoveWorkout}
