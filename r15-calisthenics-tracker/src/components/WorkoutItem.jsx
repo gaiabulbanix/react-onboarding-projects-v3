@@ -10,7 +10,7 @@ export default function WorkoutItem({ className = '', index, workoutItem, handle
         editState
             ?
             <li>
-                <div>
+                <form action="">
                     <input
                         type="text"
                         value={editWorkoutInput}
@@ -22,14 +22,12 @@ export default function WorkoutItem({ className = '', index, workoutItem, handle
                             }
                         }}
                     />
-                </div>
-                <div>
                     <input
                         type="number"
                         value={editWorkoutReps}
                         onChange={(e) => setEditWorkoutReps(e.target.value)}
                     />
-                </div>
+                </form>
             </li>
             :
             <li
