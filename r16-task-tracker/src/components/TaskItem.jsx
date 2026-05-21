@@ -9,41 +9,43 @@ export default function TaskItem({ className = '', task, index, handleToggleTask
         editState
             ?
             <li className="flex justify-between items-center">
-                <div>
-                    <input type="text"
-                        className="p-0.5 rounded-md border-2 border-teal-800 text-slate-100 bg-slate-900"
-                        value={editInput}
-                        onChange={(e) => setEditInput(e.target.value)}
-                        onKeyDown={(e) => {
-                            if (e.key === 'Enter') {
-                                e.preventDefault();
+                <form>
+                    <div>
+                        <input type="text"
+                            className="p-0.5 rounded-md border-2 border-teal-800 text-slate-100 bg-slate-900"
+                            value={editInput}
+                            onChange={(e) => setEditInput(e.target.value)}
+                            onKeyDown={(e) => {
+                                if (e.key === 'Enter') {
+                                    e.preventDefault();
+                                    handleEditTask({ taskId: task.id, editInput: editInput, });
+                                    setEditState(false);
+                                };
+                                if (e.key === 'Escape') {
+                                    setEditInput(task.name);
+                                    setEditState(false);
+                                };
+                            }}
+                        />
+                    </div>
+                    <div className="flex gap-0.5">
+                        <Button
+                            type="button" buttonSize="xs" buttonStyle="primary"
+                            onClick={() => {
                                 handleEditTask({ taskId: task.id, editInput: editInput, });
                                 setEditState(false);
-                            };
-                            if (e.key === 'Escape') {
-                                setEditInput(task.name);
-                                setEditState(false);
-                            };
-                        }}
-                    />
-                </div>
-                <div className="flex gap-0.5">
-                    <Button
-                        type="button" buttonSize="xs" buttonStyle="primary"
-                        onClick={() => {
-                            handleEditTask({ taskId: task.id, editInput: editInput, });
+                            }}
+                            disabled={!editInput.trim() || editInput.trim() === task.name}
+                        >
+                            Save
+                        </Button>
+                        <Button type="button" buttonSize="xs" buttonStyle="primary" onClick={() => {
                             setEditState(false);
-                        }}
-                        disabled={!editInput.trim() || editInput.trim() === task.name}
-                    >
-                        Save
-                    </Button>
-                    <Button type="button" buttonSize="xs" buttonStyle="primary" onClick={() => {
-                        setEditState(false);
-                    }}>
-                        Cancel
-                    </Button>
-                </div>
+                        }}>
+                            Cancel
+                        </Button>
+                    </div>
+                </form>
             </li >
             :
             <li className="flex gap-2 items-center">
@@ -61,7 +63,11 @@ export default function TaskItem({ className = '', task, index, handleToggleTask
                         checked={task.completed}
                         onChange={() => handleToggleTask(task.id)}
                     />
-                    <Button type="button" onClick={() => handleRemoveTask(task.id)} buttonSize="xs" buttonStyle="primary">Delete</Button>
+                    <Button type="button" buttonSize="xs" buttonStyle="primary"
+                        onClick={() => handleRemoveTask(task.id)}
+                    >
+                        Delete
+                    </Button>
                     <Button type="button" buttonSize="xs" buttonStyle="primary"
                         onClick={() => {
                             setEditInput(task.name);
