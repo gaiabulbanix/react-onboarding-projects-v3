@@ -9,20 +9,19 @@ export default function TaskItem({ className = '', task, index, handleToggleTask
         editState
             ?
             <li className="flex justify-between items-center">
-                <form>
+                <form
+                    onSubmit={(e) => {
+                        handleEditTask({ e: e, taskId: task.id, editInput: editInput, });
+                        setEditState(false);
+                    }}
+                >
                     <div>
                         <input type="text"
                             className="p-0.5 rounded-md border-2 border-teal-800 text-slate-100 bg-slate-900"
                             value={editInput}
                             onChange={(e) => setEditInput(e.target.value)}
                             onKeyDown={(e) => {
-                                if (e.key === 'Enter') {
-                                    e.preventDefault();
-                                    handleEditTask({ taskId: task.id, editInput: editInput, });
-                                    setEditState(false);
-                                };
                                 if (e.key === 'Escape') {
-                                    setEditInput(task.name);
                                     setEditState(false);
                                 };
                             }}
@@ -30,18 +29,15 @@ export default function TaskItem({ className = '', task, index, handleToggleTask
                     </div>
                     <div className="flex gap-0.5">
                         <Button
-                            type="button" buttonSize="xs" buttonStyle="primary"
-                            onClick={() => {
-                                handleEditTask({ taskId: task.id, editInput: editInput, });
-                                setEditState(false);
-                            }}
+                            type="submit" buttonSize="xs" buttonStyle="primary"
                             disabled={!editInput.trim() || editInput.trim() === task.name}
                         >
                             Save
                         </Button>
-                        <Button type="button" buttonSize="xs" buttonStyle="primary" onClick={() => {
-                            setEditState(false);
-                        }}>
+                        <Button type="button" buttonSize="xs" buttonStyle="primary"
+                            onClick={() => {
+                                setEditState(false);
+                            }}>
                             Cancel
                         </Button>
                     </div>

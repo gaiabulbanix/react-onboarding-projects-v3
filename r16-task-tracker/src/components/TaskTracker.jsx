@@ -54,7 +54,8 @@ export default function TaskTracker() {
     };
 
     // edit single task
-    const handleEditTask = ({ taskId, editInput, }) => {
+    const handleEditTask = ({ e, taskId, editInput, }) => {
+        e.preventDefault();
         const editInputTrimmed = editInput.trim();
         if (!editInputTrimmed) return;
         setTaskList(prev =>
