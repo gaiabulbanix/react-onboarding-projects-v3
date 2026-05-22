@@ -24,12 +24,22 @@ export default function WorkoutItem({ className = '', index, workoutItem, handle
                             type="text"
                             value={editWorkoutInput}
                             onChange={(e) => setEditWorkoutInput(e.target.value)}
+                            onKeyDown={(e) => {
+                                if (e.key === 'Escape') {
+                                    setEditState(false);
+                                };
+                            }}
                         />
                         <input
                             className="p-0.5 rounded-md border-2 border-teal-800 text-slate-100 bg-slate-900"
                             type="number"
                             value={editWorkoutReps}
                             onChange={(e) => setEditWorkoutReps(e.target.value)}
+                            onKeyDown={(e) => {
+                                if (e.key === 'Escape') {
+                                    setEditState(false);
+                                };
+                            }}
                         />
                     </div>
                     <div>
