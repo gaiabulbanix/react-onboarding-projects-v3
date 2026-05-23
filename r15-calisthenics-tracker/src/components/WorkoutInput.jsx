@@ -4,23 +4,24 @@ import Button from "./Button";
 export default function WorkoutInput({ className = '', workout, setWorkout, workoutReps, setWorkoutReps, handleAddWorkout, isValidEntry, }) {
     return (
         <form
+            className={`${className}`}
             onSubmit={handleAddWorkout}
         >
             <InputField
-                inputClassName="px-3 py-1.5 rounded-md border-teal-800 border-2 text-slate-900"
-                label="Input Workout:"
+                inputClassName="p-1 rounded-md border-teal-800 border-2 text-slate-900"
+                label="Input Workout"
                 htmlFor="workoutInput"
                 id="workoutInput"
                 type="text"
                 value={workout}
                 onChange={(e) => setWorkout(e.target.value)}
-                placeholder="Enter your workout name/type here."
+                placeholder="Enter workout here..."
             >
             </InputField>
             <InputField
                 wrapperClassName="mt-4"
-                inputClassName="px-3 py-1.5 rounded-md border-teal-800 border-2 text-slate-900"
-                label="Input Reps:"
+                inputClassName="p-1 rounded-md border-teal-800 border-2 text-slate-900"
+                label="Input Reps"
                 htmlFor="workoutRepsInput"
                 id="workoutRepsInput"
                 type="number"
@@ -28,11 +29,11 @@ export default function WorkoutInput({ className = '', workout, setWorkout, work
                 step={1}
                 value={workoutReps}
                 onChange={(e) => setWorkoutReps(e.target.value)}
-                placeholder="Enter your number of reps here."
+                placeholder="Enter reps here..."
             >
             </InputField>
             <Button
-                className="mt-4"
+                className="mt-4 self-end"
                 type="submit"
                 buttonStyle={!isValidEntry ? 'disabled' : 'primary'}
                 buttonSize="md"
