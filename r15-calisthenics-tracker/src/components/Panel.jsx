@@ -4,4 +4,4 @@ export default function Panel({ children, className = '', }) {
             {children}
         </div>
     );
-}
+};
