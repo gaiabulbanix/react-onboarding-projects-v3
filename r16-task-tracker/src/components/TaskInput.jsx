@@ -20,7 +20,10 @@ export default function TaskInput({ className = '', taskItem, setTaskItem, handl
                     }}
                 />
             </div>
-            <Button type="submit">
+            <Button
+                type="submit"
+                buttonStyle={''}
+            >
                 Add Task
             </Button>
         </form>
