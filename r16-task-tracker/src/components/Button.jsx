@@ -20,7 +20,7 @@ export default function Button({ className = '', children, buttonSize = 'sm', bu
             <button className={`
             rounded-md font-medium transition-colors duration-200
             ${className}
-            ${buttonStyles[buttonStyle]}
+            ${buttonStyles[resolvedStyle]}
             ${buttonSizes[buttonSize]}`}
                 {...props}>
                 {children}
