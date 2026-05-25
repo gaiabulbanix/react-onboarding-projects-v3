@@ -1,6 +1,6 @@
 import Button from "./Button";
 
-export default function TaskInput({ className = '', taskItem, setTaskItem, handleAddTask, }) {
+export default function TaskInput({ className = '', taskItem, setTaskItem, handleAddTask, newTask, }) {
     return (
         <form className={`flex justify-between ${className}`} onSubmit={handleAddTask}>
             <div className="flex gap-2 items-center">
@@ -22,7 +22,9 @@ export default function TaskInput({ className = '', taskItem, setTaskItem, handl
             </div>
             <Button
                 type="submit"
-                buttonStyle={''}
+                buttonStyle={!newTask ? 'disabled' : 'primary'}
+                buttonSize="md"
+                disabled={!newTask}
             >
                 Add Task
             </Button>
