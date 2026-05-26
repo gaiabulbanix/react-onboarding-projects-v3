@@ -93,7 +93,7 @@ export default function CalisthenicsTracker() {
 
             <Panel className="mt-6 w-full max-w-3xl">
                 <WorkoutInput
-                    className="flex flex-col"
+                    className="flex justify-between items-end"
                     workout={workout}
                     setWorkout={setWorkout}
                     workoutReps={workoutReps}
