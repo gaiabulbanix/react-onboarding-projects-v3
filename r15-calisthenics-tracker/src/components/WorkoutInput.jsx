@@ -7,18 +7,18 @@ export default function WorkoutInput({ className = '', workout, setWorkout, work
             className={`${className}`}
             onSubmit={handleAddWorkout}
         >
-            <InputField
-                inputClassName="p-1 rounded-md border-teal-800 border-2 text-slate-900"
-                label="Input Workout"
-                htmlFor="workoutInput"
-                id="workoutInput"
-                type="text"
-                value={workout}
-                onChange={(e) => setWorkout(e.target.value)}
-                placeholder="Enter workout here..."
-            >
-            </InputField>
-            <div className="flex items-end gap-4">
+            <div flex flex-col gap-4>
+                <InputField
+                    inputClassName="p-1 rounded-md border-teal-800 border-2 text-slate-900"
+                    label="Input Workout"
+                    htmlFor="workoutInput"
+                    id="workoutInput"
+                    type="text"
+                    value={workout}
+                    onChange={(e) => setWorkout(e.target.value)}
+                    placeholder="Enter workout here..."
+                >
+                </InputField>
                 <InputField
                     wrapperClassName="mt-4"
                     inputClassName="p-1 rounded-md border-teal-800 border-2 text-slate-900"
@@ -33,15 +33,15 @@ export default function WorkoutInput({ className = '', workout, setWorkout, work
                     placeholder="Enter reps here..."
                 >
                 </InputField>
-                <Button
-                    type="submit"
-                    buttonStyle={!isValidEntry ? 'disabled' : 'primary'}
-                    buttonSize="md"
-                    disabled={!isValidEntry}
-                >
-                    Add Workout
-                </Button>
             </div>
+            <Button
+                type="submit"
+                buttonStyle={!isValidEntry ? 'disabled' : 'primary'}
+                buttonSize="md"
+                disabled={!isValidEntry}
+            >
+                Add Workout
+            </Button>
         </form>
     );
 }
