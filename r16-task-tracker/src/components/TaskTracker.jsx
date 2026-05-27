@@ -116,7 +116,7 @@ export default function TaskTracker() {
             <Panel className="mt-6 w-full max-w-3xl">
                 <div className="flex gap-2 items-center">
                     <h2>Task List</h2>
-                    <span>
+                    <div className="flex gap-1 items-center">
                         <Button
                             buttonStyle={filter === 'all' ? 'secondary' : 'primary'}
                             onClick={() => setFilter('all')}
@@ -132,7 +132,7 @@ export default function TaskTracker() {
                             onClick={() => setFilter('pending')}
                             disabled={taskList.length === 0}
                         >Show Pending</Button>
-                    </span>
+                    </div>
                 </div>
 
                 <TaskList
