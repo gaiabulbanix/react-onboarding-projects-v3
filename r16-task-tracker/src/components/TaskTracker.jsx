@@ -110,6 +110,7 @@ export default function TaskTracker() {
                     taskItem={taskItem}
                     setTaskItem={setTaskItem}
                     handleAddTask={handleAddTask}
+                    newTask={newTask}
                 />
             </Panel>
 
