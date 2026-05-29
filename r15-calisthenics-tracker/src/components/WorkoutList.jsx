@@ -20,19 +20,6 @@ export default function WorkoutList({ className = '', workoutList, handleRemoveW
                     />
                 ))}
             </ul>
-            <div className="flex flex-col gap-2 items-end">
-                <div className="flex gap-2">
-                    <Button
-                        className="mt-4"
-                        buttonStyle={isEmptyList ? 'disabled' : 'danger'}
-                        buttonSize="md"
-                        onClick={handleRemoveAllWorkouts}
-                        disabled={isEmptyList}
-                    >
-                        Remove All Workouts
-                    </Button>
-                </div>
-            </div>
         </>
     );
 }

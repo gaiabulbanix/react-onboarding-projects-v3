@@ -104,7 +104,7 @@ export default function CalisthenicsTracker() {
             </Panel>
 
             <Panel className="mt-6 w-full max-w-3xl">
-                <h2>Task List</h2>
+                <h2>Workout List</h2>
                 <WorkoutList
                     workoutList={workoutList}
                     handleRemoveWorkout={handleRemoveWorkout}
@@ -115,6 +115,17 @@ export default function CalisthenicsTracker() {
                     workout={workout}
                     workoutReps={workoutReps}
                 />
+                <div className="flex flex-col gap-2 items-end">
+                    <Button
+                        className="mt-4"
+                        buttonStyle={isEmptyList ? 'disabled' : 'danger'}
+                        buttonSize="md"
+                        onClick={handleRemoveAllWorkouts}
+                        disabled={isEmptyList}
+                    >
+                        Remove All Workouts
+                    </Button>
+                </div>
             </Panel>
         </>
     );
