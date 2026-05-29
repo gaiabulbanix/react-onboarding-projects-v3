@@ -147,14 +147,16 @@ export default function TaskTracker() {
                             : "No tasks match this filter."
                     }
                 />
-                <Button onClick={handleRemoveAllTasks} buttonStyle="danger" disabled={taskList.length === 0}>
-                    Delete All Items
-                </Button>
-                <Button onClick={handleClearCompleted} buttonStyle="secondary" disabled={!taskList.some(task => task.completed)}>
-                    {taskList.some(task => task.completed)
-                        ? "Clear All Completed"
-                        : "No Completed Tasks"}
-                </Button>
+                <div className="flex gap-1 justify-end mt-4">
+                    <Button onClick={handleRemoveAllTasks} buttonStyle="danger" disabled={taskList.length === 0}>
+                        Remove All Tasks
+                    </Button>
+                    <Button onClick={handleClearCompleted} buttonStyle="secondary" disabled={!taskList.some(task => task.completed)}>
+                        {taskList.some(task => task.completed)
+                            ? "Clear All Completed"
+                            : "No Completed Tasks"}
+                    </Button>
+                </div>
             </Panel>
         </>
     );
