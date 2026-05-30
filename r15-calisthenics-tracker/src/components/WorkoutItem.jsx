@@ -66,13 +66,13 @@ export default function WorkoutItem({ className = '', index, workoutItem, handle
                 <div className="flex gap-2">
                     <Button
                         buttonStyle="danger"
-                        buttonSize="sm"
+                        buttonSize="xs"
                         onClick={() => handleRemoveWorkout(workoutItem.id)}>
                         Remove
                     </Button>
                     <Button
                         buttonStyle="primary"
-                        buttonSize="sm"
+                        buttonSize="xs"
                         onClick={() => {
                             setEditWorkoutInput(workoutItem.workout);
                             setEditWorkoutReps(workoutItem.reps);
