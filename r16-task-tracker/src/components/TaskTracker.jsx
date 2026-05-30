@@ -148,10 +148,20 @@ export default function TaskTracker() {
                     }
                 />
                 <div className="flex gap-1 justify-end mt-4">
-                    <Button onClick={handleRemoveAllTasks} buttonStyle="danger" disabled={taskList.length === 0}>
+                    <Button onClick={handleRemoveAllTasks}
+                        buttonStyle="danger"
+                        disabled={taskList.length === 0}
+                        buttonSize="md"
+                        className="w-40"
+                    >
                         Remove All Tasks
                     </Button>
-                    <Button onClick={handleClearCompleted} buttonStyle="secondary" disabled={!taskList.some(task => task.completed)}>
+                    <Button onClick={handleClearCompleted}
+                        buttonStyle="secondary"
+                        disabled={!taskList.some(task => task.completed)}
+                        buttonSize="md"
+                        className="w-44"
+                    >
                         {taskList.some(task => task.completed)
                             ? "Clear All Completed"
                             : "No Completed Tasks"}

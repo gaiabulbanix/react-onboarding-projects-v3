@@ -1,7 +1,7 @@
 export default function Button({ className = '', children, buttonSize = 'sm', buttonStyle = 'primary', disabled = false, ...props }) {
     const buttonStyles = {
-        primary: 'bg-slate-100 text-slate-900 hover:bg-slate-300',
-        secondary: 'bg-slate-900 text-slate-100 hover:bg-slate-700',
+        primary: 'bg-slate-100 text-slate-900 hover:bg-slate-400',
+        secondary: 'bg-slate-900 text-slate-100 hover:bg-slate-800',
         disabled: 'bg-slate-400 text-slate-900 cursor-not-allowed opacity-50',
         danger: 'bg-red-500 text-slate-900 font-bold hover:bg-red-700',
         success: 'bg-green-500 text-slate-900 hover:bg-green-600',
