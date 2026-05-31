@@ -138,14 +138,11 @@ export default function TaskTracker() {
 
                 <TaskList
                     tasks={filteredTasks}
+                    taskList={taskList}
                     handleToggleTask={handleToggleTask}
                     handleRemoveTask={handleRemoveTask}
                     handleEditTask={handleEditTask}
-                    emptyMessage={
-                        filter === 'all'
-                            ? "No tasks yet - add one above!"
-                            : "No tasks match this filter."
-                    }
+                    filter={filter}
                 />
                 <div className="flex gap-1 justify-end mt-4">
                     <Button onClick={handleRemoveAllTasks}
