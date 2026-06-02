@@ -138,7 +138,6 @@ export default function TaskTracker() {
 
                 <TaskList
                     tasks={filteredTasks}
-                    taskList={taskList}
                     handleToggleTask={handleToggleTask}
                     handleRemoveTask={handleRemoveTask}
                     handleEditTask={handleEditTask}
