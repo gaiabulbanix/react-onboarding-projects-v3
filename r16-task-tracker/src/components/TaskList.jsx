@@ -3,7 +3,7 @@ import TaskItem from "./TaskItem";
 export default function TaskList({ className = '', tasks, handleToggleTask, handleRemoveTask, handleEditTask, filter, }) {
     return (
         <ul className={`${className} mt-2 mb-2`}>
-            {filter.length === 0 && (
+            {tasks.length === 0 && (
                 filter === 'all'
                     ? <li>No tasks yet - add one above!</li>
                     : <li>No tasks match this filter.</li>
