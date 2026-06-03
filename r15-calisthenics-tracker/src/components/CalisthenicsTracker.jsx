@@ -108,12 +108,7 @@ export default function CalisthenicsTracker() {
                 <WorkoutList
                     workoutList={workoutList}
                     handleRemoveWorkout={handleRemoveWorkout}
-                    handleRemoveAllWorkouts={handleRemoveAllWorkouts}
                     handleEditWorkout={handleEditWorkout}
-                    isEmptyList={isEmptyList}
-                    isValidEntry={isValidEntry}
-                    workout={workout}
-                    workoutReps={workoutReps}
                 />
                 <div className="flex justify-end mt-4 ">
                     <Button
