@@ -18,7 +18,7 @@ export default function WorkoutItem({ className = '', index, workoutItem, handle
                         setEditState(false);
                     }}
                 >
-                    <div >
+                    <div>
                         <input
                             className="p-0.5 rounded-md border-2 border-teal-800 text-slate-100 bg-slate-900"
                             type="text"
@@ -59,11 +59,11 @@ export default function WorkoutItem({ className = '', index, workoutItem, handle
             </li>
             :
             <li
-                className="flex gap-4 items-center justify-between">
+                className="flex items-center justify-between mt-1">
                 <span>
-                    {index + 1} - {workoutItem.workout} - {workoutItem.reps} rep(s)
+                    {index + 1}. {workoutItem.workout} - {workoutItem.reps} rep(s)
                 </span>
-                <div className="flex gap-2">
+                <div className="flex items-center gap-1">
                     <Button
                         buttonStyle="danger"
                         buttonSize="xs"
