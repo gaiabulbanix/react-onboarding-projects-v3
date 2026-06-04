@@ -27,53 +27,59 @@ export default function TaskItem({ className = '', task, index, handleToggleTask
                             }}
                         />
                     </div>
-                    <div className="flex gap-0.5">
+                    <div>
                         <Button
-                            type="submit" buttonSize="xs" buttonStyle="primary"
+                            type="submit"
+                            buttonSize="xs"
+                            buttonStyle="primary"
                             disabled={!editInput.trim() || editInput.trim() === task.name}
                         >
                             Save
                         </Button>
-                        <Button type="button" buttonSize="xs" buttonStyle="primary"
-                            onClick={() => {
-                                setEditState(false);
-                            }}>
+                        <Button
+                            type="button"
+                            buttonSize="xs"
+                            buttonStyle="primary"
+                            onClick={() => setEditState(false)}>
                             Cancel
                         </Button>
                     </div>
                 </form>
             </li >
             :
-            <li className="flex gap-2 items-center">
-                <div className="flex flex-1 min-w-0 items-center overflow-hidden gap-4">
+            <li className="flex items-center mt-1">
+                <div className="flex flex-1 min-w-0 items-center overflow-hidden">
                     <span className={`truncate min-w-0 ${task.completed && "opacity-50 line-through"}`}>
                         {index + 1}. {task.name}
                     </span>
-                    <span className="shrink-0 text-sm ml-auto text-slate-400">
+                    <span className="w-56 shrink-0 text-sm ml-auto text-slate-400">
                         {task.date} - {task.completed ? 'Complete' : 'Pending'}
                     </span>
                 </div>
-                <div className="flex items-center gap-0.5 shrink-0">
+                <div className="flex items-center gap-1">
                     <input
                         type="checkbox"
                         checked={task.completed}
                         onChange={() => handleToggleTask(task.id)}
                     />
-                    <Button type="button" buttonSize="xs" buttonStyle="primary"
+                    <Button type="button"
+                        buttonSize="xs"
+                        buttonStyle="danger"
                         onClick={() => handleRemoveTask(task.id)}
                     >
-                        Delete
+                        Remove
                     </Button>
-                    <Button type="button" buttonSize="xs" buttonStyle="primary"
+                    <Button type="button"
+                        buttonSize="xs"
+                        buttonStyle="primary"
                         onClick={() => {
                             setEditInput(task.name);
                             setEditState(true);
-                        }}>
+                        }}
+                    >
                         Edit
                     </Button>
                 </div>
             </li>
     );
 };
-
-// opacity-50 bg-slate-900 text-slate-100 line-through
