@@ -1,8 +1,8 @@
 import { useState, useEffect, } from 'react';
 import Panel from './Panel';
+import Button from './Button';
 import TaskInput from './TaskInput';
 import TaskList from './TaskList';
-import Button from './Button';
 
 export default function TaskTracker() {
     // color scheme
@@ -16,8 +16,9 @@ export default function TaskTracker() {
 
     // **hooks**
     const [taskItem, setTaskItem] = useState('');
+    const [filter, setFilter] = useState('all');
     const [taskList, setTaskList] = useState(() => {
-        const raw = localStorage.getItem("savedTasks");
+        const raw = localStorage.getItem('savedTasks');
         if (!raw) return [];
         try {
             const parsed = JSON.parse(raw);
@@ -27,50 +28,34 @@ export default function TaskTracker() {
             return [];
         };
     });
-    const [filter, setFilter] = useState('all');
 
-    // save to local storge
     useEffect(() => {
         localStorage.setItem("savedTasks", JSON.stringify(taskList));
     }, [taskList])
 
+    // **handlers**
     // add task
     const handleAddTask = (e) => {
         e.preventDefault();
-        const newTask = taskItem.trim();
         if (!newTask) return;
-        const now = new Date().toLocaleString();
-        setTaskList(prev => (
+        setTaskList(prev =>
             [...prev, {
                 id: crypto.randomUUID(),
                 name: newTask,
-                date: now,
+                date: dateNow,
                 completed: false,
-            }]));
+            }]);
         setTaskItem('');
     };
 
-    // toggle task
-    const handleToggleTask = (id) => {
-        setTaskList(prev =>
-            prev.map(task => (task.id === id ? { ...task, completed: !task.completed } : task)
-            ));
+    // remove task
+    const handleRemoveTask = (id) => {
+        setTaskList(prev => prev.filter(t => t.id !== id))
     };
-
-    // delete task
-    const handleDeleteTask = (id) => {
-        setTaskList(prev =>
-            prev.filter(task => task.id !== id)
-        );
-    };
-
-    // delete all tasks
-    const handleDeleteAllTasks = () => {
-        setTaskList([]);
-    }
 
     // edit single task
-    const handleEditTask = ({ taskId, editInput, }) => {
+    const handleEditTask = ({ e, taskId, editInput, }) => {
+        e.preventDefault();
         const editInputTrimmed = editInput.trim();
         if (!editInputTrimmed) return;
         setTaskList(prev =>
@@ -80,6 +65,19 @@ export default function TaskTracker() {
                     : task
             )));
     };
+
+    // toggle task
+    const handleToggleTask = (id) => {
+        setTaskList(prev =>
+            prev.map(task => (task.id === id ? { ...task, completed: !task.completed } : task)
+            ));
+    };
+
+    // remove all tasks
+    const handleRemoveAllTasks = () => {
+        if (!confirm('Are you sure you want to delete all tasks?')) return;
+        setTaskList([]);
+    }
 
     // clear completed tasks
     const handleClearCompleted = () => {
@@ -96,6 +94,10 @@ export default function TaskTracker() {
                 ? taskList.filter(task => task.completed)
                 : taskList.filter(task => !task.completed);
 
+    // **derived**
+    const newTask = taskItem.trim();
+    const dateNow = new Date().toLocaleString();
+
     // jsx block
     return (
         <>
@@ -108,13 +110,14 @@ export default function TaskTracker() {
                     taskItem={taskItem}
                     setTaskItem={setTaskItem}
                     handleAddTask={handleAddTask}
+                    newTask={newTask}
                 />
             </Panel>
 
             <Panel className="mt-6 w-full max-w-3xl">
                 <div className="flex gap-2 items-center">
                     <h2>Task List</h2>
-                    <span>
+                    <div className="flex gap-1 items-center">
                         <Button
                             buttonStyle={filter === 'all' ? 'secondary' : 'primary'}
                             onClick={() => setFilter('all')}
@@ -130,28 +133,37 @@ export default function TaskTracker() {
                             onClick={() => setFilter('pending')}
                             disabled={taskList.length === 0}
                         >Show Pending</Button>
-                    </span>
+                    </div>
                 </div>
 
                 <TaskList
+                    className="mt-1"
                     tasks={filteredTasks}
                     handleToggleTask={handleToggleTask}
-                    handleDeleteTask={handleDeleteTask}
+                    handleRemoveTask={handleRemoveTask}
                     handleEditTask={handleEditTask}
-                    emptyMessage={
-                        filter === 'all'
-                            ? "No tasks yet - add one above!"
-                            : "No tasks match this filter."
-                    }
+                    filter={filter}
                 />
-                <Button onClick={handleDeleteAllTasks} buttonStyle="danger" disabled={taskList.length === 0}>
-                    Delete All Items
-                </Button>
-                <Button onClick={handleClearCompleted} buttonStyle="secondary" disabled={!taskList.some(task => task.completed)}>
-                    {taskList.some(task => task.completed)
-                        ? "Clear All Completed"
-                        : "No Completed Tasks"}
-                </Button>
+                <div className="flex gap-1 justify-end mt-4">
+                    <Button onClick={handleRemoveAllTasks}
+                        buttonStyle="danger"
+                        disabled={taskList.length === 0}
+                        buttonSize="md"
+                        className="w-40"
+                    >
+                        Remove All Tasks
+                    </Button>
+                    <Button onClick={handleClearCompleted}
+                        buttonStyle="secondary"
+                        disabled={!taskList.some(task => task.completed)}
+                        buttonSize="md"
+                        className="w-44"
+                    >
+                        {taskList.some(task => task.completed)
+                            ? "Clear All Completed"
+                            : "No Completed Tasks"}
+                    </Button>
+                </div>
             </Panel>
         </>
     );
