@@ -18,11 +18,12 @@ export default function WorkoutItem({ className = '', index, workoutItem, handle
                         setEditState(false);
                     }}
                 >
-                    <div>
+                    <div className="flex gap-1">
                         <input
                             className="p-0.5 rounded-md border-2 border-teal-800 text-slate-100 bg-slate-900"
                             type="text"
                             value={editWorkoutInput}
+                            placeholder="Edit workout here..."
                             onChange={(e) => setEditWorkoutInput(e.target.value)}
                             onKeyDown={(e) => {
                                 if (e.key === 'Escape') {
@@ -34,6 +35,7 @@ export default function WorkoutItem({ className = '', index, workoutItem, handle
                             className="p-0.5 rounded-md border-2 border-teal-800 text-slate-100 bg-slate-900"
                             type="number"
                             value={editWorkoutReps}
+                            placeholder="Edit reps here..."
                             onChange={(e) => setEditWorkoutReps(e.target.value)}
                             onKeyDown={(e) => {
                                 if (e.key === 'Escape') {
@@ -42,13 +44,24 @@ export default function WorkoutItem({ className = '', index, workoutItem, handle
                             }}
                         />
                     </div>
-                    <div>
+                    <div className="flex gap-1">
                         <Button
                             type="submit"
+                            buttonSize="xs"
+                            buttonStyle="primary"
+                            disabled={
+                                !editWorkoutInput.trim() ||
+                                !editWorkoutReps ||
+                                (
+                                    editWorkoutInput.trim() === workoutItem.workout &&
+                                    Number(editWorkoutReps) === workoutItem.reps
+                                )}
                         >
                             Save
                         </Button>
                         <Button
+                            buttonSize="xs"
+                            buttonStyle="danger"
                             type="button"
                             onClick={() => setEditState(false)}
                         >

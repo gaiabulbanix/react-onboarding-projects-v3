@@ -8,8 +8,9 @@ export default function TaskItem({ className = '', task, index, handleToggleTask
     return (
         editState
             ?
-            <li className="flex justify-between items-center">
+            <li>
                 <form
+                    className="flex justify-between items-center"
                     onSubmit={(e) => {
                         handleEditTask({ e: e, taskId: task.id, editInput: editInput, });
                         setEditState(false);
@@ -27,7 +28,7 @@ export default function TaskItem({ className = '', task, index, handleToggleTask
                             }}
                         />
                     </div>
-                    <div>
+                    <div className="flex gap-1">
                         <Button
                             type="submit"
                             buttonSize="xs"

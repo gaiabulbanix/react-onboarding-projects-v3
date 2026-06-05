@@ -106,6 +106,7 @@ export default function CalisthenicsTracker() {
             <Panel className="mt-6 w-full max-w-3xl">
                 <h2>Workout List</h2>
                 <WorkoutList
+                    className="mt-1"
                     workoutList={workoutList}
                     handleRemoveWorkout={handleRemoveWorkout}
                     handleEditWorkout={handleEditWorkout}
