@@ -137,6 +137,7 @@ export default function TaskTracker() {
                 </div>
 
                 <TaskList
+                    className="mt-1"
                     tasks={filteredTasks}
                     handleToggleTask={handleToggleTask}
                     handleRemoveTask={handleRemoveTask}
